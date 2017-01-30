@@ -1,0 +1,28 @@
+{
+  "name": "example-dapp",
+  "version": "1.0.0",
+  "description": "Example DApp",
+  "main": "main.js",
+  "dependencies": {
+    "babel": "^6.5.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Neufund/example-dapp.git"
+  },
+  "keywords": [
+    "dapp",
+    "ethereum",
+    "blockchain"
+  ],
+  "author": "Leonid Logvinov <logvinov.leon@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Neufund/example-dapp/issues"
+  },
+  "homepage": "https://github.com/Neufund/example-dapp#readme"
+}
