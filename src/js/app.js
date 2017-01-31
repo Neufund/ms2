@@ -8,59 +8,90 @@ var WalletProvider = new HookedWalletSubprovider(walletSubProvider);
 const NODE_URL = 'https://ropsten.infura.io/c1GeHOZ7ipPvjO7nDP7l';
 web3Polyfill(NODE_URL, WalletProvider);
 
+function step1(cb) {
 //
 //  Step 1: Connect to the Ethereum Network
 //
-web3.version.getNode((error, result)=> {
-    $('#ethereum_provider')[0].value = result;
-    if (/^ProviderEngine\//.test(result)) {
-        // TODO: less hackish
-        $('#ethereum_provider')[0].value += " on " + web3.currentProvider._providers[6].rpcUrl;
-    }
-});
-web3.version.getNetwork((error, result)=> {
-    $('#ethereum_network')[0].value += "Network id: " + (0 | result) + " ";
-});
+    web3.version.getNode((error, result)=> {
+        $('#ethereum_provider')[0].value = result;
+        if (/^ProviderEngine\//.test(result)) {
+            // TODO: less hackish
+            $('#ethereum_provider')[0].value += " on " + web3.currentProvider._providers[6].rpcUrl;
+        }
+    });
+    web3.version.getNetwork((error, result)=> {
+        $('#ethereum_network')[0].value += "Network id: " + (0 | result) + " ";
+    });
 
-var setCurrentBlock = function (block) {
-    $('#ethereum_block')[0].value = block.number + " " + block.hash;
+    var setCurrentBlock = function (block) {
+        $('#ethereum_block')[0].value = block.number + " " + block.hash;
+    }
+
+    web3.eth.getBlock('latest', (error, result)=> {
+        setCurrentBlock(result);
+
+        // We need a valid block before we can do this
+        web3.version.getEthereum((error, result)=> {
+            $('#ethereum_network')[0].value += "Ethereum version: " + (0 | result) + " ";
+        });
+    });
+
+    var filter = web3.eth.filter('latest');
+    console.log(filter);
+    filter.watch((error, result)=> {
+        web3.eth.getBlock(result, function (error, block) {
+            setCurrentBlock(block);
+            cb();
+        });
+    });
 }
 
-web3.eth.getBlock('latest', (error, result)=> {
-    setCurrentBlock(result);
-
-    // We need a valid block before we can do this
-    web3.version.getEthereum((error, result)=> {
-        $('#ethereum_network')[0].value += "Ethereum version: " + (0 | result) + " ";
-    });
-});
-
-var filter = web3.eth.filter('latest');
-console.log(filter);
-filter.watch((error, result)=> {
-    web3.eth.getBlock(result, function (error, block) {
-        setCurrentBlock(block);
-    });
-});
-
+function step2a(cb) {
 //
 //  Step 2a: Connect to your hardware wallet
 //
-walletSubProvider.getAppConfig(function(config){
-    $("#ledger_version")[0].value = config.version;
-    $("#transactions_allowed")[0].value = Boolean(config.arbitraryDataEnabled).toString();
-});
+    walletSubProvider.getAppConfig(function (config) {
+        $("#ledger_version")[0].value = config.version;
+        $("#transactions_allowed")[0].value = Boolean(config.arbitraryDataEnabled).toString();
+        cb();
+    });
+}
 
+function step2b(cb) {
 //
 //  Step 2b: Open your hardware wallet
 //
-web3.eth.getAccounts((error, result)=> {
-    $('#wallet_address')[0].value = result[0];
-    web3.eth.getBalance(result[0], (error, result)=> {
-        $('#wallet_balance')[0].value = result.toString();
+    web3.eth.getAccounts((error, result)=> {
+        $('#wallet_address')[0].value = result[0];
+        web3.eth.getBalance(result[0], (error, result)=> {
+            $('#wallet_balance')[0].value = result.toString();
+            cb();
+        })
+    });
+}
+
+function step3a(cb) {
+//
+//  Step 3a: Connect to Neufund ICO
+//
+//
+    var ICO_addr = $("#neufund_address")[0].value;
+    web3.eth.getBalance(ICO_addr, (err, balance) => {
+        $("#amount_invested")[0].value = balance;
+        cb();
+    });
+}
+
+step1(()=> {
+    step2a(()=> {
+        step2b(()=> {
+            step3a(()=> {
+                console.log("finished");
+            })
+        })
     })
 });
-//
+
 // $('#btn_sign').on('click', ()=> {
 //     var tx = {
 //         from: $('#wallet_address')[0].value,
