@@ -23,7 +23,6 @@ web3.version.getNetwork((error, result)=> {
 });
 
 var setCurrentBlock = function (block) {
-    console.log(block);
     $('#ethereum_block')[0].value = block.number + " " + block.hash;
 }
 
@@ -48,7 +47,6 @@ filter.watch((error, result)=> {
 //  Step 2a: Connect to your hardware wallet
 //
 walletSubProvider.getAppConfig(function(config){
-    console.log(config);
     $("#ledger_version")[0].value = config.version;
     $("#transactions_allowed")[0].value = Boolean(config.arbitraryDataEnabled).toString();
 });
