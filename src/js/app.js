@@ -50,6 +50,7 @@ filter.watch((error, result)=> {
 walletSubProvider.getAppConfig(function(config){
     console.log(config);
     $("#ledger_version")[0].value = config.version;
+    $("#transactions_allowed")[0].value = Boolean(config.arbitraryDataEnabled).toString();
 });
 
 //
