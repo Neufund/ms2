@@ -7,9 +7,9 @@
     "babel": "^6.5.2",
     "bignumber.js": "^4.0.0",
     "bootstrap": "^3.3.7",
-    "ledger-wallet-provider": "^1.3.1",
+    "ledger-wallet-provider": "^1.3.2",
     "web3-polyfill": "^1.0.1",
-    "web3-provider-engine": "git://github.com/Neufund/provider-engine.git#fix-nonce-cache-for-eip55-addreses"
+    "web3-provider-engine": "^8.6.1"
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.22.0",
