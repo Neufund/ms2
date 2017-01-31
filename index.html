@@ -122,6 +122,14 @@ contract greeter is mortal {
     }
 }
 </textarea>
+            <label for="ABI">Contract ABI</label>
+            <textarea name="ABI" id="ABI" cols="30" rows="10" class="form-control">
+[
+{"constant":false,"inputs":[],"name":"kill","outputs":[],"payable":false,"type":"function"},
+{"constant":true,"inputs":[],"name":"greet","outputs":[{"name":"","type":"string"}],"payable":false,"type":"function"},
+{"inputs":[{"name":"_greeting","type":"string"}],"payable":false,"type":"constructor"}
+]
+            </textarea>
         </div>
         <div class="form-group">
             <label for="contract_address">Contract Address</label>
