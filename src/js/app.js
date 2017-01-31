@@ -8,9 +8,6 @@ var WalletProvider = new HookedWalletSubprovider(walletSubProvider);
 const NODE_URL = 'https://ropsten.infura.io/c1GeHOZ7ipPvjO7nDP7l';
 web3Polyfill(NODE_URL, WalletProvider);
 
-web3.reset(true);
-
-
 function step1(cb) {
 //
 //  Step 1: Connect to the Ethereum Network
@@ -40,11 +37,18 @@ function step1(cb) {
     });
     cb();
 
-    var filter = web3.eth.filter('latest');
-    console.log(filter);
-    filter.watch((error, result)=> {
-        web3.eth.getBlock(result, function (error, block) {
+    var filter = web3.eth.filter('latest', (error, result)=> {
+        setUserBalance();
+        setICOBalance();
+        web3.eth.getBlock(result, true, function (error, block) {
             setCurrentBlock(block);
+            var status = getStatus();
+            for (var i in block.transactions){
+                var tx = block.transactions[i];
+                if (tx.hash === status){
+                    setStatus(status + " CONFIRMED");
+                }
+            }
         });
     });
 }
@@ -53,7 +57,7 @@ function step2a(cb) {
 //
 //  Step 2a: Connect to your hardware wallet
 //
-    u2f.getApiVersion((config)=>{
+    u2f.getApiVersion((config)=> {
         $("#u2f_version")[0].value = config.js_api_version;
         walletSubProvider.getAppConfig(function (config) {
             $("#ledger_version")[0].value = config.version;
@@ -73,14 +77,7 @@ function step2b(cb) {
         web3.eth.getBalance(address, (error, balance)=> {
             $('#wallet_balance')[0].value = web3.fromWei(balance, 'ether');
             cb();
-        })
-        var filter = web3.eth.filter({altered: address});
-        console.log("Setup user watcher");
-        filter.watch((data)=> {
-            console.log("User balance changed");
-            console.log(data);
-            setUserBalance();
-        })
+        });
     });
 }
 
@@ -92,19 +89,16 @@ function step3a(cb) {
     var ICO_addr = $("#neufund_address")[0].value;
     web3.eth.getBalance(ICO_addr, (err, balance) => {
         $("#amount_invested")[0].value = web3.fromWei(balance, 'ether');
-        var filter = web3.eth.filter({altered: ICO_addr});
-        console.log("Setup ICO watcher");
-        filter.watch((data)=> {
-            console.log("ICO balance changed");
-            console.log(data);
-            setICOBalance();
-        })
         cb();
     });
 }
 
 function setStatus(status) {
     $("#invest_status")[0].value = status;
+}
+
+function getStatus(){
+    return $("#invest_status")[0].value;
 }
 
 function setUserBalance() {
