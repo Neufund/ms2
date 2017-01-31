@@ -4,11 +4,34 @@
   "description": "Example DApp",
   "main": "main.js",
   "dependencies": {
-    "babel": "^6.5.2"
+    "babel": "^6.5.2",
+    "bignumber.js": "^4.0.0",
+    "bootstrap": "^3.3.7",
+    "bootstrap-webpack": "0.0.5",
+    "exports-loader": "^0.6.3",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.10.0",
+    "imports-loader": "^0.7.0",
+    "ledger-wallet-provider": "^1.3.1",
+    "url-loader": "^0.5.7",
+    "web3-polyfill": "^1.0.1",
+    "web3-provider-engine": "git://github.com/Neufund/provider-engine.git#fix-nonce-cache-for-eip55-addreses"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "babel-core": "^6.22.1",
+    "babel-loader": "^6.2.10",
+    "babel-preset-es2015": "^6.22.0",
+    "css-loader": "^0.26.1",
+    "json-loader": "^0.5.4",
+    "less": "^2.7.2",
+    "less-loader": "^2.2.3",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.14.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "bundle": "webpack -p",
+    "serve": "sudo python server.py"
   },
   "repository": {
     "type": "git",
