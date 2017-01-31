@@ -36,7 +36,6 @@ web3.eth.getBlock('latest', (error, result)=> {
     });
 });
 
-// TODO: keep block counter updated
 var filter = web3.eth.filter('latest');
 console.log(filter);
 filter.watch((error, result)=> {
@@ -46,14 +45,22 @@ filter.watch((error, result)=> {
 });
 
 //
-// $('#btn_wallet').on('click', ()=> {
-//     web3.eth.getAccounts((error, result)=> {
-//         $('#wallet_address')[0].value = result[0];
-//         web3.eth.getBalance(result[0], (error, result)=> {
-//             $('#address_balance')[0].value = result.toString();
-//         })
-//     })
-// });
+//  Step 2a: Connect to your hardware wallet
+//
+walletSubProvider.getAppConfig(function(config){
+    console.log(config);
+    $("#ledger_version")[0].value = config.version;
+});
+
+//
+//  Step 2b: Open your hardware wallet
+//
+web3.eth.getAccounts((error, result)=> {
+    $('#wallet_address')[0].value = result[0];
+    web3.eth.getBalance(result[0], (error, result)=> {
+        $('#wallet_balance')[0].value = result.toString();
+    })
+});
 //
 // $('#btn_sign').on('click', ()=> {
 //     var tx = {
