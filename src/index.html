@@ -39,9 +39,14 @@
     <h2>Step 2a: Connect to your hardware wallet</h2>
     <p>
         What you need: Either Chrome, Opera or Firefox with plugin destop browser.<br>
-        What you do: Connect your 
+        What you do: Connect your hardware wallet and wait for it to be detected.<br>
+        What we do: We poll for the device presence.
     </p>
     <form>
+        <div class="form-group">
+            <label for="u2f_version">U2F Version</label>
+            <input type="text" class="form-control" id="u2f_version" placeholder="" readonly>
+        </div>
         <div class="form-group">
             <label for="wallet_version">Wallet Version</label>
             <input type="text" class="form-control" id="ledger_version" placeholder="" readonly>
@@ -51,7 +56,8 @@
     <h2>Step 2b: Open your hardware wallet</h2>
     <p>
         What you need: Either Chrome, Opera or Firefox with plugin destop browser.<br>
-        What you do: Connect your 
+        What you do: Connect your Ledger Nano S to USB<br>
+        What we do: keep the balance updated as you faucet and/or invest
     </p>
     <form>
         <div class="form-group">
@@ -60,19 +66,50 @@
         </div>
         <div class="form-group">
             <label for="wallet_balance">Wallet Balance</label>
-            <input type="text" class="form-control" id="wallet_balance" placeholder="" readonly>
+            <div class="input-group">
+                <input type="text" class="form-control" id="wallet_balance" placeholder="" readonly>
+                <span class="input-group-addon">ETH</span>
+            </div>
         </div>
+        <p><a href="http://faucet.ropsten.be:3001/">Free testnet coins</a></p>
     </form>
     
-    <h2>Step 3: Invest in Neufund</h2>
+    <h2>Step 3a: Connect to Neufund ICO</h2>
+    <p>
+        What you do: wait<br>
+        What we do: fill this in and keep it updated as soon as there is Eth connection
+    </p>
     <form>
         <div class="form-group">
             <label for="neufund_address">Neufund Address</label>
-            <input type="text" class="form-control" id="neufund_address" placeholder="" readonly>
+            <input type="text" class="form-control" id="neufund_address" value="0xa57Da36D823976D21B8A6e1c584f17FCB4BF116a" readonly>
         </div>
         <div class="form-group">
-            <label for="amount_invested">Amount Invested</label>
-            <input type="text" class="form-control" id="amount_invested" placeholder="" readonly>
+            <label for="amount_invested">Total amount invested</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="amount_invested" placeholder="" readonly>
+                <span class="input-group-addon">ETH</span>
+            </div>
+        </div>
+    </form>
+    
+    <h2>Step 3b: Invest in Neufund ICO</h2>
+    <p>
+        What you do: Fill in the amount to donate, click invest, sign transaction<br>
+        What we do: keep you up to date on transaction progress (waiting for signature, sending to network, waiting for block, waiting for confirmations, success)
+    </p>
+    <form>
+        <div class="form-group">
+            <label for="invest_amount">Amount</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="invest_amount" placeholder="">
+                <span class="input-group-addon">ETH</span>
+            </div>
+        </div>
+        <button type="button" class="btn btn-warning" id="btn_invest">Invest</button>
+        <div class="form-group">
+            <label for="invest_status">Investment status:</label>
+            <input type="text" class="form-control" id="invest_status" placeholder="" readonly>
         </div>
     </form>
 
