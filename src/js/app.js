@@ -57,7 +57,7 @@ function step2a(cb) {
         $("#u2f_version")[0].value = config.js_api_version;
         walletSubProvider.getAppConfig(function (config) {
             $("#ledger_version")[0].value = config.version;
-            $("#transactions_allowed")[0].value = Boolean(config.arbitraryDataEnabled).toString();
+            $("#arbitrary_data_allowed")[0].value = Boolean(config.arbitraryDataEnabled).toString();
             cb();
         });
     });
