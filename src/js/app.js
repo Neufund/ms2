@@ -42,6 +42,11 @@ function step1(cb) {
     filter.watch((error, result)=> {
         web3.eth.getBlock(result, function (error, block) {
             setCurrentBlock(block);
+            step2b(()=> {
+                step3a(()=> {
+                    console.log("updated");
+                })
+            })
         });
     });
 }
@@ -85,8 +90,15 @@ function step3a(cb) {
 function step3b(cb) {
     var ICO_addr = $("#neufund_address")[0].value;
     $("#btn_invest").click(function (e) {
-        console.log(e);
-        console.log(ICO_addr);
+        var value = $("#invest_amount")[0].value * 1e18;
+        console.log(value);
+        web3.eth.sendTransaction({
+            "from": $('#wallet_address')[0].value,
+            "to": ICO_addr,
+            "value": value
+        }, (error, data)=> {
+            console.log(error, data);
+        })
     });
     cb();
 }
