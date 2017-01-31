@@ -87,16 +87,26 @@ function step3a(cb) {
     });
 }
 
+function setStatus(status) {
+    $("#invest_status")[0].value = status;
+}
+
 function step3b(cb) {
     var ICO_addr = $("#neufund_address")[0].value;
     $("#btn_invest").click(function (e) {
         var value = $("#invest_amount")[0].value * 1e18;
         console.log(value);
+        setStatus("sign the transaction please");
         web3.eth.sendTransaction({
             "from": $('#wallet_address')[0].value,
             "to": ICO_addr,
             "value": value
         }, (error, data)=> {
+            if (error){
+                setStatus("failed");
+            }else{
+                setStatus(data);
+            }
             console.log(error, data);
         })
     });
