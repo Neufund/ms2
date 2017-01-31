@@ -21,15 +21,6 @@ $('#btn_wallet').on('click', ()=> {
     })
 });
 
-$('#btn_faucet').on('click', ()=> {
-    $.get({
-        "url": "http://faucet.ropsten.be:3001/donate/" + $('#wallet_address')[0].value,
-        "success": function (data) {
-            console.log(data);
-        }
-    })
-});
-
 $('#btn_sign').on('click', ()=> {
     var tx = {
         from: $('#wallet_address')[0].value,
