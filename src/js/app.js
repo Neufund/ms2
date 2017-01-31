@@ -35,13 +35,13 @@ function step1(cb) {
             $('#ethereum_network')[0].value += "Ethereum version: " + (0 | result) + " ";
         });
     });
+    cb();
 
     var filter = web3.eth.filter('latest');
     console.log(filter);
     filter.watch((error, result)=> {
         web3.eth.getBlock(result, function (error, block) {
             setCurrentBlock(block);
-            cb();
         });
     });
 }
@@ -63,8 +63,8 @@ function step2b(cb) {
 //
     web3.eth.getAccounts((error, result)=> {
         $('#wallet_address')[0].value = result[0];
-        web3.eth.getBalance(result[0], (error, result)=> {
-            $('#wallet_balance')[0].value = result.toString();
+        web3.eth.getBalance(result[0], (error, balance)=> {
+            $('#wallet_balance')[0].value = web3.fromWei(balance, 'ether');
             cb();
         })
     });
@@ -77,16 +77,27 @@ function step3a(cb) {
 //
     var ICO_addr = $("#neufund_address")[0].value;
     web3.eth.getBalance(ICO_addr, (err, balance) => {
-        $("#amount_invested")[0].value = balance;
+        $("#amount_invested")[0].value = web3.fromWei(balance, 'ether');
         cb();
     });
+}
+
+function step3b(cb) {
+    var ICO_addr = $("#neufund_address")[0].value;
+    $("#btn_invest").click(function (e) {
+        console.log(e);
+        console.log(ICO_addr);
+    });
+    cb();
 }
 
 step1(()=> {
     step2a(()=> {
         step2b(()=> {
             step3a(()=> {
-                console.log("finished");
+                step3b(()=> {
+                    console.log("finished");
+                });
             })
         })
     })
