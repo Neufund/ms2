@@ -10,7 +10,7 @@ web3Polyfill(NODE_URL, WalletProvider);
 
 web3.version.getNetwork((error, result)=> {
     console.log("Network:", result);
-})
+});
 
 $('#btn_wallet').on('click', ()=> {
     web3.eth.getAccounts((error, result)=> {
@@ -40,8 +40,9 @@ $('#btn_compile').on('click', ()=> {
 });
 
 $('#btn_contract').on('click', ()=> {
+    var ABI = JSON.parse($('#ABI')[0].value);
     window.contract = web3.eth
-        .contract(window.contract_compiled.info.abiDefinition)
+        .contract(ABI)
         .at($('#contract_address')[0].value);
 });
 
