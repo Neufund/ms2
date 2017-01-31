@@ -8,9 +8,37 @@ var WalletProvider = new HookedWalletSubprovider(walletSubProvider);
 const NODE_URL = 'https://ropsten.infura.io/c1GeHOZ7ipPvjO7nDP7l';
 web3Polyfill(NODE_URL, WalletProvider);
 
-web3.version.getNetwork((error, result)=> {
-    console.log("Network:", result);
+//
+//  Step 1: Connect to the Ethereum Network
+//
+web3.version.getNode((error, result)=> {
+    $('#ethereum_provider')[0].value = result;
+    if(/^ProviderEngine\//.test(result)) {
+        // TODO: less hackish
+        $('#ethereum_provider')[0].value += " on " + web3.currentProvider._providers[6].rpcUrl;
+    }
 });
+web3.version.getNetwork((error, result)=> {
+    $('#ethereum_network')[0].value += "Network id: " + (0|result) + " ";
+});
+web3.eth.getBlock('latest', (error, result)=> {
+    $('#ethereum_block')[0].value = result.number + " " + result.hash;
+    
+    // We need a valid block before we can do this
+    web3.version.getEthereum((error, result)=> {
+        $('#ethereum_network')[0].value += "Ethereum version: " + (0|result) + " ";
+    });
+});
+
+/* TODO: keep block counter updated
+var filter = web3.eth.filter('latest');
+console.log(filter);
+filter.watch((error, result)=>{
+    var block = web3.eth.getBlock(result, true);
+    console.log('block #' + block.number);
+    console.dir(block.transactions);
+});
+*/
 
 $('#btn_wallet').on('click', ()=> {
     web3.eth.getAccounts((error, result)=> {
