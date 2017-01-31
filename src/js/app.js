@@ -8,6 +8,9 @@ var WalletProvider = new HookedWalletSubprovider(walletSubProvider);
 const NODE_URL = 'https://ropsten.infura.io/c1GeHOZ7ipPvjO7nDP7l';
 web3Polyfill(NODE_URL, WalletProvider);
 
+web3.reset(true);
+
+
 function step1(cb) {
 //
 //  Step 1: Connect to the Ethereum Network
@@ -42,11 +45,6 @@ function step1(cb) {
     filter.watch((error, result)=> {
         web3.eth.getBlock(result, function (error, block) {
             setCurrentBlock(block);
-            step2b(()=> {
-                step3a(()=> {
-                    console.log("updated");
-                })
-            })
         });
     });
 }
@@ -55,10 +53,13 @@ function step2a(cb) {
 //
 //  Step 2a: Connect to your hardware wallet
 //
-    walletSubProvider.getAppConfig(function (config) {
-        $("#ledger_version")[0].value = config.version;
-        $("#transactions_allowed")[0].value = Boolean(config.arbitraryDataEnabled).toString();
-        cb();
+    u2f.getApiVersion((config)=>{
+        $("#u2f_version")[0].value = config.js_api_version;
+        walletSubProvider.getAppConfig(function (config) {
+            $("#ledger_version")[0].value = config.version;
+            $("#transactions_allowed")[0].value = Boolean(config.arbitraryDataEnabled).toString();
+            cb();
+        });
     });
 }
 
@@ -67,10 +68,18 @@ function step2b(cb) {
 //  Step 2b: Open your hardware wallet
 //
     web3.eth.getAccounts((error, result)=> {
-        $('#wallet_address')[0].value = result[0];
-        web3.eth.getBalance(result[0], (error, balance)=> {
+        var address = result[0];
+        $('#wallet_address')[0].value = address;
+        web3.eth.getBalance(address, (error, balance)=> {
             $('#wallet_balance')[0].value = web3.fromWei(balance, 'ether');
             cb();
+        })
+        var filter = web3.eth.filter({altered: address});
+        console.log("Setup user watcher");
+        filter.watch((data)=> {
+            console.log("User balance changed");
+            console.log(data);
+            setUserBalance();
         })
     });
 }
@@ -83,12 +92,33 @@ function step3a(cb) {
     var ICO_addr = $("#neufund_address")[0].value;
     web3.eth.getBalance(ICO_addr, (err, balance) => {
         $("#amount_invested")[0].value = web3.fromWei(balance, 'ether');
+        var filter = web3.eth.filter({altered: ICO_addr});
+        console.log("Setup ICO watcher");
+        filter.watch((data)=> {
+            console.log("ICO balance changed");
+            console.log(data);
+            setICOBalance();
+        })
         cb();
     });
 }
 
 function setStatus(status) {
     $("#invest_status")[0].value = status;
+}
+
+function setUserBalance() {
+    var address = $('#wallet_address')[0].value;
+    web3.eth.getBalance(address, (error, balance)=> {
+        $('#wallet_balance')[0].value = web3.fromWei(balance, 'ether');
+    })
+}
+
+function setICOBalance() {
+    var ICO_addr = $("#neufund_address")[0].value;
+    web3.eth.getBalance(ICO_addr, (err, balance) => {
+        $("#amount_invested")[0].value = web3.fromWei(balance, 'ether');
+    });
 }
 
 function step3b(cb) {
@@ -102,9 +132,9 @@ function step3b(cb) {
             "to": ICO_addr,
             "value": value
         }, (error, data)=> {
-            if (error){
+            if (error) {
                 setStatus("failed");
-            }else{
+            } else {
                 setStatus(data);
             }
             console.log(error, data);
