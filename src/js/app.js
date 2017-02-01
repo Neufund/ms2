@@ -9,9 +9,9 @@ const NODE_URL = 'https://ropsten.infura.io/c1GeHOZ7ipPvjO7nDP7l';
 web3Polyfill(NODE_URL, WalletProvider);
 
 function step1(cb) {
-//
-//  Step 1: Connect to the Ethereum Network
-//
+    //
+    //  Step 1: Connect to the Ethereum Network
+    //
     web3.version.getNode((error, result)=> {
         $('#ethereum_provider')[0].value = result;
         if (/^ProviderEngine\//.test(result)) {
@@ -53,9 +53,9 @@ function step1(cb) {
 }
 
 function step2a(cb) {
-//
-//  Step 2a: Connect to your hardware wallet
-//
+    //
+    //  Step 2a: Connect to your hardware wallet
+    //
     function connectToNano(cb){
         walletSubProvider.getAppConfig(function (config) {
             if (config) {
@@ -88,10 +88,9 @@ function step2b(cb) {
 }
 
 function step3a(cb) {
-//
-//  Step 3a: Connect to Neufund ICO
-//
-//
+    //
+    //  Step 3a: Connect to Neufund ICO
+    //
     var ICO_addr = $("#neufund_address")[0].value;
     web3.eth.getBalance(ICO_addr, (err, balance) => {
         $("#amount_invested")[0].value = web3.fromWei(balance, 'ether');
