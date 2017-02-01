@@ -42,12 +42,11 @@ function step1(cb) {
         setICOBalance();
         web3.eth.getBlock(result, true, function (error, block) {
             setCurrentBlock(block);
-            var status = getStatus();
-            for (var i in block.transactions){
-                var tx = block.transactions[i];
-                if (tx.hash === status){
-                    setStatus(status + " CONFIRMED");
-                }
+            var tx = getTransaction();
+            if (tx) {
+                web3.eth.getTransaction(tx, (error, transaction)=> {
+                    updateStatus(tx, transaction.blockNumber, block.number);
+                })
             }
         });
     });
@@ -57,13 +56,20 @@ function step2a(cb) {
 //
 //  Step 2a: Connect to your hardware wallet
 //
+    function connectToNano(cb){
+        walletSubProvider.getAppConfig(function (config) {
+            if (config) {
+                $("#ledger_version")[0].value = config.version;
+                $("#arbitrary_data_allowed")[0].value = Boolean(config.arbitraryDataEnabled).toString();
+                cb();
+            }else{
+                connectToNano(cb);
+            }
+        });
+    }
     u2f.getApiVersion((config)=> {
         $("#u2f_version")[0].value = config.js_api_version;
-        walletSubProvider.getAppConfig(function (config) {
-            $("#ledger_version")[0].value = config.version;
-            $("#arbitrary_data_allowed")[0].value = Boolean(config.arbitraryDataEnabled).toString();
-            cb();
-        });
+        connectToNano(cb);
     });
 }
 
@@ -97,8 +103,29 @@ function setStatus(status) {
     $("#invest_status")[0].value = status;
 }
 
-function getStatus(){
+function getStatus() {
     return $("#invest_status")[0].value;
+}
+
+function updateStatus(tx, txBlock, curBlock) {
+    var progress = $("#tx_progress");
+    progress.parent().show();
+    var max_conf = progress.attr("aria-valuemax");
+    if (txBlock === null) {
+        setStatus(`${tx} PENDING`);
+    } else {
+        var conf = curBlock - txBlock + 1;
+        progress.css("width", (conf / 1.0 / max_conf) * 100 + '%');
+        progress.text(`${conf}/${max_conf}`);
+        setStatus(`${tx} ${conf} CONFIRMATIONS`);
+    }
+}
+
+function getTransaction() {
+    var status = getStatus();
+    if (status.substr(0, 2) === "0x") {
+        return status.split(' ')[0];
+    }
 }
 
 function setUserBalance() {
@@ -129,7 +156,7 @@ function step3b(cb) {
             if (error) {
                 setStatus("failed");
             } else {
-                setStatus(data);
+                updateStatus(data, null);
             }
             console.log(error, data);
         })
