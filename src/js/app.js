@@ -67,10 +67,17 @@ function step2a(cb) {
             }
         });
     }
-    u2f.getApiVersion((config)=> {
-        $("#u2f_version")[0].value = config.js_api_version;
+
+    if (u2f.getApiVersion) {
+        u2f.getApiVersion((config)=> {
+            $("#u2f_version")[0].value = config.js_api_version;
+            connectToNano(cb);
+        });
+    } else {
+        $("#u2f_version")[0].value = "I dunno";
         connectToNano(cb);
-    });
+    }
+
 }
 
 function step2b(cb) {

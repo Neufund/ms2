@@ -7,7 +7,7 @@
     "babel": "^6.5.2",
     "bignumber.js": "^4.0.0",
     "bootstrap": "^3.3.7",
-    "ledger-wallet-provider": "^1.4.1",
+    "ledger-wallet-provider": "^1.5.1",
     "web3-polyfill": "^1.0.1",
     "web3-provider-engine": "^8.6.1"
   },
