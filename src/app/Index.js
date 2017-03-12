@@ -1,12 +1,13 @@
 import React from 'react';
 import './Index.css';
+import RaisedButton from 'material-ui/RaisedButton';
 
 let Index = () => {
     return (
-        <div className="Index">
-            <p className="Index-intro">
-                To get started, edit <code>src/app/Index.js</code> and save to reload.
-            </p>
+        <div className="pure-g">
+            <div className="pure-u-1 pure-u-md-1-3">
+                <RaisedButton label="Default" />
+            </div>
         </div>
     )
 };
