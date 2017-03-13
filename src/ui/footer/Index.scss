@@ -1,3 +1,13 @@
+@import "../../styles/colors";
+@import "../../styles/global";
+
 .Footer{
-    height: 5vh;
+  height: 5vh;
+  display: flex;
+  justify-content: space-between;
+  color: $link-not-available;
+
+  a {
+    color: $link-color;
+  }
 }

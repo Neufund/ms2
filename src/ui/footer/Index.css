@@ -1,2 +1,11 @@
+a {
+  text-decoration: none; }
+
 .Footer {
-  height: 5vh; }
+  height: 5vh;
+  display: flex;
+  justify-content: space-between;
+  color: #898989; }
+
+.Footer a {
+  color: #000; }
