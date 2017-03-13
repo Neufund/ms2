@@ -1,5 +1,5 @@
 import React from 'react';
-import Progress from '../ui/Stepper';
+import ProgressBar from '../ui/ProgressBar';
 import Headline from '../ui/Headline';
 import TextField from 'material-ui/TextField';
 import Checkbox from 'material-ui/Checkbox';
@@ -30,7 +30,7 @@ export default () => {
         <div className="KYC">
             <Headline text="Welcome Mr Investor"/>
             <div className="KYC-description">To invest in NEUFUND please follow the steps</div>
-            <Progress progress="40"/>
+            <ProgressBar progress={40}/>
             <div className="KYC-content">
                 <div className="column leftColumn">
                     <Stepper activeStep={1} orientation="vertical">

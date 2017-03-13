@@ -1,11 +1,11 @@
 import React from 'react';
-import Stepper from '../ui/Stepper';
+import ProgressBar from '../ui/ProgressBar';
 import './Contracts.css';
 
 export default () => {
     return (
         <div className="Contracts">
-            <Stepper progress="20"/>
+            <ProgressBar progress={20}/>
             <div className="column leftColumn">
 
             </div>
