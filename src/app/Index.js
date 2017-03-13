@@ -8,7 +8,7 @@ export default () => {
     return (
         <div className="Index">
             <Headline text="Welcome to the Presale"/>
-            <div className="Index-description">
+            <div className="secondary-info">
                 To finalize your participation in NEUFUND Fund,
                 you will be required to log in to the NEUFUND Platform
             </div>

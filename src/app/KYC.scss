@@ -6,7 +6,23 @@
   }
 }
 
+.KYC-content {
+  display: flex;
+}
+
 .KYC-description {
   font-size: 16px;
   color: $link-not-available;
+}
+
+.KYC-form {
+  width: 80%;
+  margin-left: 15%;
+  display: flex;
+  flex-direction: column;
+}
+
+.KYC-progress {
+  height: 50vh;
+  border-right: 1px solid $link-not-available;
 }
