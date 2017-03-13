@@ -3,7 +3,7 @@
 $stepper-height:0.5vh;
 
 .Stepper {
-  margin-left: -10vw;
+  margin: 2vh 0 2vh -10vw;
   width: 100vw;
   height: $stepper-height;
   background-color: $stepper-background-passive;

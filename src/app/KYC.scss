@@ -1,0 +1,12 @@
+@import "../styles/colors";
+
+.KYC {
+  &.column {
+    float: left;
+  }
+}
+
+.KYC-description {
+  font-size: 16px;
+  color: $link-not-available;
+}

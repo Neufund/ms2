@@ -1,14 +1,13 @@
 .Contracts {
-
-  .column {
-    float:left;
+  &.column {
+    float: left;
   }
 }
 
 .leftColumn {
-  width: 26.66vw;
+  width: calc(80vw / 3);
 }
 
 .rightColumn {
-  width: 53.33vw;
+  width: calc(80vw * 2 / 3);
 }

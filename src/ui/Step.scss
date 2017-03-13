@@ -1,5 +1,22 @@
+@import "../styles/colors";
+
 .Step {
   display: flex;
   align-items: center;
   margin: 5vh 0 5vh 0;
+}
+
+.Step-indicator {
+  height: 3vh;
+  width: 3vh;
+  border: 1px solid $link-not-available;
+  border-radius: 50%;
+  margin: 5px;
+}
+
+.Step-indicator.active {
+  background-color: $primary-color;
+}
+
+.Step-label {
 }

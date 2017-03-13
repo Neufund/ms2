@@ -1,11 +1,14 @@
 import React from 'react';
 import './Step.css'
 
-export default ({children}) => {
+export default ({children, completed}) => {
     return (
         <div className="Step">
-            <input type="radio"/>
-            <label>{children}</label>
+            {completed
+                ? <div className="Step-indicator active"></div>
+                : <div className="Step-indicator"></div>
+            }
+            <div className="Step-label">{children}</div>
         </div>
     )
 }
