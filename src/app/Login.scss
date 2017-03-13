@@ -3,16 +3,19 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  &div {
-    flex: 1;
-    margin: 2vw;
-  }
-  &div:first-of-type{
-    margin-left: 0;
-  }
-  &div:last-of-type{
-    margin-right: 0;
-  }
+}
+
+.Login-content > div {
+  flex: 1;
+  margin: 2vw;
+}
+
+.Login-content > div:first-of-type {
+  margin-left: 0;
+}
+
+.Login-content > div:last-of-type {
+  margin-right: 0;
 }
 
 .Login-img {
