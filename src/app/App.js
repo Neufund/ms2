@@ -10,7 +10,9 @@ export default ({children}) => {
             <div className="App">
                 <div className="App-container">
                     <Header/>
-                    {children}
+                    <div className="App-content">
+                        {children}
+                    </div>
                     <Footer/>
                 </div>
             </div>

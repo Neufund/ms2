@@ -4,6 +4,7 @@ import './Index.css';
 export default () => {
     return (
         <div className="Footer">
+            Ama foota
         </div>
     )
 };
