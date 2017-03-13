@@ -6,10 +6,22 @@ import TextField from 'material-ui/TextField';
 import Checkbox from 'material-ui/Checkbox';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
+import RaisedButton from 'material-ui/RaisedButton';
 import {countries} from 'country-data';
 import './KYC.css';
 
 export default () => {
+    let styles = {
+        root: {
+            height: "50px"
+        },
+        input: {
+            marginTop: 0
+        },
+        label: {
+            top: "20px"
+        }
+    };
     return (
         <div className="KYC">
             <Headline text="Welcome Mr Investor"/>
@@ -32,17 +44,30 @@ export default () => {
                         </div>
                         <SelectField floatingLabelText="Country"
                                      autoWidth={true}
-                                     maxHeight={200}>
+                                     maxHeight={200}
+                                     style={styles.root}
+                                     inputStyle={styles.input}
+                                     floatingLabelStyle={styles.label}>
                             {countries.all.map(country => {
                                 return <MenuItem key={country.name}
                                                  value={country.name}
-                                                 primaryText={country.emoji + " " + country.name}/>
+                                                 primaryText={country.name}/>
                             })}
                         </SelectField>
-                        <TextField floatingLabelText="Address line 1"/>
-                        <TextField floatingLabelText="Zip code"/>
-                        <TextField floatingLabelText="City"/>
+                        <TextField floatingLabelText="Address line 1"
+                                   style={styles.root}
+                                   inputStyle={styles.input}
+                                   floatingLabelStyle={styles.label}/>
+                        <TextField floatingLabelText="Zip code"
+                                   style={styles.root}
+                                   inputStyle={styles.input}
+                                   floatingLabelStyle={styles.label}/>
+                        <TextField floatingLabelText="City"
+                                   style={styles.root}
+                                   inputStyle={styles.input}
+                                   floatingLabelStyle={styles.label}/>
                         <Checkbox label="I represent myself"/>
+                        <RaisedButton label="Submit"/>
                     </div>
                 </div>
             </div>
