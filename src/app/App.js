@@ -1,13 +1,19 @@
 import React from 'react';
 import './App.css';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Header from '../ui/header/Index';
+import Footer from '../ui/footer/Index';
 
-let App = ({children}) => {
+export default ({children}) => {
     return (
         <MuiThemeProvider>
-            {children}
+            <div className="App">
+                <div className="App-container">
+                    <Header/>
+                    {children}
+                    <Footer/>
+                </div>
+            </div>
         </MuiThemeProvider>
     )
 };
-
-export default App;
