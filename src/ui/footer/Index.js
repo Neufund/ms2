@@ -8,7 +8,7 @@ export default () => {
                 Contact: <a href="mailto:hello@neufund.org">hello@neufund.org </a>
             </div>
             <div>
-                NEUFUND
+                ©NEUFUND
             </div>
         </div>
     )
