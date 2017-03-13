@@ -1,0 +1,10 @@
+.App-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  margin-left: 10vw;
+  width: 80vw; }
+
+.App-content {
+  height: 75vh; }

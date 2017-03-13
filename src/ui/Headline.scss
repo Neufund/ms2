@@ -1,8 +1,9 @@
 @import "../styles/colors";
 
 .Headline {
-  display: table-cell;
+  display: inline-block;
   font-weight: bold;
   font-size: 20px;
   border-bottom: 2px solid $primary-color;
+  margin: 1vh 0 1vh 0;
 }
