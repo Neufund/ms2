@@ -1,12 +1,16 @@
 import React from 'react';
-import Stepper from '../ui/Stepper';
+import Progress from '../ui/Stepper';
 import Headline from '../ui/Headline';
-import Step from '../ui/Step';
 import TextField from 'material-ui/TextField';
 import Checkbox from 'material-ui/Checkbox';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
+import {
+    Step,
+    Stepper,
+    StepLabel
+} from 'material-ui/Stepper';
 import {countries} from 'country-data';
 import './KYC.css';
 
@@ -26,14 +30,20 @@ export default () => {
         <div className="KYC">
             <Headline text="Welcome Mr Investor"/>
             <div className="KYC-description">To invest in NEUFUND please follow the steps</div>
-            <Stepper progress="40"/>
+            <Progress progress="40"/>
             <div className="KYC-content">
                 <div className="column leftColumn">
-                    <div className="KYC-progress">
-                        <Step>Sign your Limited Partner Agreement</Step>
-                        <Step>Identification</Step>
-                        <Step>Bank transfer</Step>
-                    </div>
+                    <Stepper activeStep={1} orientation="vertical">
+                        <Step>
+                            <StepLabel>Sign your Limited Partner Agreement</StepLabel>
+                        </Step>
+                        <Step>
+                            <StepLabel>Identification</StepLabel>
+                        </Step>
+                        <Step>
+                            <StepLabel>Bank transfer</StepLabel>
+                        </Step>
+                    </Stepper>
                 </div>
                 <div className="column rightColumn">
                     <div className="KYC-form">

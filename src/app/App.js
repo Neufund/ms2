@@ -3,10 +3,11 @@ import './App.css';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Header from '../ui/header/Index';
 import Footer from '../ui/footer/Index';
+import muiTheme from '../muiTheme';
 
 export default ({children}) => {
     return (
-        <MuiThemeProvider>
+        <MuiThemeProvider muiTheme={muiTheme}>
             <div className="App">
                 <div className="App-container">
                     <Header/>
