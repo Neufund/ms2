@@ -1,0 +1,15 @@
+@import "../styles/colors";
+
+$stepper-height:0.5vh;
+
+.Stepper {
+  margin-left: -10vw;
+  width: 100vw;
+  height: $stepper-height;
+  background-color: $stepper-background-passive;
+}
+
+.Progress {
+  height: $stepper-height;
+  background-color: $stepper-background-active;
+}

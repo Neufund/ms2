@@ -1,6 +1,10 @@
 $background: rgba(215, 215, 215, 0.09);
 $green-piss: #d5e20f;
+$grey:#898989;
 
 $primary-color: $green-piss;
-$link-not-available: #898989;
+$link-not-available: $grey;
 $link-color: #000;
+
+$stepper-background-passive: $grey;
+$stepper-background-active: $green-piss
