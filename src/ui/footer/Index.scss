@@ -13,4 +13,8 @@
   color: $link-not-available;
   background-color: $background;
   z-index: 2;
+
+  div {
+    line-height: $footer-height;
+  }
 }
