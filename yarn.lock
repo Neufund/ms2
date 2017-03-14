@@ -3585,9 +3585,9 @@ lcid@^1.0.0:
   dependencies:
     invert-kv "^1.0.0"
 
-ledger-wallet-provider@^1.6.6:
-  version "1.6.6"
-  resolved "https://registry.yarnpkg.com/ledger-wallet-provider/-/ledger-wallet-provider-1.6.6.tgz#4d93d7acea2ac2a66c9d76db8edb6f56b815d412"
+ledger-wallet-provider@^1.6.8:
+  version "1.6.8"
+  resolved "https://registry.yarnpkg.com/ledger-wallet-provider/-/ledger-wallet-provider-1.6.8.tgz#a4aeeee6e3d2b15355c86ec87d7e992a2476328f"
   dependencies:
     ethereumjs-tx "^1.2.2"
     u2f-api "0.0.9"
