@@ -7,12 +7,14 @@
  *    IE on Windows Phone and in iOS.
  */
 html {
-    line-height: 1.15; /* Correct the line height in all browsers */
-    -ms-text-size-adjust: 100%; /* 3 */
-    -webkit-text-size-adjust: 100%; /* 3 */
+  line-height: 1.15; /* 2 */
+  -ms-text-size-adjust: 100%; /* 3 */
+  -webkit-text-size-adjust: 100%; /* 3 */
 }
 
 body {
-    font-family: Monserat, sans-serif;
-    background-color: $background;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: Monserat, sans-serif;
+  background-color: $background;
 }
