@@ -6,11 +6,7 @@ import Checkbox from 'material-ui/Checkbox';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
-import {
-    Step,
-    Stepper,
-    StepLabel
-} from 'material-ui/Stepper';
+import StepperWrapper from '../ui/StepperWrapper';
 import {countries} from 'country-data';
 import './KYC.css';
 
@@ -33,17 +29,7 @@ export default () => {
             <ProgressBar progress={40}/>
             <div className="KYC-content">
                 <div className="column leftColumn">
-                    <Stepper activeStep={1} orientation="vertical">
-                        <Step>
-                            <StepLabel>Sign your Limited Partner Agreement</StepLabel>
-                        </Step>
-                        <Step>
-                            <StepLabel>Identification</StepLabel>
-                        </Step>
-                        <Step>
-                            <StepLabel>Bank transfer</StepLabel>
-                        </Step>
-                    </Stepper>
+                    <StepperWrapper step={1} />
                 </div>
                 <div className="column rightColumn">
                     <div className="KYC-form">
