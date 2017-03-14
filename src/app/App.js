@@ -8,14 +8,12 @@ import muiTheme from '../muiTheme';
 export default ({children}) => {
     return (
         <MuiThemeProvider muiTheme={muiTheme}>
-            <div className="App">
-                <div className="App-container">
-                    <Header/>
-                    <div className="App-content">
-                        {children}
-                    </div>
-                    <Footer/>
+            <div>
+                <Header/>
+                <div className="App-content">
+                    {children}
                 </div>
+                <Footer/>
             </div>
         </MuiThemeProvider>
     )

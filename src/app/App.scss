@@ -1,12 +1,12 @@
-.App-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100vh;
-    margin-left: 10vw;
-    width: 80vw;
-}
+@import "../styles/dimensions";
 
-.App-content{
-    height: 80vh;
+.App-content {
+  box-sizing: border-box;
+  min-height: 100vh;
+  width: $global-content-width;
+  margin-top: -$header-height;
+  margin-left: $global-margin-left;
+  padding-top: $header-height;
+  padding-bottom: $footer-height;
+  z-index: 1;
 }
