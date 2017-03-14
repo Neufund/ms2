@@ -1,5 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router';
+import web3 from '../web3';
+import {toPromise, toPromiseNoError, wait} from '../utils';
+import history from '../history';
 import './Login.css';
 import Headline from '../ui/Headline';
 import Step from './../ui/Step';
@@ -7,10 +10,27 @@ import nano2 from '../images/nano2.png';
 import nano3 from '../images/nano3.png';
 
 class Login extends React.Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {completed: false};
-        setTimeout(()=>{this.setState({completed: true})}, 1000)
+        this.waitForLedger();
+    }
+
+    async waitForLedger() {
+        try {
+            let addresses = await toPromise(web3.eth.getAccounts);
+            web3.eth.defaultAccount = addresses[0];
+            this.onLedgerConnected()
+        } catch (error) {
+            console.log(error);
+            setTimeout(this.waitForLedger.bind(this), 500);
+        }
+    }
+
+    async onLedgerConnected() {
+        await toPromiseNoError(this.setState.bind(this),{completed: true});
+        await wait(1000);
+        history.push("/contracts");
     }
 
     render() {

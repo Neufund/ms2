@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import "babel-polyfill";
 import {Router, Route, browserHistory} from 'react-router'
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import App from './app/App.js';
