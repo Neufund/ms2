@@ -10,6 +10,7 @@ import Contracts from './app/Contracts.js';
 import KYC from './app/KYC.js';
 import NotFound from './app/NotFound';
 import './index.css';
+import 'flexboxgrid'
 
 injectTapEventPlugin();
 ReactDOM.render((

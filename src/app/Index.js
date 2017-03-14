@@ -6,13 +6,12 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 export default () => {
     return (
-        <div className="Index">
+        <div>
             <Headline text="Welcome to the Presale"/>
             <div className="secondary-info">
-                To finalize your participation in NEUFUND Fund,
-                you will be required to log in to the NEUFUND Platform
+                To finalize your participation in NEUFUND Fund, you will be required to log in to the NEUFUND Platform
             </div>
-            <div className="Index-content">
+            <div>
                 <h4>You need following items:</h4>
                 <div className="Index-items">
                     <div>

@@ -9,7 +9,6 @@ import './Contracts.css';
 export default () => {
     return (
         <div className="Contracts">
-
             <Headline text="Welcome Mr Investor"/>
             <div className="secondary-info">To invest in NEUFUND please follow this steps</div>
             <ProgressBar progress={20}/>

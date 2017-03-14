@@ -10,8 +10,12 @@ export default ({children}) => {
         <MuiThemeProvider muiTheme={muiTheme}>
             <div>
                 <Header/>
-                <div className="App-content">
-                    {children}
+                <div className="row">
+                    <div className="col-xs-12 col-lg-10 col-lg-offset-1">
+                        <div className="App-content">
+                            {children}
+                        </div>
+                    </div>
                 </div>
                 <Footer/>
             </div>
