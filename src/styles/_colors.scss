@@ -1,10 +1,17 @@
 $background: rgba(215, 215, 215, 0.09);
 $green-piss: #d5e20f;
 $grey:#898989;
+$greyOpacity:rgba(137, 137, 137, 0.5);
+
+$grey2:#4a4a4a;
+$grey2Opacity:rgba(74, 74, 74, 0.7);
 
 $primary-color: $green-piss;
 $link-not-available: $grey;
 $link-color: #000;
 
-$stepper-background-passive: $grey;
-$stepper-background-active: $green-piss
+$stepper-background-passive-color: $grey;
+$stepper-background-active-color: $green-piss;
+
+$contracts-signup-hover-color:$grey2Opacity;
+$contracts-signup-hover-icon-color:$grey;
