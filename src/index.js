@@ -6,6 +6,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import App from './app/App.js';
 import Index from './app/Index.js';
 import Login from './app/Login.js';
+import Logout from './app/Logout.js';
 import Contracts from './app/Contracts.js';
 import KYC from './app/KYC.js';
 import NotFound from './app/NotFound';
@@ -20,6 +21,7 @@ ReactDOM.render((
                 <Route path="/login" component={Login}/>
                 <Route path="/contracts" component={Contracts}/>
                 <Route path="/kyc" component={KYC}/>
+                <Route path="/logout" component={Logout}/>
                 <Route path="*" component={NotFound}/>
             </Route>
         </Router>
