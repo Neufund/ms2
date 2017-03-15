@@ -1,13 +1,14 @@
+import './Login.css';
 import React from 'react';
 import {Link} from 'react-router';
+import CircularProgress from 'material-ui/CircularProgress';
 import {toPromiseNoError, wait} from '../utils';
 import history from '../history';
-import './Login.css';
 import Headline from '../ui/Headline';
 import Step from './../ui/Step';
 import nano2 from '../images/nano2.png';
 import nano3 from '../images/nano3.png';
-import CircularProgress from 'material-ui/CircularProgress';
+import placeholder from '../images/pitching-i-phone-app-startup.jpg';
 
 const ANIMATION_DURATION = 1000;
 const CHECK_INTERVAL = 500;
@@ -15,7 +16,7 @@ const CHECK_INTERVAL = 500;
 class Login extends React.Component {
     constructor() {
         super();
-        this.state = {completed: false, step: 1, config: null, accounts: null};
+        this.state = {completed: false, step: 1, showTutorial: false, config: null, accounts: null};
         this.eth = null;
     }
 
@@ -132,7 +133,7 @@ class Login extends React.Component {
                         {
                             this.state.completed
                                 ? <div>Welcome!</div>
-                                : <CircularProgress size={80} thickness={5} />
+                                : <CircularProgress size={80} thickness={5}/>
                         }
                     </div>
                 </div>
@@ -140,24 +141,46 @@ class Login extends React.Component {
         );
     }
 
+    tutorial =
+        <div className="Login-content row">
+            <div className="col-xs-10 col-xs-offset-1">
+                <img src={placeholder} alt="placeholder"/>
+            </div>
+        </div>;
+
+    toggleTutorial = () => {
+        this.setState({showTutorial: !this.state.showTutorial});
+    };
+
     render() {
         let step;
-        switch (this.state.step) {
-            case 1:
-                step = this.step1();
-                break;
-            case 2:
-                step = this.step2();
-                break;
-            default:
-                step = this.step3();
-                break;
+        let tutorialText;
+
+        if (this.state.showTutorial) {
+            step = this.tutorial;
+            tutorialText = 'Hide tutorial';
         }
+        else {
+            tutorialText = 'Show tutorial';
+            switch (this.state.step) {
+                case 1:
+                    step = this.step1();
+                    break;
+                case 2:
+                    step = this.step2();
+                    break;
+                default:
+                    step = this.step3();
+                    break;
+            }
+        }
+
         return (
             <div className="App-content">
                 <Headline text="Log in"/>
                 <div className="secondary-info">
-                    Log in with Nano Ledger or <Link to="">Log in with email</Link>
+                    Log in with Nano Ledger or <Link to="">Log in with email</Link> <span onClick={this.toggleTutorial}
+                                                                                          className="TutorialSwitch">{tutorialText}</span>
                 </div>
                 {step}
             </div>
