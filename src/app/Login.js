@@ -1,32 +1,36 @@
 import React from 'react';
 import {Link} from 'react-router';
-import {toPromise, toPromiseNoError, wait} from '../utils';
+import {toPromiseNoError, wait} from '../utils';
 import history from '../history';
-// import web3 from '../web3';
 import './Login.css';
 import Headline from '../ui/Headline';
 import Step from './../ui/Step';
 import nano2 from '../images/nano2.png';
 import nano3 from '../images/nano3.png';
 
-const ANIMATION_DURATION = 3000;
+const ANIMATION_DURATION = 1000;
 const CHECK_INTERVAL = 500;
 
 class Login extends React.Component {
     constructor() {
         super();
         this.state = {completed: false, connected: false};
-        // this.ledger = new LedgerWallet();
+        this.eth = null;
     }
 
-    componentDidMount(){
+    async componentDidMount(){
+        const comm = await window.ledger.comm_u2f.create_async();
+        this.eth = new window.ledger.eth(comm);
         this.waitForLedger();
+    }
+
+    async componentWillUnmount(){
+        await this.eth.comm.close_async();
     }
 
     async waitForLedger() {
         try {
-            // let config = await toPromise(this.ledger.getAppConfig.bind(this.ledger));
-            // console.log(config);
+            let config = await this.eth.getAppConfiguration_async();
             this.onLedgerConnected()
         } catch (error) {
             console.log(error);
@@ -35,7 +39,6 @@ class Login extends React.Component {
     }
 
     async onLedgerConnected() {
-        await wait(ANIMATION_DURATION);
         await toPromiseNoError(this.setState.bind(this), {completed: true, connected: false});
         await wait(ANIMATION_DURATION);
         await toPromiseNoError(this.setState.bind(this), {completed: false, connected: true});
@@ -44,8 +47,7 @@ class Login extends React.Component {
 
     async waitForAccountConfirmation() {
         try {
-            // let accounts = await toPromise(web3.eth.getAccounts);
-            // console.log(accounts);
+            let accounts = await this.eth.getAddress_async("44'/60'/0'/0", true, true);
             this.onAccountConfirmed()
         } catch (error) {
             console.log(error);
@@ -54,7 +56,6 @@ class Login extends React.Component {
     }
 
     async onAccountConfirmed() {
-        await wait(ANIMATION_DURATION);
         await toPromiseNoError(this.setState.bind(this), {completed: true, connected: true});
         await wait(ANIMATION_DURATION);
         history.push("/contracts");
