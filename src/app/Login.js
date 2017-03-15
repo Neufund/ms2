@@ -61,25 +61,27 @@ class Login extends React.Component {
 
     render() {
         return (
-            <div className="Login">
+            <div className="App-content">
                 <Headline text="Log in"/>
-                <div className="Login-description">
+                <div className="secondary-info">
                     Log in with Nano Ledger or <Link to="">Log in with email</Link>
                 </div>
                 {this.state.connected
                     ?
-                    <div className="Login-content Login-connected">
-                        <div>
-                            <img className="Login-img" src={nano2} alt="nano2"/>
-                            <Step completed={this.state.completed}>Last step.</Step>
-                            <div className="Login-step-text">
-                                Press both buttons on the device to confirm your account.
+                    <div className="Login-content Login-connected row">
+                        <div className="col-xs-10 col-xs-offset-1">
+                            <div className="box">
+                                <img className="Login-img" src={nano2} alt="nano2"/>
+                                <Step completed={this.state.completed}>Last step.</Step>
+                                <div className="Login-step-text">
+                                    Press both buttons on the device to confirm your account.
+                                </div>
                             </div>
                         </div>
                     </div>
                     :
-                    <div className="Login-content">
-                        <div>
+                    <div className="Login-content row">
+                        <div className="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0">
                             <img className="Login-img" src={nano2} alt="nano2"/>
                             <Step completed={this.state.completed}>Step 1.</Step>
                             <div className="Login-step-text">
@@ -88,7 +90,7 @@ class Login extends React.Component {
                                 prepare your PIN for the device
                             </div>
                         </div>
-                        <div>
+                        <div className="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0">
                             <img className="Login-img" src={nano2} alt="nano2"/>
                             <Step completed={this.state.completed}>Step 2.</Step>
                             <div className="Login-step-text">
@@ -96,7 +98,7 @@ class Login extends React.Component {
                                 enter numbers and press two keys at the same time to confirm
                             </div>
                         </div>
-                        <div>
+                        <div className="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0">
                             <img className="Login-img" src={nano3} alt="nano3"/>
                             <Step completed={this.state.completed}>Step 3.</Step>
                             <div className="Login-step-text">

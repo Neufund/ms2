@@ -1,27 +1,18 @@
 @import "../styles/colors";
 
-.Index-button-wrap {
+.item {
   text-align: center;
-}
-
-.Index-items {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-
-.Index-items > div {
-  text-align: center;
-  max-width: 14vw;
 }
 
 .Index-img {
-  width: 10vw;
+  width: 80%;
   background-color: lightgray;
-  height: 10vh;
-  margin: 2vw;
+  height: 5em;
+  margin: 2em auto;
 }
 
-.Index-button-wrap{
+.Index-button-wrap {
   margin-top:1em;
+  margin-bottom: 1em;
+  text-align: center;
 }

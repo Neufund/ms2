@@ -1,28 +1,9 @@
-.Login-connected {
-  margin-left: 33%;
-  width: 33%;
-}
-
 .Login-content {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.Login-content > div {
-  flex: 1;
-  margin: 2vw;
-}
-
-.Login-content > div:first-of-type {
-  margin-left: 0;
-}
-
-.Login-content > div:last-of-type {
-  margin-right: 0;
+  margin-top: 3em;
 }
 
 .Login-img {
-  width: 20vw;
-  margin: 10vh 0 10vh 0;
+  display: block;
+  width: 80%;
+  margin: 1em auto 0;
 }

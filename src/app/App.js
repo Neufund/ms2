@@ -9,15 +9,19 @@ export default ({children}) => {
     return (
         <MuiThemeProvider muiTheme={muiTheme}>
             <div>
-                <Header/>
                 <div className="row">
-                    <div className="col-xs-12 col-lg-10 col-lg-offset-1">
-                        <div className="App-content">
+                    <div className="col-xs-12 col-md-10 col-md-offset-1">
+                        <Header/>
+
                             {children}
-                        </div>
+
                     </div>
                 </div>
-                <Footer/>
+                <div className="row footer-wrapper">
+                    <div className="col-xs-12 col-md-10 col-md-offset-1">
+                        <Footer/>
+                    </div>
+                </div>
             </div>
         </MuiThemeProvider>
     )

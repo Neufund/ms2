@@ -25,13 +25,13 @@ export default () => {
     return (
         <div className="KYC">
             <Headline text="Welcome Mr Investor"/>
-            <div className="KYC-description">To invest in NEUFUND please follow the steps</div>
+            <div className="secondary-info">To invest in NEUFUND please follow this steps</div>
             <ProgressBar progress={40}/>
-            <div className="KYC-content">
-                <div className="column leftColumn">
+            <div className="row">
+                <div className="col-sm-4">
                     <StepperWrapper step={1} />
                 </div>
-                <div className="column rightColumn">
+                <div className="col-sm-8">
                     <div className="KYC-form">
                         <h4>Identification</h4>
                         <div className="secondary-info">

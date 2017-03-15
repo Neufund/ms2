@@ -2,9 +2,14 @@
 
 .App-content {
   box-sizing: border-box;
-  min-height: 100vh;
-  margin-top: -$header-height;
-  padding-top: $header-height;
+  min-height: calc(100vh - #{$header-height} - #{$footer-height});
   padding-bottom: $footer-height;
-  z-index: 1;
+}
+
+.footer-wrapper {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: $footer-height;
+  z-index: 999;
 }
