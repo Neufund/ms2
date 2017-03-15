@@ -28,7 +28,7 @@ export default () => {
             </div>
             <div className="Index-button-wrap">
                 <Link to="/login" className="Index-button">
-                    <RaisedButton label="Default"/>
+                    <RaisedButton label="Continue to log in"/>
                 </Link>
             </div>
         </div>
