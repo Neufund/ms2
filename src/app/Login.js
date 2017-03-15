@@ -144,7 +144,7 @@ class Login extends React.Component {
     tutorial =
         <div className="Login-content row">
             <div className="col-xs-10 col-xs-offset-1">
-                <img src={placeholder} alt="placeholder"/>
+                <img className="Login-tutorial-photo" src={placeholder} alt="placeholder"/>
             </div>
         </div>;
 
