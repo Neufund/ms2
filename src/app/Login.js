@@ -71,7 +71,7 @@ class Login extends React.Component {
                 {this.state.connected
                     ?
                     <div className="Login-content Login-connected row">
-                        <div className="col-xs-10 col-xs-offset-1">
+                        <div className="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-4">
                             <div className="box">
                                 <img className="Login-img" src={nano2} alt="nano2"/>
                                 <Step completed={this.state.completed}>Last step.</Step>
