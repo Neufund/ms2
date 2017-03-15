@@ -2,8 +2,10 @@ import './Login.css';
 import React from 'react';
 import {Link} from 'react-router';
 import CircularProgress from 'material-ui/CircularProgress';
-import {toPromiseNoError, wait} from '../utils';
 import history from '../history';
+import {toPromiseNoError, wait} from '../utils';
+import Ledger from 'ledger-wallet-provider/lib/LedgerWallet';
+import './Login.css';
 import Headline from '../ui/Headline';
 import Step from './../ui/Step';
 import nano2 from '../images/nano2.png';
@@ -17,22 +19,21 @@ class Login extends React.Component {
     constructor() {
         super();
         this.state = {completed: false, step: 1, showTutorial: false, config: null, accounts: null};
-        this.eth = null;
+        this.ledger = new Ledger();
     }
 
     async componentDidMount() {
-        const comm = await window.ledger.comm_u2f.create_async();
-        this.eth = new window.ledger.eth(comm);
+        await this.ledger.init();
         this.connectLedger();
     }
 
     async componentWillUnmount() {
-        await this.eth.comm.close_async();
+        await this.ledger.close();
     }
 
     async connectLedger() {
         try {
-            let config = await this.eth.getAppConfiguration_async();
+            let config = await this.ledger.eth.getAppConfiguration_async();
             await toPromiseNoError(this.setState.bind(this), {completed: true, config});
             this.onLedgerConnected()
         } catch (error) {
@@ -49,7 +50,7 @@ class Login extends React.Component {
 
     async getAccount() {
         try {
-            let accounts = await this.eth.getAddress_async("44'/60'/0'/0", true, true);
+            let accounts = await this.ledger.eth.getAddress_async("44'/60'/0'/0", true, true);
             await toPromiseNoError(this.setState.bind(this), {completed: true, accounts});
             this.onAccountConfirmed()
         } catch (error) {
