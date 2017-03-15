@@ -15,7 +15,7 @@ export default () => {
                         Your Ledger Nano was disconnected! <br />
                         If you want to log in connect the Ledger again
                     </p>
-                    <img src={Image}/>
+                    <img src={Image} alt="dummy something"/>
                     <Link to="/login">Log in again</Link>
                 </div>
 
