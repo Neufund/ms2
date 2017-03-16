@@ -3,7 +3,7 @@ import ProgressBar from '../ui/ProgressBar';
 import Headline from '../ui/Headline';
 import ContractSign from '../ui/ContractSign';
 import StepperWrapper from '../ui/StepperWrapper';
-import './Contracts.css';
+import './Contracts.scss';
 
 export default () => {
     return (

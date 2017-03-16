@@ -1,5 +1,5 @@
 import React from 'react';
-import './Index.css';
+import './Index.scss';
 
 export default () => {
     return (

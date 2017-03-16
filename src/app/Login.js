@@ -1,11 +1,10 @@
-import './Login.css';
 import React from 'react';
 import {Link} from 'react-router';
 import CircularProgress from 'material-ui/CircularProgress';
 import history from '../history';
 import {toPromise, toPromiseNoError, wait} from '../utils';
 import Ledger from 'ledger-wallet-provider/lib/LedgerWallet';
-import './Login.css';
+import './Login.scss';
 import Headline from '../ui/Headline';
 import Step from './../ui/Step';
 import nano2 from '../images/nano2.png';
@@ -25,10 +24,6 @@ class Login extends React.Component {
     async componentDidMount() {
         await this.ledger.init();
         this.connectLedger();
-    }
-
-    async componentWillUnmount() {
-        await this.ledger.close();
     }
 
     async connectLedger() {

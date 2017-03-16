@@ -1,5 +1,5 @@
 import React from 'react';
-import './Headline.css';
+import './Headline.scss';
 
 export default ({text}) => {
     return (

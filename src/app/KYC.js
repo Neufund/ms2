@@ -8,7 +8,7 @@ import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 import StepperWrapper from '../ui/StepperWrapper';
 import {countries} from 'country-data';
-import './KYC.css';
+import './KYC.scss';
 
 export default () => {
     let styles = {

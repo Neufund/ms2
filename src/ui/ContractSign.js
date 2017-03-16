@@ -1,4 +1,4 @@
-import './ContractSign.css';
+import './ContractSign.scss';
 import React from 'react';
 import {Link, browserHistory} from 'react-router';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router';
-import './Index.css';
+import './Index.scss';
 import Headline from '../ui/Headline';
 import RaisedButton from 'material-ui/RaisedButton';
 

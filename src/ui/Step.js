@@ -1,5 +1,5 @@
 import React from 'react';
-import './Step.css'
+import './Step.scss'
 
 export default ({children, completed}) => {
     return (

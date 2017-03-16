@@ -1,5 +1,5 @@
 import React from 'react';
-import './Index.css';
+import './Index.scss';
 import Logo from '../../images/NeuFund_logo_full_white_72dpi.png';
 
 export default () => {
