@@ -145,7 +145,10 @@ class Login extends React.Component {
                         {
                             this.state.completed
                                 ?
-                                <div>Success we can continue.</div>
+                                <div>
+                                    <Step completed={this.state.completed}>Authentication completed</Step>
+                                    Welcome Mr. Investor
+                                </div>
                                 :
                                 <div>
                                     <div>Fetching your data...</div>
