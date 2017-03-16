@@ -113,19 +113,11 @@ export default class KYC extends React.Component {
                 autoScrollBodyContent={true}>
                 <img src={this.investorData.idImage} alt="investor Id" style={{"max-width": "100%"}}/>
             </Dialog>
-            <SelectField autoWidth={true}
-                         maxHeight={200}
-                         style={this.styles.root}
-                         inputStyle={this.styles.input}
-                         floatingLabelStyle={this.styles.label}
-                         disabled={true}
-                         value={this.investorData.country}>
-                {countries.all.map(country => {
-                    return <MenuItem key={country.name}
-                                     value={country.name}
-                                     primaryText={country.name}/>
-                })}
-            </SelectField>
+            <TextField style={this.styles.root}
+                       inputStyle={this.styles.input}
+                       floatingLabelStyle={this.styles.label}
+                       disabled={true}
+                       value={this.investorData.country}/>
             <TextField style={this.styles.root}
                        inputStyle={this.styles.input}
                        floatingLabelStyle={this.styles.label}
