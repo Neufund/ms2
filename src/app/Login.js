@@ -171,7 +171,7 @@ class Login extends React.Component {
 
     skipTutorialSection =
         <div className="Login-content row">
-            <div className="col-xs-10 col-xs-offset-1">
+            <div className="col-xs-12">
                 <img className="Login-tutorial-photo" src={placeholder} alt="placeholder"/>
             </div>
         </div>;
@@ -192,10 +192,11 @@ class Login extends React.Component {
             tutorialText = "";
         } else if (this.state.showTutorial) {
             step = this.skipTutorialSection;
-            tutorialText = 'Hide tutorial';
+
+            tutorialText = 'Show tutorial';
         }
         else {
-            tutorialText = 'Show tutorial';
+            tutorialText = 'Hide tutorial';
             switch (this.state.step) {
                 case 1:
                     step = this.step1();
