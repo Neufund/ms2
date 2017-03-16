@@ -11,7 +11,7 @@ import nano2 from '../images/nano2.png';
 import nano3 from '../images/nano3.png';
 import placeholder from '../images/pitching-i-phone-app-startup.jpg';
 
-const ANIMATION_DURATION = 1000;
+const ANIMATION_DURATION = 3000;
 const CHECK_INTERVAL = 500;
 
 class Login extends React.Component {
@@ -133,13 +133,17 @@ class Login extends React.Component {
     step3() {
         return (
             <div className="Login-content row">
-                <div className="col-xs-10 col-xs-offset-1">
-                    <div className="box">
-                        <Step completed={this.state.completed}>Fetching your data...</Step>
+                <div className="col-xs-12">
+                    <div className="waitingForData">
                         {
                             this.state.completed
-                                ? <div>Welcome!</div>
-                                : <CircularProgress size={80} thickness={5}/>
+                                ?
+                                <div>Success we can continue.</div>
+                                :
+                                <div>
+                                    <div>Fetching your data...</div>
+                                    <CircularProgress className="progress" size={80} thickness={5}/>
+                                </div>
                         }
                     </div>
                 </div>
