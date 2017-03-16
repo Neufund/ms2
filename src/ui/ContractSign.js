@@ -7,6 +7,8 @@ import Dialog from 'material-ui/Dialog';
 import IconButton from 'material-ui/IconButton';
 import Checkbox from 'material-ui/Checkbox';
 import RaisedButton from 'material-ui/RaisedButton';
+import ContractPaper from '../images/contract_paper.png'
+import ContractSmart from '../images/contract_smart.png'
 
 
 export default class ContractSign extends React.Component {
@@ -63,12 +65,20 @@ export default class ContractSign extends React.Component {
             <div className="ContractSign">
                 <h4>Sign your Limited Partner Agreement</h4>
                 <p>To see contracts click on the icons</p>
-                <div className="Contracts">
-                    <div className="Contract Paper" onClick={this.handleOpen}></div>
-                    <div>
+                <div className="Contracts row">
+                    <div className="col-xs-12 col-sm-3" onClick={this.handleOpen}>
+                        <div className="ContractWrapper">
+                            <img className="Contract" src={ContractPaper} alt="paper contract code"/>
+                        </div>
+                    </div>
+                    <div className="col-xs-12 col-sm-1 ContractEquals">
                         <FontIcon className="material-icons">drag_handle</FontIcon>
                     </div>
-                    <div className="Contract Smart" onClick={this.handleOpen}></div>
+                    <div className="col-xs-12 col-sm-3" onClick={this.handleOpen}>
+                        <div className="ContractWrapper">
+                            <img className="Contract" src={ContractSmart} alt="smart contract code"/>
+                        </div>
+                    </div>
                 </div>
                 <Dialog
                     modal={false}

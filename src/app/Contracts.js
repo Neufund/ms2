@@ -12,10 +12,10 @@ export default () => {
             <div className="secondary-info">To invest in NEUFUND please follow this steps</div>
             <ProgressBar progress={20}/>
             <div className="row">
-                <div className="col-sm-4">
+                <div className="col-xs-12 col-sm-4">
                     <StepperWrapper step={0}/>
                 </div>
-                <div className="col-sm-8">
+                <div className="col-xs-12 col-sm-8">
                     <ContractSign />
                 </div>
             </div>
