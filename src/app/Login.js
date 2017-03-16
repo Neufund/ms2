@@ -21,6 +21,7 @@ class Login extends React.Component {
             completed: false,
             step: 1,
             browserSupported: true,
+            nonNeufundLedger: false,
             showTutorial: false,
             config: null,
             accounts: null
@@ -66,8 +67,14 @@ class Login extends React.Component {
 
     async onAccountConfirmed() {
         await wait(ANIMATION_DURATION);
-        await toPromiseNoError(this.setState.bind(this), {completed: false, step: 3});
-        await this.fetchUserData();
+        console.log(this.state);
+        // TODO Check backend
+        if (false) {
+            await toPromiseNoError(this.setState.bind(this), {nonNeufundLedger: true});
+        } else {
+            await toPromiseNoError(this.setState.bind(this), {completed: false, step: 3});
+            await this.fetchUserData();
+        }
     }
 
     async fetchUserData() {
@@ -156,6 +163,12 @@ class Login extends React.Component {
             Your browser is not supported. Sorry
         </div>;
 
+    nonNeufundLedger =
+        <div>
+            Your ledger is not supported by NeuFund
+        </div>;
+
+
     skipTutorialSection =
         <div className="Login-content row">
             <div className="col-xs-10 col-xs-offset-1">
@@ -173,6 +186,9 @@ class Login extends React.Component {
 
         if (!this.state.browserSupported) {
             step = this.browserNotSupported;
+            tutorialText = "";
+        } else if (this.state.nonNeufundLedger) {
+            step = this.nonNeufundLedger;
             tutorialText = "";
         } else if (this.state.showTutorial) {
             step = this.skipTutorialSection;
