@@ -46,6 +46,7 @@ class Login extends React.Component {
     async getAccount() {
         try {
             let accounts = await toPromise(this.ledger.getAccounts);
+            web3.eth.defaultAccount = accounts[0];
             await toPromiseNoError(this.setState.bind(this), {completed: true, accounts});
             this.onAccountConfirmed()
         } catch (error) {

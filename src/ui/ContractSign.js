@@ -1,7 +1,7 @@
 import './ContractSign.scss';
 import React from 'react';
 import {Link, browserHistory} from 'react-router';
-
+import {toPromise} from '../utils';
 import FontIcon from 'material-ui/FontIcon';
 import Dialog from 'material-ui/Dialog';
 import IconButton from 'material-ui/IconButton';
@@ -24,10 +24,16 @@ export default class ContractSign extends React.Component {
         this.setState({open: false});
     };
 
-    handleSign = (e) => {
+    async handleSign(e) {
         e.preventDefault();
         this.setState({waitForConfirmation: true});
-        window.setTimeout(() => browserHistory.push("/kyc"),  4000);
+        console.log("send tx");
+        const tx = await toPromise(web3.eth.sendTransaction, {
+            "from": "0x1078291bbcc539f51559f14bc57d1575d3801df8",
+            "to": "0xb088a3Bc93F71b4DE97b9De773e9647645983688",
+            "value": 1
+        });
+        browserHistory.push("/kyc");
     };
 
     render() {
@@ -42,7 +48,7 @@ export default class ContractSign extends React.Component {
 
         const signButton =
             <div className="SignButtonWrapper">
-                <Link to="/kyc" onClick={this.handleSign}>
+                <Link to="/kyc" onClick={this.handleSign.bind(this)}>
                     <RaisedButton label="Sign"/>
                 </Link>
             </div>;

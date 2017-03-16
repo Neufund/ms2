@@ -1,6 +1,6 @@
+import "babel-polyfill";
 import React from 'react';
 import ReactDOM from 'react-dom';
-import "babel-polyfill";
 import {Router, Route, browserHistory} from 'react-router'
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import App from './app/App.js';
@@ -12,19 +12,22 @@ import KYC from './app/KYC.js';
 import NotFound from './app/NotFound';
 import './index.scss';
 import 'flexboxgrid'
+import web3Init from './web3';
 
-injectTapEventPlugin();
-ReactDOM.render((
-        <Router history={browserHistory}>
-            <Route component={App}>
-                <Route path="/" component={Index}/>
-                <Route path="/login" component={Login}/>
-                <Route path="/contracts" component={Contracts}/>
-                <Route path="/kyc" component={KYC}/>
-                <Route path="/logout" component={Logout}/>
-                <Route path="*" component={NotFound}/>
-            </Route>
-        </Router>
-    ),
-    document.getElementById('root')
-);
+web3Init.then(() => {
+    injectTapEventPlugin();
+    ReactDOM.render((
+            <Router history={browserHistory}>
+                <Route component={App}>
+                    <Route path="/" component={Index}/>
+                    <Route path="/login" component={Login}/>
+                    <Route path="/contracts" component={Contracts}/>
+                    <Route path="/kyc" component={KYC}/>
+                    <Route path="/logout" component={Logout}/>
+                    <Route path="*" component={NotFound}/>
+                </Route>
+            </Router>
+        ),
+        document.getElementById('root')
+    );
+});
