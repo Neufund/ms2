@@ -17,12 +17,21 @@ const CHECK_INTERVAL = 500;
 class Login extends React.Component {
     constructor() {
         super();
-        this.state = {completed: false, step: 1, showTutorial: false, config: null, accounts: null};
+        this.state = {
+            completed: false,
+            step: 1,
+            browserSupported: true,
+            showTutorial: false,
+            config: null,
+            accounts: null
+        };
         this.ledger = new Ledger();
     }
 
     async componentDidMount() {
         await this.ledger.init();
+        await toPromiseNoError(this.setState.bind(this), {"browserSupported": this.ledger.isU2FSupported});
+        // await toPromiseNoError(this.setState.bind(this), {"browserSupported": false});
         this.connectLedger();
     }
 
@@ -138,6 +147,11 @@ class Login extends React.Component {
         );
     }
 
+    browserNotSupported =
+        <div>
+            Your browser is not supported. Sorry
+        </div>;
+
     skipTutorialSection =
         <div className="Login-content row">
             <div className="col-xs-10 col-xs-offset-1">
@@ -153,7 +167,10 @@ class Login extends React.Component {
         let step;
         let tutorialText;
 
-        if (this.state.showTutorial) {
+        if (!this.state.browserSupported) {
+            step = this.browserNotSupported;
+            tutorialText = "";
+        } else if (this.state.showTutorial) {
             step = this.skipTutorialSection;
             tutorialText = 'Hide tutorial';
         }
