@@ -3,7 +3,7 @@ import React from 'react';
 import {Link} from 'react-router';
 import CircularProgress from 'material-ui/CircularProgress';
 import history from '../history';
-import {toPromiseNoError, wait} from '../utils';
+import {toPromise, toPromiseNoError, wait} from '../utils';
 import Ledger from 'ledger-wallet-provider/lib/LedgerWallet';
 import './Login.css';
 import Headline from '../ui/Headline';
@@ -33,7 +33,7 @@ class Login extends React.Component {
 
     async connectLedger() {
         try {
-            let config = await this.ledger.eth.getAppConfiguration_async();
+            let config = await toPromise(this.ledger.getAppConfig);
             await toPromiseNoError(this.setState.bind(this), {completed: true, config});
             this.onLedgerConnected()
         } catch (error) {
@@ -50,7 +50,7 @@ class Login extends React.Component {
 
     async getAccount() {
         try {
-            let accounts = await this.ledger.eth.getAddress_async("44'/60'/0'/0", true, true);
+            let accounts = await toPromise(this.ledger.getAccounts);
             await toPromiseNoError(this.setState.bind(this), {completed: true, accounts});
             this.onAccountConfirmed()
         } catch (error) {
