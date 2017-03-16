@@ -62,8 +62,8 @@ export default () => {
                                    style={styles.root}
                                    inputStyle={styles.input}
                                    floatingLabelStyle={styles.label}/>
-                        <Checkbox label="I represent myself"/>
-                        <RaisedButton label="Submit"/>
+                        <Checkbox className="checkbox" label="I represent myself"/>
+                        <RaisedButton className="submitButton" label="Submit"/>
                     </div>
                 </div>
             </div>
