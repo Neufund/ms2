@@ -77,7 +77,7 @@ export default class KYC extends React.Component {
                          style={this.styles.root}
                          inputStyle={this.styles.input}
                          floatingLabelStyle={this.styles.label}>
-                {countries.all.map(country => {
+                {countries.all.filter(country => country.status == 'assigned').map(country => {
                     return <MenuItem key={country.name}
                                      value={country.name}
                                      primaryText={country.name}/>
@@ -138,7 +138,7 @@ export default class KYC extends React.Component {
 
     render() {
         let section;
-        if(this.state.getInvestorDataState == "waiting") {
+        if (this.state.getInvestorDataState == "waiting") {
             section = this.waiting();
         } else {
             section = this.confirmation();
