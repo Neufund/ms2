@@ -23,7 +23,7 @@ export default class KYC extends React.Component {
          *  empty - we don't have data?
          * @type {{state: string}}
          */
-        this.state = {getInvestorDataState: "waiting", idDialogOpen: false};
+        this.state = {getInvestorDataState: "waiting", idDialogOpen: false, countryListIndex: 0};
 
         this.investorData = {
             idImage: 'http://placehold.it/900x400?text=investor+Id+placeholder+image',
@@ -45,6 +45,8 @@ export default class KYC extends React.Component {
             }
         };
     }
+
+    handleCountryListChange = (event, index, value) => this.setState({countryListIndex: value});
 
     componentDidMount() {
         window.setTimeout(() => this.setState({getInvestorDataState: "success"}), 4000);
@@ -76,7 +78,11 @@ export default class KYC extends React.Component {
                          maxHeight={200}
                          style={this.styles.root}
                          inputStyle={this.styles.input}
-                         floatingLabelStyle={this.styles.label}>
+                         floatingLabelStyle={this.styles.label}
+                         value={this.state.countryListIndex}
+                         onChange={this.handleCountryListChange}
+
+            >
                 {countries.all.filter(country => country.status == 'assigned').map(country => {
                     return <MenuItem key={country.name}
                                      value={country.name}
