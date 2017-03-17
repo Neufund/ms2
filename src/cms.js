@@ -13,12 +13,17 @@ const cms = (filename) => {
                 return cloneElement(tree, {}, getString(tree.props.children));
             } else {
                 if (Array.isArray(tree.props.children)) {
-                    let newChildren = tree.props.children.map((child)=> {
+                    let newChildren = tree.props.children.map((child, index)=> {
+                        let node;
                         if (typeof(child) === "string") {
-                            return getString(child);
+                            node = getString(child);
                         } else {
-                            return traverseJSXTree(child);
+                            node = traverseJSXTree(child);
+                            if (!node.key){
+                                node = cloneElement(node, {key: index});
+                            }
                         }
+                        return node;
                     });
                     return cloneElement(tree, {}, newChildren);
                 }else{
