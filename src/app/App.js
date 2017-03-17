@@ -4,9 +4,10 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Header from '../ui/header/Index';
 import Footer from '../ui/footer/Index';
 import muiTheme from '../muiTheme';
+import cms from '../cms';
 
 export default ({children}) => {
-    return (
+    return cms(__filename)(
         <MuiThemeProvider muiTheme={muiTheme}>
             <div>
                 <div className="row">

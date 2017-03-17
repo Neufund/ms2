@@ -9,7 +9,7 @@ import Checkbox from 'material-ui/Checkbox';
 import RaisedButton from 'material-ui/RaisedButton';
 import ContractPaper from '../images/contract_paper.png'
 import ContractSmart from '../images/contract_smart.png'
-
+import cms from '../cms';
 
 export default class ContractSign extends React.Component {
 
@@ -61,7 +61,7 @@ export default class ContractSign extends React.Component {
                 Press two keys on the device
             </div>;
 
-        return (
+        return cms(__filename)(
             <div className="ContractSign">
                 <h4>Sign your Limited Partner Agreement</h4>
                 <p>To see contracts click on the icons</p>

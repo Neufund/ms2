@@ -1,8 +1,9 @@
 import React from 'react';
 import './Step.scss'
+import cms from '../cms';
 
 export default ({children, completed}) => {
-    return (
+    return cms(__filename)(
         <div className="Step">
             {completed
                 ? <div className="Step-indicator active"></div>

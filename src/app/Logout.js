@@ -1,12 +1,12 @@
 import './Logout.scss';
-
+import cms from '../cms';
 import React from 'react';
 import {Link} from 'react-router';
 import Headline from '../ui/Headline';
 import Image from "../images/download.png"
 
 export default () => {
-    return (
+    return cms(__filename)(
         <div className="App-content Logout">
             <Headline text="You are logged out"/>
             <div className="row">

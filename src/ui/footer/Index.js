@@ -1,8 +1,9 @@
 import React from 'react';
 import './Index.scss';
+import cms from '../../cms';
 
 export default () => {
-    return (
+    return cms(__filename)(
         <div className="Footer">
             <div>
                 Contact: <a href="mailto:hello@neufund.org">hello@neufund.org</a>

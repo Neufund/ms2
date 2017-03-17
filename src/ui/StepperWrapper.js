@@ -4,9 +4,10 @@ import {
     Stepper,
     StepLabel
 } from 'material-ui/Stepper';
+import cms from '../cms';
 
 export default ({step}) => {
-    return (
+    return cms(__filename)(
         <Stepper activeStep={step} orientation="vertical">
             <Step>
                 <StepLabel>Sign your Limited Partner Agreement</StepLabel>

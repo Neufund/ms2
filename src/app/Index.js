@@ -3,9 +3,10 @@ import {Link} from 'react-router';
 import './Index.scss';
 import Headline from '../ui/Headline';
 import RaisedButton from 'material-ui/RaisedButton';
+import cms from '../cms';
 
 export default () => {
-    return (
+    return cms(__filename)(
         <div className="App-content">
             <Headline text="Welcome to the Presale"/>
             <div className="secondary-info">

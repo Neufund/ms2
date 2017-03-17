@@ -11,6 +11,7 @@ import Dialog from 'material-ui/Dialog';
 import CircularProgress from 'material-ui/CircularProgress';
 import {countries} from 'country-data';
 import './KYC.scss';
+import cms from '../cms';
 
 export default class KYC extends React.Component {
 
@@ -150,7 +151,7 @@ export default class KYC extends React.Component {
             section = this.confirmation();
         }
 
-        return (
+        return cms(__filename)(
             <div className="KYC">
                 <Headline text="Welcome Mr Investor"/>
                 <div className="secondary-info">To invest in NEUFUND please follow this steps</div>

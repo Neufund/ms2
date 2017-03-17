@@ -4,9 +4,10 @@ import Headline from '../ui/Headline';
 import ContractSign from '../ui/ContractSign';
 import StepperWrapper from '../ui/StepperWrapper';
 import './Contracts.scss';
+import cms from '../cms';
 
 export default () => {
-    return (
+    return cms(__filename)(
         <div className="App-content">
             <Headline text="Welcome Mr Investor"/>
             <div className="secondary-info">To invest in NEUFUND please follow this steps</div>

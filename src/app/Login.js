@@ -10,6 +10,7 @@ import Step from './../ui/Step';
 import nano2 from '../images/nano2.png';
 import nano3 from '../images/nano3.png';
 import placeholder from '../images/pitching-i-phone-app-startup.jpg';
+import cms from '../cms';
 
 const ANIMATION_DURATION = 3000;
 const CHECK_INTERVAL = 500;
@@ -213,7 +214,7 @@ class Login extends React.Component {
             }
         }
 
-        return (
+        return cms(__filename)(
             <div className="App-content">
                 <Headline text="Log in"/>
                 <div className="secondary-info">
