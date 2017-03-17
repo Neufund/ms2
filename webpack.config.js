@@ -15,6 +15,9 @@ module.exports = {
         ]),
         new webpack.NamedModulesPlugin()
     ],
+    node: {
+        __filename: true
+    },
     module: {
         rules: [
             {
