@@ -17,6 +17,12 @@ export default class KYC extends React.Component {
 
     constructor() {
         super();
+        let formState = {
+            value: undefined,
+            forbiddenCountry: false,
+            missingCheckbox: true,
+            canSubmit: false
+        };
 
         /**
          *  waiting - request was sent to server and waiting for response
@@ -24,7 +30,7 @@ export default class KYC extends React.Component {
          *  empty - we don't have data?
          * @type {{state: string}}
          */
-        this.state = {getInvestorDataState: "waiting", idDialogOpen: false, countryListIndex: 0};
+        this.state = {getInvestorDataState: "waiting", idDialogOpen: false, formState: formState};
 
         this.investorData = {
             idImage: 'http://placehold.it/900x400?text=investor+Id+placeholder+image',
@@ -33,21 +39,29 @@ export default class KYC extends React.Component {
             zip: '00-443',
             city: 'Warsaw'
         };
-
-        this.styles = {
-            root: {
-                height: "50px"
-            },
-            input: {
-                marginTop: 0
-            },
-            label: {
-                top: "20px"
-            }
-        };
     }
 
-    handleCountryListChange = (event, index, value) => this.setState({countryListIndex: value});
+    handleCountryListChange = (event, index, value) => {
+        console.log(index);
+        let formState = this.state.formState;
+        formState.value = value;
+        formState.forbiddenCountry = value == 'United States';
+        this.setState({formState: formState});
+        this.validate();
+    };
+
+    handleCheckboxChange = (event, isInputChecked) => {
+        let formState = this.state.formState;
+        formState.missingCheckbox = !isInputChecked;
+        this.setState({formState: formState});
+        this.validate();
+    };
+
+    validate = () => {
+        let formState = this.state.formState;
+        formState.canSubmit = !formState.forbiddenCountry && !formState.missingCheckbox && formState.value != undefined;
+        this.setState({formState: formState});
+    };
 
     componentDidMount() {
         window.setTimeout(() => this.setState({getInvestorDataState: "success"}), 4000);
@@ -67,44 +81,45 @@ export default class KYC extends React.Component {
             <CircularProgress size={80} thickness={5}/>
         </div>;
 
-    kycform = () =>
-        <div className="KYC-form">
+    kycform = () => {
+        let countryListprops = {
+            floatingLabelText: "Country",
+            autoWidth: true,
+            maxHeight: 200,
+            value: this.state.formState.value,
+            onChange: this.handleCountryListChange
+        };
+
+        if (this.state.formState.forbiddenCountry) {
+            countryListprops.errorText = "Sorry no US citizens";
+        }
+
+        let countryList =
+            <SelectField{...countryListprops}>
+                {countries.all
+                    .filter(country => country.status == 'assigned')
+                    .sort((a, b) => a.name >= b.name)
+                    .map(country => {
+                        return <MenuItem key={country.name}
+                                         value={country.name}
+                                         primaryText={country.name}/>
+                    })}
+            </SelectField>;
+
+        return <div className="KYC-form">
             <h4>Identification</h4>
             <div className="secondary-info">
                 In order to identify you please upload
                 a photo of your ID card or Passport:
             </div>
-            <SelectField floatingLabelText="Country"
-                         autoWidth={true}
-                         maxHeight={200}
-                         style={this.styles.root}
-                         inputStyle={this.styles.input}
-                         floatingLabelStyle={this.styles.label}
-                         value={this.state.countryListIndex}
-                         onChange={this.handleCountryListChange}
-
-            >
-                {countries.all.filter(country => country.status == 'assigned').map(country => {
-                    return <MenuItem key={country.name}
-                                     value={country.name}
-                                     primaryText={country.name}/>
-                })}
-            </SelectField>
-            <TextField floatingLabelText="Address line 1"
-                       style={this.styles.root}
-                       inputStyle={this.styles.input}
-                       floatingLabelStyle={this.styles.label}/>
-            <TextField floatingLabelText="Zip code"
-                       style={this.styles.root}
-                       inputStyle={this.styles.input}
-                       floatingLabelStyle={this.styles.label}/>
-            <TextField floatingLabelText="City"
-                       style={this.styles.root}
-                       inputStyle={this.styles.input}
-                       floatingLabelStyle={this.styles.label}/>
-            <Checkbox className="checkbox" label="I represent myself"/>
-            <RaisedButton className="submitButton" label="Submit"/>
+            {countryList} <br />
+            <TextField floatingLabelText="Address line 1"/> <br />
+            <TextField floatingLabelText="Zip code"/> <br />
+            <TextField floatingLabelText="City"/>
+            <Checkbox onCheck={this.handleCheckboxChange} className="checkbox" label="I represent myself"/>
+            <RaisedButton disabled={!this.state.formState.canSubmit} className="submitButton" label="Submit"/>
         </div>;
+    };
 
     confirmation = () =>
         <div className="KYC-form">
@@ -113,6 +128,7 @@ export default class KYC extends React.Component {
                 Please confirm your data
             </div>
             <img onClick={this.handleOpen} className="investorId" src={this.investorData.idImage} alt="investor Id"/>
+            <br />
             <Dialog
                 modal={false}
                 open={this.state.idDialogOpen}
@@ -120,26 +136,10 @@ export default class KYC extends React.Component {
                 autoScrollBodyContent={true}>
                 <img src={this.investorData.idImage} alt="investor Id" style={{"max-width": "100%"}}/>
             </Dialog>
-            <TextField style={this.styles.root}
-                       inputStyle={this.styles.input}
-                       floatingLabelStyle={this.styles.label}
-                       disabled={true}
-                       value={this.investorData.country}/>
-            <TextField style={this.styles.root}
-                       inputStyle={this.styles.input}
-                       floatingLabelStyle={this.styles.label}
-                       disabled={true}
-                       value={this.investorData.address}/>
-            <TextField style={this.styles.root}
-                       inputStyle={this.styles.input}
-                       floatingLabelStyle={this.styles.label}
-                       disabled={true}
-                       value={this.investorData.zip}/>
-            <TextField style={this.styles.root}
-                       inputStyle={this.styles.input}
-                       floatingLabelStyle={this.styles.label}
-                       disabled={true}
-                       value={this.investorData.city}/>
+            <TextField disabled={true} value={this.investorData.country}/> <br />
+            <TextField disabled={true} value={this.investorData.address}/> <br />
+            <TextField disabled={true} value={this.investorData.zip}/> <br />
+            <TextField disabled={true} value={this.investorData.city}/> <br />
             <RaisedButton className="submitButton" label="I hereby confirm its my data"/>
         </div>;
 
