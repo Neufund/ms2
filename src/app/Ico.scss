@@ -1,0 +1,21 @@
+@import "../styles/colors";
+
+.topArea {
+  background-color: $ico-dark-background-color;
+}
+
+
+.test {
+  height: 300px;
+  width: 600px;
+  background-color: chocolate;
+}
+
+.grafika {
+  width: 200px;
+  height: 0;
+  //border-right: 50px solid red;
+  border-left: 50px solid red;
+  border-bottom: 100px solid green;
+}
+

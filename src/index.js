@@ -9,7 +9,8 @@ import Login from './app/Login.js';
 import Logout from './app/Logout.js';
 import Contracts from './app/Contracts.js';
 import KYC from './app/KYC.js';
-import NotFound from './app/NotFound';
+//import NotFound from './app/NotFound';
+import Ico from './app/Ico.js';
 import './index.scss';
 import 'flexboxgrid'
 import web3Init from './web3';
@@ -24,8 +25,9 @@ web3Init.then(() => {
                     <Route path="/contracts" component={Contracts}/>
                     <Route path="/kyc" component={KYC}/>
                     <Route path="/logout" component={Logout}/>
-                    <Route path="*" component={NotFound}/>
+                    {/*<Route path="*" component={NotFound}/>*/}
                 </Route>
+                <Route path="/ico" component={Ico} />
             </Router>
         ),
         document.getElementById('root')
