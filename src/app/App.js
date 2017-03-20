@@ -13,9 +13,7 @@ export default ({children}) => {
                 <div className="row">
                     <div className="col-xs-12 col-md-10 col-md-offset-1">
                         <Header/>
-
-                            {children}
-
+                        {children}
                     </div>
                 </div>
                 <div className="row footer-wrapper">
