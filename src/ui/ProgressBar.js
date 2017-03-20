@@ -7,7 +7,8 @@ export default ({progress}) => {
         <LinearProgress mode="determinate" value={progress} style={{
             position:"absolute",
             left:0,
-            right:0
+            right:0,
+            height: "0.5em"
         }}/>
     )
 };
