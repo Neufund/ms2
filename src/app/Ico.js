@@ -16,6 +16,8 @@ import UserPaid from "../ui/ico/UserPaid"
 import Transfer from "../ui/ico/Transfer"
 import Message from "../ui/ico/Message"
 import EmailChange from "../ui/ico/EmailChange"
+import AccountDetails from "../ui/ico/AccountDetails"
+import Investments from "../ui/ico/Investments"
 
 export default class Ico extends React.Component {
     constructor(props) {
@@ -104,6 +106,70 @@ export default class Ico extends React.Component {
         }
     };
 
+    accountDetails = (icoState) => {
+        if (icoState == "ico"
+            || icoState == "thankyou"
+            || icoState == "progress") {
+            return <AccountDetails/>;
+        }
+    };
+
+    investments  = (icoState) => {
+        let data = {
+            msg: '',
+            investments: []
+        };
+
+        switch (icoState) {
+            case "preico":
+            case "countdown":
+            case "ico":
+                data.msg = "You have not yet invested";
+                break;
+            case "thankyou":
+                data.msg = "We have not recieved your investment";
+                break;
+            case "progress":
+                data.investments.push({
+                    payed: "200 000",
+                    source: "EN 123456798456321657987654",
+                    reward: "NEU 250 000",
+                    status: "IN PROGRESS"
+                });
+
+                data.investments.push({
+                    payed: "800 000 e",
+                    source: "EN 123456798456321657987654",
+                    reward: "NEU 800 000",
+                    status: "IN PROGRESS"
+                });
+                break;
+            case "success":
+                data.investments.push({
+                    payed: "0 e",
+                    source: "NEUFUND",
+                    reward: "NEU 150 000",
+                    status: "SUCESS"
+                });
+                data.investments.push({
+                    payed: "200 000",
+                    source: "EN 123456798456321657987654",
+                    reward: "NEU 250 000",
+                    status: "SUCESS"
+                });
+
+                data.investments.push({
+                    payed: "800 000 e",
+                    source: "EN 123456798456321657987654",
+                    reward: "NEU 800 000",
+                    status: "SUCESS"
+                });
+                break;
+        }
+
+        return <Investments data={data}/>;
+    };
+
     setIcoState = (state) => {
         this.setState({icoState: state});
     };
@@ -125,6 +191,8 @@ export default class Ico extends React.Component {
                     {this.transfer(this.state.icoState)}
                     {this.message(this.state.icoState)}
                     {this.emailChange(this.state.icoState)}
+                    {this.accountDetails(this.state.icoState)}
+                    {this.investments(this.state.icoState)}
                 </div>
             </MuiThemeProvider>
         )
