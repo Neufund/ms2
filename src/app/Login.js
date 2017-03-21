@@ -11,6 +11,7 @@ import nano2 from '../images/nano2.png';
 import nano3 from '../images/nano3.png';
 import placeholder from '../images/pitching-i-phone-app-startup.jpg';
 import cms from '../cms';
+import semver from 'semver';
 
 const ANIMATION_DURATION = 3000;
 const CHECK_INTERVAL = 500;
@@ -23,6 +24,7 @@ class Login extends React.Component {
             step: 1,
             browserSupported: true,
             nonNeufundLedger: false,
+            oldEthereumApp: false,
             showTutorial: false,
             config: null,
             accounts: null
@@ -38,7 +40,12 @@ class Login extends React.Component {
     async connectLedger() {
         try {
             let config = await toPromise(ledger.getAppConfig);
-            await toPromiseNoError(this.setState.bind(this), {completed: true, config});
+            console.log(config);
+            await toPromiseNoError(this.setState.bind(this), {
+                completed: true,
+                config,
+                oldEthereumApp: semver.lt(config.version, "1.0.8")
+            });
             this.onLedgerConnected()
         } catch (error) {
             console.log(error);
@@ -170,6 +177,11 @@ class Login extends React.Component {
             Your ledger is not supported by NeuFund
         </div>;
 
+    oldEthereumApp =
+        <div>
+            Your ledger ETH app is too old. You need at least v1.0.8
+        </div>;
+
 
     skipTutorialSection =
         <div className="Login-content row">
@@ -184,17 +196,16 @@ class Login extends React.Component {
 
     render() {
         let step;
-        let tutorialText;
+        let tutorialText = "";
 
         if (!this.state.browserSupported) {
             step = this.browserNotSupported;
-            tutorialText = "";
         } else if (this.state.nonNeufundLedger) {
             step = this.nonNeufundLedger;
-            tutorialText = "";
+        } else if (this.state.oldEthereumApp) {
+            step = this.oldEthereumApp;
         } else if (this.state.showTutorial) {
             step = this.skipTutorialSection;
-
             tutorialText = 'Show tutorial';
         }
         else {

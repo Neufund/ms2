@@ -6,6 +6,7 @@ import FontIcon from 'material-ui/FontIcon';
 import Dialog from 'material-ui/Dialog';
 import IconButton from 'material-ui/IconButton';
 import Checkbox from 'material-ui/Checkbox';
+import {web3} from '../web3';
 import RaisedButton from 'material-ui/RaisedButton';
 import ContractPaper from '../images/contract_paper.png'
 import ContractSmart from '../images/contract_smart.png'
