@@ -6,19 +6,88 @@ import cms from '../cms';
 
 import ProgressBar from "../ui/ProgressBar"
 
-import IcoHeader from "../ui/header/IcoHeader.js"
+import IcoHeader from "../ui/header/IcoHeader"
+import TimeToICO from "../ui/ico/TimeToICO"
+import AmountRaised from "../ui/ico/AmountRaised"
+import TotalCreated from "../ui/ico/TotalCreated"
+import Timer from "../ui/ico/Timer"
+import UserPayed from "../ui/ico/UserPaid"
 
-export default () => {
-    return cms(__filename)(
-        <MuiThemeProvider muiTheme={muiTheme}>
-            <div>
-                <ProgressBar progress={60} ico={false}/>
-                <div className="row topArea">
-                    <div className="col-xs-12 col-md-10 col-md-offset-1">
+export default class Ico extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {icoState: undefined};
+        if (props.location.query.state != undefined) {
+            this.state = {icoState: props.location.query.state}
+        }
+
+        /* ?state=
+         * preico, countdown, ico, thankyou,  , success
+         */
+    }
+
+    timeToIco = (icoState) => {
+        if (icoState == "preico" || icoState == "countdown") {
+            return <TimeToICO preIco={icoState == "preico"}/>;
+        } else {
+            return <div></div>;
+        }
+    };
+
+    amountRaised = (icoState) => {
+        if (icoState == "ico"
+            || icoState == "thankyou"
+            || icoState == "progress"
+            || icoState == "success") {
+            return <AmountRaised/>;
+        } else {
+            return <div></div>;
+        }
+    };
+
+    totalCreated = (icoState) => {
+        if (icoState == "ico"
+            || icoState == "thankyou"
+            || icoState == "progress"
+            || icoState == "success") {
+            return <TotalCreated/>;
+        } else {
+            return <div></div>;
+        }
+    };
+
+    timer = (icoState) => {
+        if (icoState == "ico"
+            || icoState == "thankyou"
+            || icoState == "progress"
+            || icoState == "success") {
+            return <Timer success={icoState == "success"}/>;
+        } else { 
+            return <div></div>;
+        }
+    };
+
+    render() {
+
+        let icoState = this.state.icoState;
+
+        return cms(__filename)(
+            <MuiThemeProvider muiTheme={muiTheme}>
+                <div>
+                    <ProgressBar progress={60} ico={false}/>
+                    <div className="topArea">
                         <IcoHeader/>
+                        {this.timeToIco(icoState)}
+                        {this.amountRaised(icoState)}
+                        {this.totalCreated(icoState)}
+                        {this.timer(icoState)}
+
+                        <UserPayed />
+
                     </div>
                 </div>
-            </div>
-        </MuiThemeProvider>
-    )
+            </MuiThemeProvider>
+        )
+    }
 };
