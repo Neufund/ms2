@@ -14,6 +14,7 @@ import Timer from "../ui/ico/Timer"
 import UserPaid from "../ui/ico/UserPaid"
 
 import Transfer from "../ui/ico/Transfer"
+import Message from "../ui/ico/Message"
 
 export default class Ico extends React.Component {
     constructor(props) {
@@ -65,6 +66,37 @@ export default class Ico extends React.Component {
         return <Transfer showCurrencySwitcher={icoState !== "success"}/>;
     };
 
+    message = (icoState) => {
+        let msg;
+        switch (icoState) {
+            case "preico":
+            case "countdown":
+                msg = <div>
+                    <p>Only with neufund you can take part in the ICO through the bank transfer!</p>
+                    <p>The bank account number will be realised soon!</p>
+                    <p>We will send you reminder on your email:</p>
+                </div>;
+                break;
+            case "ico":
+                msg = "To finalize the investment please transfer the amount into this bank account:";
+                break;
+            case "thankyou":
+                msg = <b>Congratulations you are on path to become a NEUFUND investor!</b>;
+                break;
+            case "progress":
+                msg = <div>
+                    <p>Congratulations you became an investor in NEUFUND</p>
+                    <p>Your neumarks will be available after the end of ICO</p>
+                </div>;
+                break;
+            case "success":
+                msg = <p>Congratulations you became an investor in NEUFUND</p>;
+                break;
+        }
+        return <Message message={msg}/>
+
+    };
+
     setIcoState = (state) => {
         this.setState({icoState: state});
     };
@@ -84,6 +116,7 @@ export default class Ico extends React.Component {
                         <UserPaid />
                     </div>
                     {this.transfer(this.state.icoState)}
+                    {this.message(this.state.icoState)}
                 </div>
             </MuiThemeProvider>
         )
