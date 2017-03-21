@@ -11,7 +11,7 @@ import TimeToICO from "../ui/ico/TimeToICO"
 import AmountRaised from "../ui/ico/AmountRaised"
 import TotalCreated from "../ui/ico/TotalCreated"
 import Timer from "../ui/ico/Timer"
-import UserPayed from "../ui/ico/UserPaid"
+import UserPaid from "../ui/ico/UserPaid"
 
 export default class Ico extends React.Component {
     constructor(props) {
@@ -86,7 +86,7 @@ export default class Ico extends React.Component {
                         {this.totalCreated(icoState)}
                         {this.timer(icoState)}
 
-                        <UserPayed />
+                        <UserPaid />
                     </div>
                 </div>
             </MuiThemeProvider>
