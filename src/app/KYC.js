@@ -42,7 +42,6 @@ export default class KYC extends React.Component {
     }
 
     handleCountryListChange = (event, index, value) => {
-        console.log(index);
         let formState = this.state.formState;
         formState.value = value;
         formState.forbiddenCountry = value == 'United States';

@@ -16,8 +16,6 @@ let initWeb3 = async function () {
     return window.web3;
 };
 
-console.log(initWeb3);
-
 let exportObject = {
     get ledger() {
         return ledger;

@@ -40,7 +40,6 @@ class Login extends React.Component {
     async connectLedger() {
         try {
             let config = await toPromise(ledger.getAppConfig);
-            console.log(config);
             await toPromiseNoError(this.setState.bind(this), {
                 completed: true,
                 config,
@@ -73,7 +72,6 @@ class Login extends React.Component {
 
     async onAccountConfirmed() {
         await wait(ANIMATION_DURATION);
-        console.log(this.state);
         // TODO Check backend
         if (false) {
             await toPromiseNoError(this.setState.bind(this), {nonNeufundLedger: true});
