@@ -11,7 +11,7 @@ export default () => {
                 </div>
             </div>
             <div className="row">
-                <div className="col-md-4 col-md-offset-3">
+                <div className="col-md-3 col-md-offset-2">
                     EUR 10 000 000, 00
                 </div>
                 <div className="col-md-4">

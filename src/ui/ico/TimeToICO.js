@@ -14,7 +14,7 @@ export default (props) => {
                 </div>
             </div>
             <div className="row">
-                <div className="col-xs-12 col-md-4 col-md-offset-3">
+                <div className="col-xs-12 col-md-4 col-md-offset-2">
                     {props.startTime == undefined ?
                         <span className="strong">WE WILL ANNOUNCE NEUFUND ICO THIS YEAR</span>
                         :

@@ -6,10 +6,10 @@ export default () => {
     return cms(__filename)(
         <div className="Section">
             <div className="row">
-                <div className="col-md-2 col-md-offset-1">
+                <div className="col-md-1 col-md-offset-1">
                     You payed:
                 </div>
-                <div className="col-md-4">
+                <div className="col-md-3">
                     EUR 0
                 </div>
                 <div className="col-md-2">
@@ -20,7 +20,7 @@ export default () => {
                 </div>
             </div>
             <div className="row">
-                <div className="col-md-4 col-md-offset-3">
+                <div className="col-md-3 col-md-offset-2">
                     ETH 0
                 </div>
             </div>

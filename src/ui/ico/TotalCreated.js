@@ -6,10 +6,10 @@ export default () => {
     return cms(__filename)(
         <div className="Section">
             <div className="row">
-                <div className="col-md-2 col-md-offset-1">
+                <div className="col-md-1 col-md-offset-1">
                     Total created NM:
                 </div>
-                <div className="col-md-4">
+                <div className="col-md-3">
                     NEU 50 000 000
                 </div>
                 <div className="col-md-2">

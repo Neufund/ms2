@@ -6,7 +6,7 @@ export default (props) => {
     return cms(__filename)(
         <div>
             <div className="row">
-                <div className="col-md-7 col-md-offset-3">
+                <div className="col-md-7 col-md-offset-2">
                     {props.message}
                 </div>
             </div>
