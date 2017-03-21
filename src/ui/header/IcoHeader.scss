@@ -25,6 +25,7 @@
 .UserSection {
   line-height: 3.9375rem;
   cursor: pointer;
+  color: $ico-header-icons-color;
 
   .iconUser {
     position: relative;
@@ -49,6 +50,7 @@
   font-size: 0.875rem;
   margin-left: 2em;
   cursor: pointer;
+  color: $ico-logout-color;
 }
 
 /* for development purposes */
