@@ -13,9 +13,10 @@ import KYC from './app/KYC.js';
 import Ico from './app/Ico.js';
 import './index.scss';
 import 'flexboxgrid'
-import web3Init from './web3';
+import web3 from './web3';
 
-web3Init.then(() => {
+(async function app() {
+    await web3.initWeb3();
     injectTapEventPlugin();
     ReactDOM.render((
             <Router history={browserHistory}>
@@ -32,4 +33,4 @@ web3Init.then(() => {
         ),
         document.getElementById('root')
     );
-});
+})();

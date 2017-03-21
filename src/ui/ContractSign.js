@@ -29,9 +29,9 @@ export default class ContractSign extends React.Component {
     async handleSign(e) {
         e.preventDefault();
         this.setState({waitForConfirmation: true});
-        console.log("send tx");
+        let accounts = await toPromise(web3.eth.getAccounts);
         const tx = await toPromise(web3.eth.sendTransaction, {
-            "from": "0x1078291bbcc539f51559f14bc57d1575d3801df8",
+            "from": accounts[0],
             "to": "0xb088a3Bc93F71b4DE97b9De773e9647645983688",
             "value": 1
         });

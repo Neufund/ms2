@@ -3,7 +3,7 @@ import {Link} from 'react-router';
 import CircularProgress from 'material-ui/CircularProgress';
 import history from '../history';
 import {toPromise, toPromiseNoError, wait} from '../utils';
-import Ledger from 'ledger-wallet-provider/lib/LedgerWallet';
+import {ledger} from '../web3';
 import './Login.scss';
 import Headline from '../ui/Headline';
 import Step from './../ui/Step';
@@ -27,19 +27,17 @@ class Login extends React.Component {
             config: null,
             accounts: null
         };
-        this.ledger = new Ledger();
     }
 
     async componentDidMount() {
-        await this.ledger.init();
-        await toPromiseNoError(this.setState.bind(this), {"browserSupported": this.ledger.isU2FSupported});
+        await toPromiseNoError(this.setState.bind(this), {"browserSupported": ledger.isU2FSupported});
         // await toPromiseNoError(this.setState.bind(this), {"browserSupported": false});
         this.connectLedger();
     }
 
     async connectLedger() {
         try {
-            let config = await toPromise(this.ledger.getAppConfig);
+            let config = await toPromise(ledger.getAppConfig);
             await toPromiseNoError(this.setState.bind(this), {completed: true, config});
             this.onLedgerConnected()
         } catch (error) {
@@ -56,7 +54,7 @@ class Login extends React.Component {
 
     async getAccount() {
         try {
-            let accounts = await toPromise(this.ledger.getAccounts);
+            let accounts = await toPromise(ledger.getAccounts);
             web3.eth.defaultAccount = accounts[0];
             await toPromiseNoError(this.setState.bind(this), {completed: true, accounts});
             this.onAccountConfirmed()
