@@ -15,6 +15,7 @@ import UserPaid from "../ui/ico/UserPaid"
 
 import Transfer from "../ui/ico/Transfer"
 import Message from "../ui/ico/Message"
+import EmailChange from "../ui/ico/EmailChange"
 
 export default class Ico extends React.Component {
     constructor(props) {
@@ -97,6 +98,12 @@ export default class Ico extends React.Component {
 
     };
 
+    emailChange = (icoState) => {
+        if (icoState == "preico" || icoState == "countdown") {
+            return <EmailChange/>;
+        }
+    };
+
     setIcoState = (state) => {
         this.setState({icoState: state});
     };
@@ -117,6 +124,7 @@ export default class Ico extends React.Component {
                     </div>
                     {this.transfer(this.state.icoState)}
                     {this.message(this.state.icoState)}
+                    {this.emailChange(this.state.icoState)}
                 </div>
             </MuiThemeProvider>
         )
