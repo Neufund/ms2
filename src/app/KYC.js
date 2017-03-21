@@ -7,7 +7,7 @@ import Checkbox from 'material-ui/Checkbox';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
-import Dialog from 'material-ui/Dialog';
+import Dropzone from 'react-dropzone';
 import CircularProgress from 'material-ui/CircularProgress';
 import {countries} from 'country-data';
 import './KYC.scss';
@@ -30,7 +30,12 @@ export default class KYC extends React.Component {
          *  empty - we don't have data?
          * @type {{state: string}}
          */
-        this.state = {getInvestorDataState: "waiting", idDialogOpen: false, formState: formState};
+        this.state = {
+            getInvestorDataState: "waiting",
+            idDialogOpen: false,
+            formState: formState,
+            files: []
+        };
 
         this.investorData = {
             idImage: 'http://placehold.it/900x400?text=investor+Id+placeholder+image',
@@ -62,8 +67,13 @@ export default class KYC extends React.Component {
         this.setState({formState: formState});
     };
 
+    onDrop(acceptedFiles, rejectedFiles) {
+        console.log(acceptedFiles, rejectedFiles);
+        this.setState({files: acceptedFiles});
+    };
+
     componentDidMount() {
-        window.setTimeout(() => this.setState({getInvestorDataState: "success"}), 4000);
+        window.setTimeout(() => this.setState({getInvestorDataState: "success"}), 400);
     }
 
     handleOpen = () => {
@@ -105,12 +115,26 @@ export default class KYC extends React.Component {
                     })}
             </SelectField>;
 
+        console.log(this.state.files.map((file) => <img src={file.preview} key={file.name}/>));
         return <div className="KYC-form">
-            <h4>Identification</h4>
-            <div className="secondary-info">
-                In order to identify you please upload
-                a photo of your ID card or Passport:
-            </div>
+            <h4>Upload a picture of your Passport of ID card</h4>
+            <Dropzone onDrop={this.onDrop.bind(this)}
+                      multiple={false}
+                      maxSize={5000000}
+                      accept={"image/png,image/jpg"}
+                      className="KYC-dropzone"
+                      activeClassName="KYC-dropzone-active"
+                      rejectClassName="KYC-dropzone-reject">
+
+                {this.state.files.length ?
+                    <img className="KYC-image"
+                         src={this.state.files[0].preview}
+                         key={this.state.files[0].name}/>
+                    : <div className="secondary-info">
+                    Click or drop picture
+                </div>}
+            </Dropzone>
+            <h4>Fill in your real data</h4>
             {countryList} <br />
             <TextField floatingLabelText="Address line 1"/> <br />
             <TextField floatingLabelText="Zip code"/> <br />
@@ -120,34 +144,12 @@ export default class KYC extends React.Component {
         </div>;
     };
 
-    confirmation = () =>
-        <div className="KYC-form">
-            <h4>Confirmation</h4>
-            <div className="secondary-info">
-                Please confirm your data
-            </div>
-            <img onClick={this.handleOpen} className="investorId" src={this.investorData.idImage} alt="investor Id"/>
-            <br />
-            <Dialog
-                modal={false}
-                open={this.state.idDialogOpen}
-                onRequestClose={this.handleClose}
-                autoScrollBodyContent={true}>
-                <img src={this.investorData.idImage} alt="investor Id" style={{"max-width": "100%"}}/>
-            </Dialog>
-            <TextField disabled={true} value={this.investorData.country}/> <br />
-            <TextField disabled={true} value={this.investorData.address}/> <br />
-            <TextField disabled={true} value={this.investorData.zip}/> <br />
-            <TextField disabled={true} value={this.investorData.city}/> <br />
-            <RaisedButton className="submitButton" label="I hereby confirm its my data"/>
-        </div>;
-
     render() {
         let section;
         if (this.state.getInvestorDataState == "waiting") {
             section = this.waiting();
         } else {
-            section = this.confirmation();
+            section = this.kycform();
         }
 
         return cms(__filename)(

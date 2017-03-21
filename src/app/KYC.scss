@@ -5,8 +5,26 @@
 }
 
 .KYC-form {
-  width: 80%;
+  width: 256px;
   margin-left: 15%;
+}
+
+.KYC-dropzone {
+  border: solid darkgray 1px;
+}
+
+.KYC-dropzone-active {
+  background-color: $primary-color;
+}
+
+.KYC-dropzone-reject {
+  background-color: red;
+}
+
+.KYC-image {
+  width: 246px;
+  padding-left: 3px;
+  padding-top: 3px;
 }
 
 .checkbox {
@@ -19,7 +37,7 @@
 }
 
 .investorId {
-  width:100px;
+  width: 100px;
   cursor: pointer;
 }
 
