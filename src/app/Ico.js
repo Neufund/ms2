@@ -21,9 +21,8 @@ export default class Ico extends React.Component {
         if (props.location.query.state != undefined) {
             this.state = {icoState: props.location.query.state}
         }
-
         /* ?state=
-         * preico, countdown, ico, thankyou,  , success
+         * preico, countdown, ico, thankyou, progress, success
          */
     }
 
@@ -68,6 +67,10 @@ export default class Ico extends React.Component {
         }
     };
 
+    setIcoState = (state) => {
+        this.setState({icoState: state});
+    };
+
     render() {
 
         let icoState = this.state.icoState;
@@ -77,15 +80,15 @@ export default class Ico extends React.Component {
                 <div>
                     <ProgressBar progress={60} ico={false}/>
                     <div className="topArea">
-                        <IcoHeader/>
+                        <IcoHeader setIcoState={this.setIcoState}/>
                         {this.timeToIco(icoState)}
                         {this.amountRaised(icoState)}
                         {this.totalCreated(icoState)}
                         {this.timer(icoState)}
 
                         <UserPayed />
-
                     </div>
+                    <div>testujemy biale pole</div>
                 </div>
             </MuiThemeProvider>
         )
