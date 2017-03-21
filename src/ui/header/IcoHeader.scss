@@ -3,8 +3,8 @@
 
 .Header {
   padding-top: $progressbar-height;
-  color: $ico-header-text-color;
-  height:3.9375rem;
+  //color: $ico-header-text-color;
+  height: 3.9375rem;
 
   display: flex;
   flex-direction: row;
@@ -16,15 +16,28 @@
   height: 100%;
   width: 10rem;
   background-image: url('/src/images/NeuFund_logo.png');
-  background-size: 10rem 1.875rem ;
+  background-size: 10rem 1.875rem;
   background-position: center;
   background-repeat: no-repeat;
   display: inline-block;
 }
 
 .UserSection {
-  line-height:3.9375rem;
+  line-height: 3.9375rem;
+  cursor: pointer;
 
+  .iconUser {
+    position: relative;
+    top: 0.8125rem;
+    font-size: 2.313rem
+  }
+
+  .iconArrow {
+    position: relative;
+    margin-left:0.625rem;
+    top: 0.125rem;
+    font-size: 0.625rem
+  }
 }
 
 .UserPanel {
@@ -35,10 +48,11 @@
   display: inline-block;
   font-size: 0.875rem;
   margin-left: 2em;
-
+  cursor: pointer;
 }
 
-.stateChanger{
+/* for development purposes */
+.stateChanger {
   display: inline-block;
   font-size: 0.8rem;
   margin-right: 2em;
