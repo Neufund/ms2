@@ -88,7 +88,6 @@ export default class Ico extends React.Component {
 
                         <UserPayed />
                     </div>
-                    <div>testujemy biale pole</div>
                 </div>
             </MuiThemeProvider>
         )
