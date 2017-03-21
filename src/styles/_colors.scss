@@ -20,9 +20,14 @@ $contracts-signup-hover-icon-color:$grey;
 $tooltip-light: $grey8Opacity;
 $tooltip-dark: $grey;
 
-/* colors for ICO*/
+/* colors for ICO */
+
 $greyDark: #424a52;
-$GreyLight: #D8DADB;
+$greyMiddle: #686e75;
+$greyLight: #D8DADB;
+
+$greenNeufund: #d5e20f;
 
 $ico-dark-background-color: $greyDark;
-$ico-header-text-color: $GreyLight;
+$ico-header-text-color: $greyLight;
+$ico-header-text-darker-color: $greyMiddle;

@@ -2,20 +2,23 @@ import React from 'react';
 import './TimeToICO.scss';
 import cms from '../../cms';
 
+import Timer from '../Timer'
+
 export default (props) => {
-    return cms(__filename)(
+
+    return (
         <div className="Section">
             <div className="row">
-                <div className="col-md-2 col-md-offset-1">
+                <div className="col-xs-12 col-md-2 col-md-offset-1">
                     Time left to ICO
                 </div>
             </div>
             <div className="row">
-                <div className="col-md-4 col-md-offset-3">
-                    {props.preIco ?
-                        'WE WILL ANNOUNCE NEUFUND ICO THIS YEAR'
+                <div className="col-xs-12 col-md-4 col-md-offset-3">
+                    {props.startTime == undefined ?
+                        <span className="strong">WE WILL ANNOUNCE NEUFUND ICO THIS YEAR</span>
                         :
-                        'D12 H45 M12 S01'
+                        <Timer className="timeToIco" toTime={props.startTime}/>
                     }
                 </div>
             </div>

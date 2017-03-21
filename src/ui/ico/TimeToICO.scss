@@ -1,2 +1,17 @@
 @import "../../styles/colors";
 @import "../../styles/dimensions";
+
+.timeToIco {
+
+  font-weight: bold;
+
+  .unit {
+    font-size: 1rem;
+    color: $ico-header-text-darker-color;
+  }
+
+  .number {
+    font-size: 1.875rem;
+    color: $greenNeufund;
+  }
+}

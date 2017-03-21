@@ -1,11 +1,20 @@
 @import "../styles/colors";
+@import "../styles/dimensions";
 
 .topArea {
   color: $ico-header-text-color;
+  font-size: $ico-top-area-font-size;
 
   .row {
     background-color: $ico-dark-background-color;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
   }
+
+  .strong {
+    font-size: 1rem;
+    color: $greenNeufund;
+    font-weight: bold;
+  }
+
 }

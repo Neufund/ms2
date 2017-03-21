@@ -1,5 +1,5 @@
 import React from 'react';
-import './Timer.scss';
+import './TimeToEnd.scss';
 import cms from '../../cms';
 
 export default (props) => {

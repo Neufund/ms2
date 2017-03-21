@@ -10,7 +10,7 @@ import IcoHeader from "../ui/header/IcoHeader"
 import TimeToICO from "../ui/ico/TimeToICO"
 import AmountRaised from "../ui/ico/AmountRaised"
 import TotalCreated from "../ui/ico/TotalCreated"
-import Timer from "../ui/ico/Timer"
+import TimeToEnd from "../ui/ico/TimeToEnd"
 import UserPaid from "../ui/ico/UserPaid"
 
 import Transfer from "../ui/ico/Transfer"
@@ -33,8 +33,10 @@ export default class Ico extends React.Component {
     }
 
     timeToIco = (icoState) => {
-        if (icoState == "preico" || icoState == "countdown") {
-            return <TimeToICO preIco={icoState == "preico"}/>;
+        if (icoState == "preico") {
+            return <TimeToICO/>;
+        } else if (icoState == "countdown") {
+            return <TimeToICO startTime="2017-04-01"/>;
         }
     };
 
@@ -56,12 +58,12 @@ export default class Ico extends React.Component {
         }
     };
 
-    timer = (icoState) => {
+    timeToEnd = (icoState) => {
         if (icoState == "ico"
             || icoState == "thankyou"
             || icoState == "progress"
             || icoState == "success") {
-            return <Timer success={icoState == "success"}/>;
+            return <TimeToEnd success={icoState == "success"}/>;
         }
     };
 
@@ -184,7 +186,7 @@ export default class Ico extends React.Component {
                         {this.timeToIco(this.state.icoState)}
                         {this.amountRaised(this.state.icoState)}
                         {this.totalCreated(this.state.icoState)}
-                        {this.timer(this.state.icoState)}
+                        {this.timeToEnd(this.state.icoState)}
 
                         <UserPaid />
                     </div>
