@@ -8,7 +8,7 @@ const cms = (filename) => {
         return string;
     };
     const traverseJSXTree = (tree) => {
-        if (tree.props.children) {
+        if (tree && tree.props.children) {
             if (typeof(tree.props.children) === "string") {
                 return cloneElement(tree, {}, getString(tree.props.children));
             } else {
@@ -19,7 +19,7 @@ const cms = (filename) => {
                             node = getString(child);
                         } else {
                             node = traverseJSXTree(child);
-                            if (!node.key){
+                            if (node && !node.key){
                                 node = cloneElement(node, {key: index});
                             }
                         }
