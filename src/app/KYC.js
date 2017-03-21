@@ -10,6 +10,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Dropzone from 'react-dropzone';
 import CircularProgress from 'material-ui/CircularProgress';
 import {countries} from 'country-data';
+import ReactTooltip from 'react-tooltip'
 import './KYC.scss';
 import cms from '../cms';
 
@@ -68,12 +69,15 @@ export default class KYC extends React.Component {
     };
 
     onDrop(acceptedFiles, rejectedFiles) {
-        console.log(acceptedFiles, rejectedFiles);
         this.setState({files: acceptedFiles});
     };
 
     componentDidMount() {
         window.setTimeout(() => this.setState({getInvestorDataState: "success"}), 400);
+    }
+
+    componentDidUpdate() {
+        ReactTooltip.show(this.dropzone);
     }
 
     handleOpen = () => {
@@ -118,22 +122,33 @@ export default class KYC extends React.Component {
         console.log(this.state.files.map((file) => <img src={file.preview} key={file.name}/>));
         return <div className="KYC-form">
             <h4>Upload a picture of your Passport of ID card</h4>
-            <Dropzone onDrop={this.onDrop.bind(this)}
-                      multiple={false}
-                      maxSize={5000000}
-                      accept={"image/png,image/jpg"}
-                      className="KYC-dropzone"
-                      activeClassName="KYC-dropzone-active"
-                      rejectClassName="KYC-dropzone-reject">
+            <div ref={(dropzone) => {
+                this.dropzone = dropzone;
+            }} data-tip="React-tooltip">
+                <Dropzone onDrop={this.onDrop.bind(this)}
+                          multiple={false}
+                          maxSize={5000000}
+                          accept={"image/png,image/jpg"}
+                          className="KYC-dropzone"
+                          activeClassName="KYC-dropzone-active"
+                          rejectClassName="KYC-dropzone-reject">
 
-                {this.state.files.length ?
-                    <img className="KYC-image"
-                         src={this.state.files[0].preview}
-                         key={this.state.files[0].name}/>
-                    : <div className="secondary-info">
-                    Click or drop picture
-                </div>}
-            </Dropzone>
+                    {this.state.files.length ?
+                        <img className="KYC-image"
+                             src={this.state.files[0].preview}
+                             key={this.state.files[0].name}/>
+                        : <div className="secondary-info">
+                        Click or drop picture
+                    </div>}
+                </Dropzone>
+            </div>
+            <ReactTooltip place="right"
+                          effect="solid"
+                          class="KYC-tooltip"
+                          afterHide={() => ReactTooltip.show(this.dropzone)}>
+                <div className="KYC-tooltip-header">Important!</div>
+                <div>Please upload readable picture <br/>of the document with data <br/>and your photo</div>
+            </ReactTooltip>
             <h4>Fill in your real data</h4>
             {countryList} <br />
             <TextField floatingLabelText="Address line 1"/> <br />

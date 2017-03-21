@@ -10,7 +10,7 @@
 }
 
 .KYC-dropzone {
-  border: solid darkgray 1px;
+  border: solid $link-not-available 1px;
 }
 
 .KYC-dropzone-active {
@@ -19,6 +19,21 @@
 
 .KYC-dropzone-reject {
   background-color: red;
+}
+
+.KYC-tooltip {
+  color: $link-color !important;
+  background-color: $tooltip-light !important;
+  box-shadow: 0 3px 7px grey;
+  line-height: 160%;
+  border-radius: 5px !important;
+  &:after {
+    border-right-color: $tooltip-light !important;
+  }
+}
+
+.KYC-tooltip-header {
+  font-weight: bold;
 }
 
 .KYC-image {
