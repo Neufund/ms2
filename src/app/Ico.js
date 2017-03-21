@@ -13,6 +13,8 @@ import TotalCreated from "../ui/ico/TotalCreated"
 import Timer from "../ui/ico/Timer"
 import UserPaid from "../ui/ico/UserPaid"
 
+import Transfer from "../ui/ico/Transfer"
+
 export default class Ico extends React.Component {
     constructor(props) {
         super(props);
@@ -29,8 +31,6 @@ export default class Ico extends React.Component {
     timeToIco = (icoState) => {
         if (icoState == "preico" || icoState == "countdown") {
             return <TimeToICO preIco={icoState == "preico"}/>;
-        } else {
-            return <div></div>;
         }
     };
 
@@ -40,8 +40,6 @@ export default class Ico extends React.Component {
             || icoState == "progress"
             || icoState == "success") {
             return <AmountRaised/>;
-        } else {
-            return <div></div>;
         }
     };
 
@@ -51,8 +49,6 @@ export default class Ico extends React.Component {
             || icoState == "progress"
             || icoState == "success") {
             return <TotalCreated/>;
-        } else {
-            return <div></div>;
         }
     };
 
@@ -62,9 +58,11 @@ export default class Ico extends React.Component {
             || icoState == "progress"
             || icoState == "success") {
             return <Timer success={icoState == "success"}/>;
-        } else { 
-            return <div></div>;
         }
+    };
+
+    transfer = (icoState) => {
+        return <Transfer showCurrencySwitcher={icoState !== "success"}/>;
     };
 
     setIcoState = (state) => {
@@ -72,22 +70,20 @@ export default class Ico extends React.Component {
     };
 
     render() {
-
-        let icoState = this.state.icoState;
-
-        return cms(__filename)(
+        return (
             <MuiThemeProvider muiTheme={muiTheme}>
                 <div>
                     <ProgressBar progress={60} ico={false}/>
                     <div className="topArea">
                         <IcoHeader setIcoState={this.setIcoState}/>
-                        {this.timeToIco(icoState)}
-                        {this.amountRaised(icoState)}
-                        {this.totalCreated(icoState)}
-                        {this.timer(icoState)}
+                        {this.timeToIco(this.state.icoState)}
+                        {this.amountRaised(this.state.icoState)}
+                        {this.totalCreated(this.state.icoState)}
+                        {this.timer(this.state.icoState)}
 
                         <UserPaid />
                     </div>
+                    {this.transfer(this.state.icoState)}
                 </div>
             </MuiThemeProvider>
         )
