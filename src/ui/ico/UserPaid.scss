@@ -1,2 +1,24 @@
 @import "../../styles/colors";
 @import "../../styles/dimensions";
+
+.UserPaid {
+  .Unit {
+    font-weight: bold;
+    font-size: 1rem;
+    color: $ico-top-area-text-darker-color;
+  }
+
+  .Number {
+    font-weight: bold;
+    font-size: 1rem;
+    color: $greyAnother;
+  }
+
+  .Neu {
+    color: $greenNeufund;
+  }
+
+  .Big {
+    font-size: 1.875rem;
+  }
+}

@@ -2,26 +2,26 @@ import React from 'react';
 import './UserPaid.scss';
 import cms from '../../cms';
 
-export default () => {
+export default (props) => {
     return cms(__filename)(
-        <div>
+        <div className="UserPaid">
             <div className="row">
                 <div className="col-md-1 col-md-offset-1">
-                    You payed:
+                    You paid:
                 </div>
                 <div className="col-md-3">
-                    EUR 0
+                    <span className="Unit">EUR</span> <span className="Number">{props.userPaidData.EUR.toString()}</span>
                 </div>
                 <div className="col-md-2">
-                    You pledged:
+                    {props.userPaidData.success ? "You have:" : "You pledged:"}
                 </div>
-                <div className="col-md-1">
-                    0
+                <div className="col-md-2">
+                    <span className="Unit">NEU</span> <span className={props.userPaidData.success ? "Number Neu Big" : "Number NEU"}>{props.userPaidData.NEU.toString()}</span>
                 </div>
             </div>
             <div className="row">
                 <div className="col-md-3 col-md-offset-2">
-                    ETH 0
+                    <span className="Unit">ETH</span> <span className="Number">{props.userPaidData.ETH.toString()}</span>
                 </div>
             </div>
         </div>

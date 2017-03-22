@@ -172,6 +172,29 @@ export default class Ico extends React.Component {
         return <Investments data={data}/>;
     };
 
+    userPaid = (icoState) => {
+        let data = {
+            EUR: 0,
+            ETH: 0,
+            NEU: 0,
+            success: false
+        };
+        switch (icoState) {
+             case "progress":
+                 data.EUR = 1000000;
+                 data.ETH = 1000;
+                 data.NEU = 1150000;
+                break;
+            case "success":
+                data.EUR = 1000000;
+                data.ETH = 1000;
+                data.NEU = 1150000;
+                data.success = true;
+                break;
+        }
+        return <UserPaid userPaidData={data}/>;
+    };
+
     setIcoState = (state) => {
         this.setState({icoState: state});
     };
@@ -187,8 +210,7 @@ export default class Ico extends React.Component {
                         {this.amountRaised(this.state.icoState)}
                         {this.totalCreated(this.state.icoState)}
                         {this.timeToEnd(this.state.icoState)}
-
-                        <UserPaid />
+                        {this.userPaid(this.state.icoState)}
                     </div>
                     {this.transfer(this.state.icoState)}
                     {this.message(this.state.icoState)}
