@@ -95,25 +95,25 @@ export default class Ico extends React.Component {
             case "preico":
             case "countdown":
                 msg = <div>
-                    <p>Only with neufund you can take part in the ICO through the bank transfer!</p>
+                    <h3>Only with neufund you can take part in the ICO through the bank transfer!</h3>
                     <p>The bank account number will be realised soon!</p>
                     <p>We will send you reminder on your email:</p>
                 </div>;
                 break;
             case "ico":
-                msg = "To finalize the investment please transfer the amount into this bank account:";
+                msg = <p>To finalize the investment please transfer the amount into this bank account:</p>;
                 break;
             case "thankyou":
-                msg = <b>Congratulations you are on path to become a NEUFUND investor!</b>;
+                msg = <h3>Congratulations you are on path to become a NEUFUND investor!</h3>;
                 break;
             case "progress":
                 msg = <div>
-                    <p>Congratulations you became an investor in NEUFUND</p>
+                    <h3>Congratulations you became an investor in NEUFUND</h3>
                     <p>Your neumarks will be available after the end of ICO</p>
                 </div>;
                 break;
             case "success":
-                msg = <p>Congratulations you became an investor in NEUFUND</p>;
+                msg = <h3>Congratulations you became an investor in NEUFUND</h3>;
                 break;
         }
         return <Message message={msg}/>
