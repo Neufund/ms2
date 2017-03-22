@@ -3,7 +3,7 @@ import './Transfer.scss';
 import cms from '../../cms';
 
 export default (props) => {
-    return (
+    return cms(__filename)(
         <div>
             <div className="row">
                 <div className="col-md-2 col-md-offset-1">

@@ -6,8 +6,8 @@ import Timer from '../Timer'
 
 export default (props) => {
 
-    return (
-        <div className="Section">
+    return cms(__filename)(
+        <div>
             <div className="row">
                 <div className="col-xs-12 col-md-2 col-md-offset-1">
                     Time left to ICO

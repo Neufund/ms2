@@ -177,7 +177,7 @@ export default class Ico extends React.Component {
     };
 
     render() {
-        return (
+        return cms(__filename)(
             <MuiThemeProvider muiTheme={muiTheme}>
                 <div>
                     <ProgressBar progress={60} ico={false}/>

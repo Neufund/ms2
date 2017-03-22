@@ -4,7 +4,7 @@ import cms from '../../cms';
 
 export default () => {
     return cms(__filename)(
-        <div className="Section">
+        <div>
             <div className="row">
                 <div className="col-md-1 col-md-offset-1">
                     Total created NM:
