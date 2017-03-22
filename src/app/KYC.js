@@ -151,7 +151,7 @@ export default class KYC extends React.Component {
             </ReactTooltip>
             <h4>Fill in your real data</h4>
             {countryList} <br />
-            <TextField floatingLabelText="Address line 1"/> <br />
+            <TextField floatingLabelText="Address line"/> <br />
             <TextField floatingLabelText="Zip code"/> <br />
             <TextField floatingLabelText="City"/>
             <Checkbox onCheck={this.handleCheckboxChange} className="checkbox" label="I represent myself"/>
