@@ -1,2 +1,16 @@
 @import "../../styles/colors";
 @import "../../styles/dimensions";
+
+.TotalCreated {
+  .Unit {
+    font-size: 1rem;
+    color: $ico-top-area-text-darker-color;
+    font-weight: bold;
+  }
+
+  .Number {
+    font-size: 1rem;
+    color: $greyAnother;
+    font-weight: bold;
+  }
+}
