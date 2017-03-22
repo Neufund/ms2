@@ -1,2 +1,51 @@
 @import "../../styles/colors";
 @import "../../styles/dimensions";
+
+.Investments {
+  .Message {
+    margin-top: 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: $greyNoIdea;
+  }
+
+  .Transactions {
+    margin-top: 1rem;
+
+
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    thead {
+      color: rgba(0, 0, 0, 0.38);
+      font-size: 1rem;
+    }
+
+    tbody {
+      tr {
+        height: 4.125rem;
+      }
+
+      td {
+        border-bottom: 1px solid #cbc8c8;
+        font-size: 1rem;
+      }
+
+      .Status {
+        text-transform: uppercase;
+      }
+
+      .Success {
+        color: $greenNeufund;
+      }
+
+      .Progress {
+        color: rgba(0, 0, 0, 0.38);
+      }
+
+    }
+  }
+}

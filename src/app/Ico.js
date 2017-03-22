@@ -134,58 +134,52 @@ export default class Ico extends React.Component {
 
     investments = (icoState) => {
         let data = {
-            msg: '',
+            waitingForInvestment: false,
             investments: []
         };
 
         switch (icoState) {
-            case "preico":
-            case "countdown":
-            case "ico":
-                data.msg = "You have not yet invested";
-                break;
             case "thankyou":
-                data.msg = "We have not recieved your investment";
+                data.waitingForInvestment = true;
                 break;
             case "progress":
                 data.investments.push({
-                    payed: "200 000",
+                    paid: "200 000e",
                     source: "EN 123456798456321657987654",
                     reward: "NEU 250 000",
-                    status: "IN PROGRESS"
+                    success: false
                 });
-
                 data.investments.push({
-                    payed: "800 000 e",
+                    paid: "800 000e",
                     source: "EN 123456798456321657987654",
                     reward: "NEU 800 000",
-                    status: "IN PROGRESS"
+                    success: false
                 });
                 break;
             case "success":
                 data.investments.push({
-                    payed: "0 e",
+                    paid: "0e",
                     source: "NEUFUND",
                     reward: "NEU 150 000",
-                    status: "SUCESS"
+                    success: true
                 });
                 data.investments.push({
-                    payed: "200 000",
+                    paid: "200 000",
                     source: "EN 123456798456321657987654",
                     reward: "NEU 250 000",
-                    status: "SUCESS"
+                    success: true
                 });
 
                 data.investments.push({
-                    payed: "800 000 e",
+                    paid: "800 000e",
                     source: "EN 123456798456321657987654",
                     reward: "NEU 800 000",
-                    status: "SUCESS"
+                    success: true
                 });
                 break;
         }
 
-        return <Investments data={data}/>;
+        return <Investments investmentsData={data}/>;
     };
 
     userPaid = (icoState) => {
