@@ -26,6 +26,8 @@ export default class Ico extends React.Component {
         this.state = {icoState: undefined};
         if (props.location.query.state != undefined) {
             this.state = {icoState: props.location.query.state}
+        } else {
+            this.state = {icoState: "preico"}
         }
         /* ?state=
          * preico, countdown, ico, thankyou, progress, success
