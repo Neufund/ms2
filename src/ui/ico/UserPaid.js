@@ -24,6 +24,10 @@ export default (props) => {
                     <span className="Unit">ETH</span> <span className="Number">{props.userPaidData.ETH.toString()}</span>
                 </div>
             </div>
+            {/* temporary spacer */}
+            <div  className="row" style={{
+                height: "1rem"
+            }}></div>
         </div>
     )
 };

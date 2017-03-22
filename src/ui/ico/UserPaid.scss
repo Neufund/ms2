@@ -2,6 +2,8 @@
 @import "../../styles/dimensions";
 
 .UserPaid {
+  padding-bottom: 1rem;
+
   .Unit {
     font-weight: bold;
     font-size: 1rem;
@@ -20,5 +22,10 @@
 
   .Big {
     font-size: 1.875rem;
+  }
+
+  .row { // this should be done correctly but wait till finishing touch
+    padding-top: 0;
+    padding-bottom: 0;
   }
 }
