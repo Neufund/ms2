@@ -1,0 +1,17 @@
+@import "../../styles/colors";
+@import "../../styles/dimensions";
+
+.CurrencySwitcher {
+  .Currencies {
+    color: $greyAnother;
+    margin-top: 0.5rem;
+
+    span {
+      cursor: pointer;
+    }
+  }
+
+  .active {
+    color: #000;
+  }
+}

@@ -13,7 +13,7 @@ import TotalCreated from "../ui/ico/TotalCreated"
 import TimeToEnd from "../ui/ico/TimeToEnd"
 import UserPaid from "../ui/ico/UserPaid"
 
-import Transfer from "../ui/ico/Transfer"
+import CurrencySwitcher from "../ui/ico/CurrencySwitcher"
 import Message from "../ui/ico/Message"
 import EmailChange from "../ui/ico/EmailChange"
 import AccountDetails from "../ui/ico/AccountDetails"
@@ -83,8 +83,8 @@ export default class Ico extends React.Component {
         }
     };
 
-    transfer = (icoState) => {
-        return <Transfer showCurrencySwitcher={icoState !== "success"}/>;
+    currencySwitcher = (icoState) => {
+        return <CurrencySwitcher currency="EUR" showCurrencySwitcher={icoState !== "success"}/>;
     };
 
     message = (icoState) => {
@@ -229,7 +229,7 @@ export default class Ico extends React.Component {
                         {this.userPaid(this.state.icoState)}
                     </div>
                     <div className="topAreaTriangle row"></div>
-                    {this.transfer(this.state.icoState)}
+                    {this.currencySwitcher(this.state.icoState)}
                     {this.message(this.state.icoState)}
                     {this.emailChange(this.state.icoState)}
                     {this.accountDetails(this.state.icoState)}
