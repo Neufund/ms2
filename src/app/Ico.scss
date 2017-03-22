@@ -16,5 +16,9 @@
     color: $greenNeufund;
     font-weight: bold;
   }
+}
 
+.topAreaTriangle {
+  border-bottom: 3.125rem solid RGBA(0, 0, 0, 0);
+  border-right: 100vw solid $ico-dark-background-color;
 }

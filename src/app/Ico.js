@@ -228,6 +228,7 @@ export default class Ico extends React.Component {
                         {this.timeToEnd(this.state.icoState)}
                         {this.userPaid(this.state.icoState)}
                     </div>
+                    <div className="topAreaTriangle row"></div>
                     {this.transfer(this.state.icoState)}
                     {this.message(this.state.icoState)}
                     {this.emailChange(this.state.icoState)}
