@@ -13,7 +13,7 @@ export default (props) => {
             </div>
             {(props.investmentsData.noTransactions || props.investmentsData.waitingForInvestment) &&
                 <div className="row Message">
-                    <div className="col-sm-2 col-sm-offset-1">
+                    <div className="col-sm-4 col-sm-offset-1">
                         {props.investmentsData.noTransactions ?
                             "You have not yet invested".toString()
                             :
