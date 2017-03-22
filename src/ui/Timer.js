@@ -33,7 +33,7 @@ export default class Timer extends React.Component {
 
     render  = () =>
         <span className={this.props.className}>
-            <span className="unit">D </span><span className="number">{this.state.duration.days()} </span>
+            <span className="unit">D </span><span className="number">{Math.floor(this.state.duration.asDays())} </span>
             <span className="unit">H </span><span className="number">{this.state.duration.hours()} </span>
             <span className="unit">M </span><span className="number">{this.state.duration.minutes()} </span>
             <span className="unit">S </span><span className="number">{this.state.duration.seconds()} </span>
