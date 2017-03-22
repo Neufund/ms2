@@ -5,7 +5,7 @@ import cms from '../../cms';
 export default (props) => {
     props.investmentsData.noTransactions = (props.investmentsData.investments.length == 0);
     return cms(__filename)(
-        <div className="Investments">
+        <div className="Investments Section">
             <div className="row">
                 <div className="col-sm-2 col-sm-offset-1">
                     <span className="SectionTitle">Your Investments</span>

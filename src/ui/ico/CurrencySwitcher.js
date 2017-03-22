@@ -17,9 +17,9 @@ export default class CurrencySwitcher extends React.Component {
 
     render() {
         return cms(__filename)(
-            <div className="CurrencySwitcher">
+            <div className="CurrencySwitcher Section">
                 <div className="row">
-                    <div className="col-sm-2 col-sm-offset-1">
+                    <div className="col-sm-1 col-sm-offset-1">
                         <span className="SectionTitle">Transfer</span>
                     </div>
                 </div>
