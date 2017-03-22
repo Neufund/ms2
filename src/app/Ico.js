@@ -72,9 +72,14 @@ export default class Ico extends React.Component {
     timeToEnd = (icoState) => {
         if (icoState == "ico"
             || icoState == "thankyou"
-            || icoState == "progress"
-            || icoState == "success") {
-            return <TimeToEnd success={icoState == "success"}/>;
+            || icoState == "progress") {
+            return <TimeToEnd endTime="2017-05-01"/>;
+        } else if (icoState == "success") {
+            return <TimeToEnd endStatus={{
+                duration: 2222452,
+                ethscanUrl: "https://etherscan.io/tx/0x98d0b801ddc8e19db76f32994b697cccfb12519129a5ad0e36d0f246dd16d220",
+                auditUrl: "http://banciur.org"
+            }}/>;
         }
     };
 
@@ -127,7 +132,7 @@ export default class Ico extends React.Component {
         }
     };
 
-    investments  = (icoState) => {
+    investments = (icoState) => {
         let data = {
             msg: '',
             investments: []
@@ -191,10 +196,10 @@ export default class Ico extends React.Component {
             success: false
         };
         switch (icoState) {
-             case "progress":
-                 data.EUR = 1000000;
-                 data.ETH = 1000;
-                 data.NEU = 1150000;
+            case "progress":
+                data.EUR = 1000000;
+                data.ETH = 1000;
+                data.NEU = 1150000;
                 break;
             case "success":
                 data.EUR = 1000000;

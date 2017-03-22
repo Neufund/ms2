@@ -1,2 +1,36 @@
 @import "../../styles/colors";
 @import "../../styles/dimensions";
+
+.TimeToEnd {
+
+  .icoDuration {
+    font-weight: bold;
+    color: $greenNeufund;
+    font-size: 1rem;
+  }
+
+  .links {
+    margin-top: 0.25rem;
+
+    a {
+      font-size: 1rem;
+      font-weight: normal;
+      color: $ico-top-area-text-color;
+      margin-right: 3rem;
+    }
+  }
+
+  .Timer {
+    font-weight: bold;
+    font-size: 1rem;
+
+    .unit {
+      color: $ico-top-area-text-darker-color;
+    }
+
+    .number {
+      color: $greyAnother;
+    }
+
+  }
+}
