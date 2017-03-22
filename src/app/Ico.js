@@ -41,11 +41,19 @@ export default class Ico extends React.Component {
     };
 
     amountRaised = (icoState) => {
+        let data = {
+            EUR: 10000000,
+            ETH: 45000000,
+            CAP: 80
+        };
         if (icoState == "ico"
             || icoState == "thankyou"
             || icoState == "progress"
             || icoState == "success") {
-            return <AmountRaised/>;
+
+            data.success = icoState == "success";
+
+            return <AmountRaised amountRaisedData={data}/>;
         }
     };
 

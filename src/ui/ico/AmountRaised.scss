@@ -1,2 +1,28 @@
 @import "../../styles/colors";
 @import "../../styles/dimensions";
+
+.AmountRaised {
+
+  .Unit {
+    font-size: 1rem;
+    font-weight: bold;
+    color: $ico-top-area-text-darker-color;
+
+  }
+
+  .Number {
+    font-size: 1rem;
+    font-weight: bold;
+    color: $greenNeufund;
+  }
+
+  .Big {
+    font-size: 1.875rem;
+  }
+
+  .Cap {
+    font-size: 1rem;
+    font-weight: bold;
+    color: $ico-top-area-text-darker-color;
+  }
+}
