@@ -6,13 +6,13 @@ export default (props) => {
     return cms(__filename)(
         <div>
             <div className="row">
-                <div className="col-md-2 col-md-offset-1">
+                <div className="col-sm-2 col-sm-offset-1">
                     Your Investments
                 </div>
             </div>
             {props.data.msg != '' &&
                 <div className="row">
-                    <div className="col-md-2 col-md-offset-1">
+                    <div className="col-sm-2 col-sm-offset-1">
                         {props.data.msg}
                     </div>
                 </div>
@@ -20,7 +20,7 @@ export default (props) => {
 
             {props.data.investments.length > 0 &&
                 <div className="row">
-                    <div className="col-md-10 col-md-offset-1">
+                    <div className="col-sm-10 col-sm-offset-1">
                         <table>
                             <thead>
                                 <tr>
