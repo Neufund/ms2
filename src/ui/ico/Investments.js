@@ -31,7 +31,7 @@ export default (props) => {
                                     <td>Paid</td>
                                     <td>Source</td>
                                     <td>Reward</td>
-                                    <td className="Status"> </td>
+                                    <td> </td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -42,9 +42,9 @@ export default (props) => {
                                         <td>{row.reward.toString()}</td>
                                         {
                                             row.success ?
-                                                <td className="Success">success</td>
+                                                <td className="Status Success">success</td>
                                                 :
-                                                <td className="Progress">...in progress</td>
+                                                <td className="Status Progress">...in progress</td>
                                         }
                                     </tr>)}
                             </tbody>

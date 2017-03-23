@@ -4,7 +4,7 @@
 .Investments {
   .Message {
     margin-top: 1rem;
-    font-size: 1rem;
+    font-size: 0.938rem;
     font-weight: bold;
     color: $greyNoIdea;
   }
@@ -12,16 +12,14 @@
   .Transactions {
     margin-top: 1rem;
 
-
-
     table {
       width: 100%;
       border-collapse: collapse;
+      font-size: 0.938rem;
     }
 
     thead {
       color: rgba(0, 0, 0, 0.38);
-      font-size: 1rem;
     }
 
     tbody {
@@ -31,7 +29,6 @@
 
       td {
         border-bottom: 1px solid #cbc8c8;
-        font-size: 1rem;
       }
 
       .Status {
