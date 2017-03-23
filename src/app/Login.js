@@ -19,6 +19,7 @@ const CHECK_INTERVAL = 500;
 class Login extends React.Component {
     constructor() {
         super();
+        this.askForAccountConfirmation = true;
         this.state = {
             completed: false,
             step: 1,
@@ -34,22 +35,32 @@ class Login extends React.Component {
     async componentDidMount() {
         await toPromiseNoError(this.setState.bind(this), {"browserSupported": ledger.isU2FSupported});
         await ledgerLoginProvider.waitUntilConnected();
+        await toPromiseNoError(this.setState.bind(this), {"oldEthereumApp": ledgerLoginProvider.versionIsSupported});
+        ledgerLoginProvider.onDisconnect(() => {
+            history.push("/logout");
+        });
         this.onLedgerConnected();
     }
 
     async onLedgerConnected() {
         await toPromiseNoError(this.setState.bind(this), {completed: true, step: 1});
         await wait(ANIMATION_DURATION);
-        await toPromiseNoError(this.setState.bind(this), {completed: false, step: 2});
+        if (this.askForAccountConfirmation) {
+            await toPromiseNoError(this.setState.bind(this), {completed: false, step: 2});
+        }
         await this.getAccount();
     }
 
     async getAccount() {
         ledgerLoginProvider.stop();
         try {
-            let accounts = await toPromise(ledger.getAccounts, [], [false]);
+            let accounts = await toPromise(ledger.getAccounts, [], [this.askForAccountConfirmation]);
             web3.eth.defaultAccount = accounts[0];
-            await toPromiseNoError(this.setState.bind(this), {completed: true, accounts});
+            if (this.askForAccountConfirmation) {
+                await toPromiseNoError(this.setState.bind(this), {completed: true, accounts});
+            } else {
+                await toPromiseNoError(this.setState.bind(this), {accounts});
+            }
             this.onAccountConfirmed()
         } catch (error) {
             console.log(error);
@@ -59,7 +70,9 @@ class Login extends React.Component {
     }
 
     async onAccountConfirmed() {
-        await wait(ANIMATION_DURATION);
+        if (this.askForAccountConfirmation) {
+            await wait(ANIMATION_DURATION);
+        }
         // TODO Check backend
         if (false) {
             await toPromiseNoError(this.setState.bind(this), {nonNeufundLedger: true});
