@@ -2,77 +2,109 @@ import React from 'react';
 import './AccountDetails.scss';
 import cms from '../../cms';
 
-export default () => {
-    return cms(__filename)(
-        <div>
-            <div className="row">
-                <div className="col-sm-5 col-sm-offset-2">
-                    Beneficiary
-                </div>
-                <div className="col-sm-3">
-                    NEUFUND
-                </div>
-            </div>
+import ReactTooltip from 'react-tooltip'
 
-            <div className="row">
-                <div className="col-sm-5 col-sm-offset-2">
-                    IBAN
-                </div>
-                <div className="col-sm-3">
-                    EE 12 3456 7890 1234 5678 7890 1234
-                </div>
-            </div>
+export default class AccountDetails extends React.Component {
+    constructor(props) {
+        super(props);
+        this.account = props.account;
+    }
 
-            <div className="row">
-                <div className="col-sm-5 col-sm-offset-2">
-                    BIC
-                </div>
-                <div className="col-sm-3">
-                    TLXXXXXX
-                </div>
-            </div>
+    componentDidMount() {
+        ReactTooltip.show(this.refs.reference);
+    }
 
-            <div className="row">
-                <div className="col-sm-5 col-sm-offset-2">
-                    Copy this to your transfer reference:
-                </div>
-            </div>
+    handleCopy() {
+        alert("Not ready :(");
+    }
 
-            <div className="row">
-                <div className="col-sm-4 col-sm-offset-2">
-                    Reference
-                </div>
-                <div className="col-sm-3">
-                    VC 12345678
-                </div>
-                <div className="col-sm-2">
-                    Do not forget this
-                </div>
-            </div>
+    render() {
+        return cms(__filename)(
+            <div className="BankAccount Section">
+                <div className="row">
+                    <div className="col-sm-9 col-sm-offset-2">
 
-            <div className="row">
-                <div className="col-sm-5 col-sm-offset-2">
-                    You agreed to buy
-                </div>
-                <div className="col-sm-3">
-                    NM 1 000 000 + 15% bonus
-                </div>
-            </div>
+                        <div className="row">
+                            <div className="col-sm-2">
+                                Beneficiary
+                            </div>
+                            <div className="col-sm-4 bold">
+                                {this.account.beneficiary}
+                            </div>
+                        </div>
 
-            <div className="row">
-                <div className="col-sm-5 col-sm-offset-2">
-                    for
-                </div>
-                <div className="col-sm-3">
-                    e 1 000 000
-                </div>
-            </div>
+                        <div className="row">
+                            <div className="col-sm-2">
+                                IBAN
+                            </div>
+                            <div className="col-sm-4 bold">
+                                {this.account.iban} <i onClick={this.handleCopy} className="material-icons">content_copy</i>
+                            </div>
+                        </div>
 
-            <div className="row">
-                <div className="col-sm-7 col-sm-offset-2">
-                    Standard bank fees apply
+                        <div className="row">
+                            <div className="col-sm-2">
+                                BIC
+                            </div>
+                            <div className="col-sm-4 bold">
+                                {this.account.bic} <i onClick={this.handleCopy} className="material-icons">content_copy</i>
+                            </div>
+                        </div>
+
+                        <div className="row ReferenceWrapper">
+                            <div className="col-sm-4 Reference" ref='reference' data-tip="React-tooltip">
+                                <div className="row">
+                                    <div className="col-sm-12 Reference">
+                                        Copy this to your transfer reference:
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-sm-6 Reference bold">
+                                        Reference
+                                    </div>
+                                    <div className="col-sm-6 Reference bold">
+                                        {this.account.reference} <i onClick={this.handleCopy} className="material-icons">content_copy</i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <ReactTooltip place="right"
+                                      effect="solid"
+                                      class="ICO-tooltip"
+                                      afterHide={() => ReactTooltip.show(this.refs.reference)}>
+                            <div>Important!</div>
+                            <div>Please do not forget to<br/>include the complete<br/>reference code.</div>
+                        </ReactTooltip>
+
+                        <div className="row">
+                            <div className="col-sm-2">
+                                You agreed to buy
+                            </div>
+                            <div className="col-sm-4 bold">
+                                NM {this.account.NUE.toString()} + {this.account.bonus.toString()}% bonus
+                            </div>
+                        </div>
+
+                        <div className="row">
+                            <div className="col-sm-2">
+                                for
+                            </div>
+                            <div className="col-sm-4 bold">
+                                e {this.account.EUR.toString()}
+                            </div>
+                        </div>
+
+                        <div className="row">
+                            <div className="col-sm-8 Fees">
+                                Standard bank fees apply
+                            </div>
+                        </div>
+
+
+                    </div>
                 </div>
             </div>
-        </div>
-    )
+        )
+    }
 };

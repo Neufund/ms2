@@ -27,7 +27,7 @@ export default class Ico extends React.Component {
         if (props.location.query.state != undefined) {
             this.state = {icoState: props.location.query.state}
         } else {
-            this.state = {icoState: "preico"}
+            this.state = {icoState: "thankyou"}
         }
         /* ?state=
          * preico, countdown, ico, thankyou, progress, success
@@ -127,10 +127,21 @@ export default class Ico extends React.Component {
     };
 
     accountDetails = (icoState) => {
+
+        let accountDetails = {
+            beneficiary: "NEUFUND",
+            iban: "EE 12 3456 7890 1234 5678 7890 1234",
+            bic:"TLXXXXX",
+            reference: "VC 12345678",
+            NUE: 1000000,
+            bonus: 15,
+            EUR: 1000000
+        };
+
         if (icoState == "ico"
             || icoState == "thankyou"
             || icoState == "progress") {
-            return <AccountDetails/>;
+            return <AccountDetails account={accountDetails}/>;
         }
     };
 
