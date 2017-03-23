@@ -4,10 +4,11 @@ import cms from '../../cms';
 
 export default () => {
     return cms(__filename)(
-        <div>
+        <div className="EmailChange">
             <div className="row">
-                <div className="col-sm-7 col-sm-offset-2">
-                    e-mail@address.com &nbsp;&nbsp;&nbsp; X
+                <div className="col-sm-9 col-sm-offset-2">
+                    <b>e-mail@address.com</b> <span className="ChangeButton"
+                                                    onClick={() => alert("e-mail change to implement")}>X</span>
                 </div>
             </div>
         </div>

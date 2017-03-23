@@ -1,2 +1,15 @@
 @import "../../styles/colors";
 @import "../../styles/dimensions";
+
+.EmailChange {
+  margin-top: -3.125rem;
+
+  .ChangeButton {
+    display: inline-block;
+    padding: 0.125rem;
+    margin-left: 1em;
+    font-weight: bold;
+    color: $greenNeufund;
+    cursor: pointer;
+  }
+}
