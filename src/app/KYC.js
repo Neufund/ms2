@@ -20,8 +20,11 @@ export default class KYC extends React.Component {
     constructor() {
         super();
         let formState = {
-            value: undefined,
+            valueCountry: undefined,
             forbiddenCountry: false,
+            valueAddress: '',
+            valueZip: '',
+            valueCity: '',
             missingCheckbox: true,
             canSubmit: false
         };
@@ -34,23 +37,14 @@ export default class KYC extends React.Component {
          */
         this.state = {
             getInvestorDataState: "waiting",
-            idDialogOpen: false,
             formState: formState,
             files: []
-        };
-
-        this.investorData = {
-            idImage: 'http://placehold.it/900x400?text=investor+Id+placeholder+image',
-            country: 'Poland',
-            address: 'Gornoslaska 1',
-            zip: '00-443',
-            city: 'Warsaw'
         };
     }
 
     handleCountryListChange = (event, index, value) => {
         let formState = this.state.formState;
-        formState.value = value;
+        formState.valueCountry = value;
         formState.forbiddenCountry = value == 'United States';
         this.setState({formState: formState});
         this.validate();
@@ -65,7 +59,12 @@ export default class KYC extends React.Component {
 
     validate = () => {
         let formState = this.state.formState;
-        formState.canSubmit = !formState.forbiddenCountry && !formState.missingCheckbox && formState.value != undefined;
+        formState.canSubmit = !formState.forbiddenCountry
+            && !formState.missingCheckbox
+            && formState.valueCountry != undefined
+            && formState.valueAddress != ''
+            && formState.valueZip != ''
+            && formState.valueCity != '';
         this.setState({formState: formState});
     };
 
@@ -92,7 +91,7 @@ export default class KYC extends React.Component {
             floatingLabelText: "Country",
             autoWidth: true,
             maxHeight: 200,
-            value: this.state.formState.value,
+            value: this.state.formState.valueCountry,
             onChange: this.handleCountryListChange
         };
 
@@ -144,9 +143,24 @@ export default class KYC extends React.Component {
             </ReactTooltip>
             <h4>Fill in your real data</h4>
             {countryList} <br />
-            <TextField floatingLabelText="Address line"/> <br />
-            <TextField floatingLabelText="Zip code"/> <br />
-            <TextField floatingLabelText="City"/>
+            <TextField floatingLabelText="Address line" onChange={(event, newValue) => {
+                let formState = this.state.formState;
+                formState.valueAddress = newValue;
+                this.setState({formState: formState});
+                this.validate();
+            }}/> <br />
+            <TextField floatingLabelText="Zip code" onChange={(event, newValue) => {
+                let formState = this.state.formState;
+                formState.valueZip = newValue;
+                this.setState({formState: formState});
+                this.validate();
+            }}/> <br />
+            <TextField floatingLabelText="City" onChange={(event, newValue) => {
+                let formState = this.state.formState;
+                formState.valueCity = newValue;
+                this.setState({formState: formState});
+                this.validate();
+            }}/>
             <Checkbox onCheck={this.handleCheckboxChange} className="checkbox" label="I represent myself"/>
             <RaisedButton disabled={!this.state.formState.canSubmit} className="submitButton" label="Submit"
                           onClick={() => history.push("/ico")}/>
