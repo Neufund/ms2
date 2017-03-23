@@ -13,6 +13,7 @@ import {countries} from 'country-data';
 import ReactTooltip from 'react-tooltip'
 import './KYC.scss';
 import cms from '../cms';
+import history from '../history';
 
 export default class KYC extends React.Component {
 
@@ -130,8 +131,8 @@ export default class KYC extends React.Component {
                              src={this.state.files[0].preview}
                              key={this.state.files[0].name}/>
                         : <div className="secondary-info">
-                        Click or drop picture
-                    </div>}
+                            Click or drop picture
+                        </div>}
                 </Dropzone>
             </div>
             <ReactTooltip place="right"
@@ -147,7 +148,8 @@ export default class KYC extends React.Component {
             <TextField floatingLabelText="Zip code"/> <br />
             <TextField floatingLabelText="City"/>
             <Checkbox onCheck={this.handleCheckboxChange} className="checkbox" label="I represent myself"/>
-            <RaisedButton disabled={!this.state.formState.canSubmit} className="submitButton" label="Submit"/>
+            <RaisedButton disabled={!this.state.formState.canSubmit} className="submitButton" label="Submit"
+                          onClick={() => history.push("/ico")}/>
         </div>;
     };
 
