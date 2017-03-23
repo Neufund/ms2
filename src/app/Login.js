@@ -38,6 +38,7 @@ class Login extends React.Component {
     }
 
     async onLedgerConnected() {
+        await toPromiseNoError(this.setState.bind(this), {completed: true, step: 1});
         await wait(ANIMATION_DURATION);
         await toPromiseNoError(this.setState.bind(this), {completed: false, step: 2});
         await this.getAccount();
