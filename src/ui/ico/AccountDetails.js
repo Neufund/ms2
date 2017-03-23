@@ -38,7 +38,8 @@ export default class AccountDetails extends React.Component {
                                 IBAN
                             </div>
                             <div className="col-sm-4 bold">
-                                {this.account.iban} <i onClick={this.handleCopy} className="material-icons">content_copy</i>
+                                {this.account.iban} <i onClick={this.handleCopy}
+                                                       className="material-icons">content_copy</i>
                             </div>
                         </div>
 
@@ -47,12 +48,13 @@ export default class AccountDetails extends React.Component {
                                 BIC
                             </div>
                             <div className="col-sm-4 bold">
-                                {this.account.bic} <i onClick={this.handleCopy} className="material-icons">content_copy</i>
+                                {this.account.bic} <i onClick={this.handleCopy}
+                                                      className="material-icons">content_copy</i>
                             </div>
                         </div>
 
                         <div className="row ReferenceWrapper">
-                            <div className="col-sm-4 Reference" ref='reference' data-tip="React-tooltip">
+                            <div className="col-sm-4 Reference" ref='reference' data-tip="hello world" data-for="bank-account-tooltip">
                                 <div className="row">
                                     <div className="col-sm-12 Reference">
                                         Copy this to your transfer reference:
@@ -63,13 +65,15 @@ export default class AccountDetails extends React.Component {
                                         Reference
                                     </div>
                                     <div className="col-sm-6 Reference bold">
-                                        {this.account.reference} <i onClick={this.handleCopy} className="material-icons">content_copy</i>
+                                        {this.account.reference} <i onClick={this.handleCopy}
+                                                                    className="material-icons">content_copy</i>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <ReactTooltip place="right"
+                        <ReactTooltip id="bank-account-tooltip"
+                                      place="right"
                                       effect="solid"
                                       class="ICO-tooltip"
                                       afterHide={() => ReactTooltip.show(this.refs.reference)}>
