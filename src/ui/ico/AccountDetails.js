@@ -3,15 +3,25 @@ import './AccountDetails.scss';
 import cms from '../../cms';
 
 import ReactTooltip from 'react-tooltip'
+import RaisedButton from 'material-ui/RaisedButton';
 
 export default class AccountDetails extends React.Component {
     constructor(props) {
         super(props);
         this.account = props.account;
+        this.state = {
+            icoState: props.icoState
+        };
     }
 
     componentDidMount() {
         ReactTooltip.show(this.refs.reference);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            icoState: nextProps.icoState
+        });
     }
 
     handleCopy() {
@@ -54,7 +64,8 @@ export default class AccountDetails extends React.Component {
                         </div>
 
                         <div className="row ReferenceWrapper">
-                            <div className="col-sm-4 Reference" ref='reference' data-tip="hello world" data-for="bank-account-tooltip">
+                            <div className="col-sm-4 Reference" ref='reference' data-tip="hello world"
+                                 data-for="bank-account-tooltip">
                                 <div className="row">
                                     <div className="col-sm-12 Reference">
                                         Copy this to your transfer reference:
@@ -104,8 +115,32 @@ export default class AccountDetails extends React.Component {
                                 Standard bank fees apply
                             </div>
                         </div>
+                        {
+                            this.state.icoState !== "ico" ?
+                                <div className="row buttonSection">
+                                    <div className="col-sm-2">
+                                        <RaisedButton label="I did it again"/>
+                                    </div>
+                                    <div className="col-sm-8">
+                                        <h3>Thank you!</h3>
+                                        <h4>We are waiting to recieve your transfer, it might take a while</h4>
+                                        <p>We will send you a reminder to your email address when the transaction is
+                                            completed</p>
 
-
+                                        <div className="Email">
+                                            <b>e-mail@address.com</b> <span className="ChangeButton"
+                                                                            onClick={() => alert("e-mail change to implement")}>X</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                :
+                                <div className="row buttonSection">
+                                    <div className="col-sm-2">
+                                        <RaisedButton label="I did it"
+                                                      onClick={() => this.props.setIcoState("thankyou")}/>
+                                    </div>
+                                </div>
+                        }
                     </div>
                 </div>
             </div>

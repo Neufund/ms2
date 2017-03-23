@@ -141,7 +141,7 @@ export default class Ico extends React.Component {
         if (icoState == "ico"
             || icoState == "thankyou"
             || icoState == "progress") {
-            return <AccountDetails account={accountDetails}/>;
+            return <AccountDetails account={accountDetails} icoState={icoState} setIcoState={this.setIcoState}/>;
         }
     };
 

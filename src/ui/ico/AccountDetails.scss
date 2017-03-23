@@ -46,4 +46,34 @@
     cursor: pointer;
     font-size: 1rem;
   }
+
+  .buttonSection {
+    margin-top: 1.875rem;
+
+    h3 {
+      margin: 0;
+      font-size: 1.25rem;
+    }
+
+    h4 {
+      font-size: 1rem;
+      margin-top: 0.625rem;
+    }
+
+    p {
+      margin: 0.625rem 0;
+    }
+
+    .Email {
+
+      .ChangeButton {
+        display: inline-block;
+        padding: 0.125rem;
+        margin-left: 1em;
+        font-weight: bold;
+        color: $greenNeufund;
+        cursor: pointer;
+      }
+    }
+  }
 }
