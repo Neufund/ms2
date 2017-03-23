@@ -22,7 +22,6 @@ class LedgerLoginProvider {
      * Starts watching if ledger is connected/disconnected
      */
     start() {
-        console.log("start");
         this.isStarted = true;
         this.intervalId = setInterval(this._checkLedgerConnected.bind(this), CHECK_INTERVAL);
     }
@@ -31,7 +30,6 @@ class LedgerLoginProvider {
      * Stop watching if ledger is connected/disconnected
      */
     stop() {
-        console.log("stop");
         this.isStarted = false;
         clearInterval(this.intervalId);
     }
@@ -49,7 +47,6 @@ class LedgerLoginProvider {
     }
 
     _checkLedgerConnected() {
-        console.log("check");
         if (this.isStarted) {
             timeout(toPromise(ledger.getAppConfig), CHECK_INTERVAL / 2).then(this._isConnected.bind(this)).catch(this._isDisconnected.bind(this));
         }
@@ -84,7 +81,6 @@ class LedgerLoginProvider {
      * @private
      */
     _handleConnected() {
-        console.log("handleConnected");
         this.connected = true;
         this._executeCallbacks(this.onConnectedCallbacks);
     }
@@ -94,7 +90,7 @@ class LedgerLoginProvider {
      * @private
      */
     _handleDisconnected() {
-        console.log("handleDisconnected");
+        ledger._accounts = null;
         this.connected = false;
         this._executeCallbacks(this.onDisconnectedCallbacks);
     }
