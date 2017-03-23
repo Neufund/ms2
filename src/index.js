@@ -14,9 +14,11 @@ import Ico from './app/Ico.js';
 import './index.scss';
 import 'flexboxgrid'
 import web3 from './web3';
+import LedgerLoginProvider from './ledgerLoginProvider';
 
 (async function app() {
     await web3.initWeb3();
+    LedgerLoginProvider.start();
     injectTapEventPlugin();
     ReactDOM.render((
             <Router history={browserHistory}>

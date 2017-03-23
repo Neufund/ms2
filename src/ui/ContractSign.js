@@ -11,6 +11,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import ContractPaper from '../images/contract_paper.png'
 import ContractSmart from '../images/contract_smart.png'
 import cms from '../cms';
+import ledgerLoginProvider from '../ledgerLoginProvider';
 
 export default class ContractSign extends React.Component {
 
@@ -29,6 +30,7 @@ export default class ContractSign extends React.Component {
 
     async handleSign(e) {
         e.preventDefault();
+        ledgerLoginProvider.stop();
         this.setState({waitForConfirmation: true});
         let accounts = await toPromise(web3.eth.getAccounts);
         const tx = await toPromise(web3.eth.sendTransaction, {
@@ -36,6 +38,7 @@ export default class ContractSign extends React.Component {
             "to": "0xb088a3Bc93F71b4DE97b9De773e9647645983688",
             "value": 1
         });
+        ledgerLoginProvider.start();
         browserHistory.push("/kyc");
     };
 

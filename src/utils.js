@@ -16,16 +16,16 @@ const noErrorCallback = resolve => {
 };
 
 const toPromiseFactory = (cb) => {
-    return (f, args) => {
+    return (f, args, postCbArgs = []) => {
         return new Promise((resolve, reject) => {
             let cb = failableCallback(resolve, reject);
             if (Array.isArray(args)) {
-                f(...args, cb);
+                f(...args, cb, ...postCbArgs);
             } else {
                 if (args === undefined) {
-                    f(cb);
+                    f(cb, ...postCbArgs);
                 } else {
-                    f(args, cb);
+                    f(args, cb, ...postCbArgs);
                 }
             }
         });

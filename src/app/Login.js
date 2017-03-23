@@ -4,6 +4,7 @@ import CircularProgress from 'material-ui/CircularProgress';
 import history from '../history';
 import {toPromise, toPromiseNoError, wait} from '../utils';
 import {ledger} from '../web3';
+import ledgerLoginProvider from '../ledgerLoginProvider';
 import './Login.scss';
 import Headline from '../ui/Headline';
 import Step from './../ui/Step';
@@ -11,7 +12,6 @@ import nano2 from '../images/nano2.png';
 import nano3 from '../images/nano3.png';
 import placeholder from '../images/pitching-i-phone-app-startup.jpg';
 import cms from '../cms';
-import semver from 'semver';
 
 const ANIMATION_DURATION = 3000;
 const CHECK_INTERVAL = 500;
@@ -33,23 +33,8 @@ class Login extends React.Component {
 
     async componentDidMount() {
         await toPromiseNoError(this.setState.bind(this), {"browserSupported": ledger.isU2FSupported});
-        // await toPromiseNoError(this.setState.bind(this), {"browserSupported": false});
-        this.connectLedger();
-    }
-
-    async connectLedger() {
-        try {
-            let config = await toPromise(ledger.getAppConfig);
-            await toPromiseNoError(this.setState.bind(this), {
-                completed: true,
-                config,
-                oldEthereumApp: semver.lt(config.version, "1.0.8")
-            });
-            this.onLedgerConnected()
-        } catch (error) {
-            console.log(error);
-            setTimeout(this.connectLedger.bind(this), CHECK_INTERVAL);
-        }
+        await ledgerLoginProvider.waitUntilConnected();
+        this.onLedgerConnected();
     }
 
     async onLedgerConnected() {
@@ -59,8 +44,9 @@ class Login extends React.Component {
     }
 
     async getAccount() {
+        ledgerLoginProvider.stop();
         try {
-            let accounts = await toPromise(ledger.getAccounts);
+            let accounts = await toPromise(ledger.getAccounts, [], [false]);
             web3.eth.defaultAccount = accounts[0];
             await toPromiseNoError(this.setState.bind(this), {completed: true, accounts});
             this.onAccountConfirmed()
@@ -68,6 +54,7 @@ class Login extends React.Component {
             console.log(error);
             setTimeout(this.getAccount.bind(this), CHECK_INTERVAL);
         }
+        ledgerLoginProvider.start();
     }
 
     async onAccountConfirmed() {
