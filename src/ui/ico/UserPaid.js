@@ -5,7 +5,7 @@ import cms from '../../cms';
 export default (props) => {
     return cms(__filename)(
         <div className="UserPaid">
-            <div className="row">
+            <div className="row first">
                 <div className="col-sm-1 col-sm-offset-1">
                     You paid:
                 </div>

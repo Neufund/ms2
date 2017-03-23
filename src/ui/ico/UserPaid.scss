@@ -23,8 +23,12 @@
     font-size: 1.875rem;
   }
 
-  .row { // this should be done correctly but wait till finishing touch
+  .row { // this should be done correctly but wait till we have correct design
     padding-top: 0;
     padding-bottom: 0;
+
+    &.first {
+      padding-top: 2.5rem;
+    }
   }
 }
