@@ -80,14 +80,6 @@ export default class KYC extends React.Component {
         ReactTooltip.show(this.dropzone);
     }
 
-    handleOpen = () => {
-        this.setState({idDialogOpen: true});
-    };
-
-    handleClose = () => {
-        this.setState({idDialogOpen: false});
-    };
-
     waiting = () =>
         <div className="progressWrapper">
             <p>Getting your data</p>
@@ -119,7 +111,7 @@ export default class KYC extends React.Component {
                     })}
             </SelectField>;
 
-        console.log(this.state.files.map((file) => <img src={file.preview} key={file.name}/>));
+        //console.log(this.state.files.map((file) => <img src={file.preview} key={file.name}/>)); TODO: delete this console.log?
         return <div className="KYC-form">
             <h4>Upload a picture of your Passport of ID card</h4>
             <div ref={(dropzone) => {
