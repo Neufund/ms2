@@ -91,7 +91,7 @@ export default class AccountDetails extends React.Component {
                                 for
                             </div>
                             <div className="col-sm-4 bold">
-                                e {this.account.EUR.toString()}
+                                &#8364; {this.account.EUR.toString()}
                             </div>
                         </div>
 

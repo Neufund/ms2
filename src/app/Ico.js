@@ -157,13 +157,13 @@ export default class Ico extends React.Component {
                 break;
             case "progress":
                 data.investments.push({
-                    paid: "200 000e",
+                    paid: "\u20AC 200 000",
                     source: "EN 123456798456321657987654",
                     reward: "NEU 250 000",
                     success: false
                 });
                 data.investments.push({
-                    paid: "800 000e",
+                    paid: "\u20AC 800 000",
                     source: "EN 123456798456321657987654",
                     reward: "NEU 800 000",
                     success: false
@@ -171,20 +171,20 @@ export default class Ico extends React.Component {
                 break;
             case "success":
                 data.investments.push({
-                    paid: "0e",
+                    paid: "\u20AC 0",
                     source: "NEUFUND",
                     reward: "NEU 150 000",
                     success: true
                 });
                 data.investments.push({
-                    paid: "200 000",
+                    paid: "\u20AC 200 000",
                     source: "EN 123456798456321657987654",
                     reward: "NEU 250 000",
                     success: true
                 });
 
                 data.investments.push({
-                    paid: "800 000e",
+                    paid: "\u20AC 800 000",
                     source: "EN 123456798456321657987654",
                     reward: "NEU 800 000",
                     success: true
