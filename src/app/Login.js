@@ -78,6 +78,7 @@ class Login extends React.Component {
 
     async onAccountConfirmed() {
         if (this.askForAccountConfirmation) {
+            this.countdown.complete();
             await wait(ANIMATION_DURATION);
         }
         // TODO Check backend

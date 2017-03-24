@@ -3,7 +3,7 @@ import {toPromise} from './utils';
 import {ledger} from './web3';
 import {timeout} from 'promise-timeout';
 
-const CHECK_INTERVAL = 1000;
+const CHECK_INTERVAL = 3000;
 
 class LedgerLoginProvider {
     constructor() {
@@ -48,7 +48,7 @@ class LedgerLoginProvider {
 
     _checkLedgerConnected() {
         if (this.isStarted) {
-            toPromise(ledger.getAppConfig, [], [CHECK_INTERVAL / 2]).then(this._isConnected.bind(this)).catch(this._isDisconnected.bind(this));
+            toPromise(ledger.getAppConfig, [], [CHECK_INTERVAL]).then(this._isConnected.bind(this)).catch(this._isDisconnected.bind(this));
         }
     }
 
@@ -58,6 +58,8 @@ class LedgerLoginProvider {
      * @private
      */
     _isConnected(config) {
+        console.log(config);
+        console.log("isConnected");
         this._setConfig(config);
         if (this.connected === false) {
             this._handleConnected();
@@ -70,6 +72,8 @@ class LedgerLoginProvider {
      * @private
      */
     _isDisconnected(error) {
+        console.log(error);
+        console.log("isDisconnected");
         this.error = error;
         if (this.connected === true) {
             this._handleDisconnected();
@@ -81,6 +85,7 @@ class LedgerLoginProvider {
      * @private
      */
     _handleConnected() {
+        console.log("handleConnected");
         this.connected = true;
         this._executeCallbacks(this.onConnectedCallbacks);
     }
@@ -90,6 +95,7 @@ class LedgerLoginProvider {
      * @private
      */
     _handleDisconnected() {
+        console.log("handleDisconnected");
         ledger._accounts = null;
         this.connected = false;
         this._executeCallbacks(this.onDisconnectedCallbacks);

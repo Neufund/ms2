@@ -1,6 +1,7 @@
 import './ContractSign.scss';
 import React from 'react';
-import {Link, browserHistory} from 'react-router';
+import {Link} from 'react-router';
+import history from '../history';
 import {toPromise} from '../utils';
 import FontIcon from 'material-ui/FontIcon';
 import Dialog from 'material-ui/Dialog';
@@ -60,7 +61,7 @@ export default class ContractSign extends React.Component {
 
     onTransactionSigned() {
         ledgerLoginProvider.start();
-        browserHistory.push("/kyc");
+        history.push("/kyc");
     }
 
     render() {
