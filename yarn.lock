@@ -2631,9 +2631,9 @@ lcid@^1.0.0:
   dependencies:
     invert-kv "^1.0.0"
 
-ledger-wallet-provider@^1.14.17:
-  version "1.14.17"
-  resolved "https://registry.yarnpkg.com/ledger-wallet-provider/-/ledger-wallet-provider-1.14.17.tgz#c00303fa11db97a55aa2b24402818e8bf6fb85a0"
+ledger-wallet-provider@^1.14.18:
+  version "1.14.18"
+  resolved "https://registry.yarnpkg.com/ledger-wallet-provider/-/ledger-wallet-provider-1.14.18.tgz#947cdc76cf51f1426bdc08b9f604098d1d1c5cc3"
   dependencies:
     babel-runtime "^6.23.0"
     ledgerco "^1.1.2"

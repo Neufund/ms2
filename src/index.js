@@ -1,7 +1,8 @@
 import "babel-polyfill";
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Router, Route, browserHistory} from 'react-router'
+import {Router, Route} from 'react-router';
+import history from './history';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import App from './app/App.js';
 import Index from './app/Index.js';
@@ -21,7 +22,7 @@ import LedgerLoginProvider from './ledgerLoginProvider';
     LedgerLoginProvider.start();
     injectTapEventPlugin();
     ReactDOM.render((
-            <Router history={browserHistory}>
+            <Router history={history}>
                 <Route component={App}>
                     <Route path="/" component={Index}/>
                     <Route path="/login" component={Login}/>
@@ -30,7 +31,7 @@ import LedgerLoginProvider from './ledgerLoginProvider';
                     <Route path="/logout" component={Logout}/>
                     {/*<Route path="*" component={NotFound}/>*/}
                 </Route>
-                <Route path="/ico" component={Ico} />
+                <Route path="/ico" component={Ico}/>
             </Router>
         ),
         document.getElementById('root')

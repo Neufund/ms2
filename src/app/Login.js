@@ -4,6 +4,7 @@ import CircularProgress from 'material-ui/CircularProgress';
 import history from '../history';
 import {toPromise, toPromiseNoError, wait} from '../utils';
 import {ledger} from '../web3';
+import LedgerCountdown from '../ui/LedgerCountdown';
 import ledgerLoginProvider from '../ledgerLoginProvider';
 import './Login.scss';
 import Headline from '../ui/Headline';
@@ -42,6 +43,10 @@ class Login extends React.Component {
         this.onLedgerConnected();
     }
 
+    componentWillUnmount() {
+        clearTimeout(this.timeoutId);
+    }
+
     async onLedgerConnected() {
         await toPromiseNoError(this.setState.bind(this), {completed: true, step: 1});
         await wait(ANIMATION_DURATION);
@@ -55,6 +60,7 @@ class Login extends React.Component {
         ledgerLoginProvider.stop();
         try {
             let accounts = await toPromise(ledger.getAccounts, [], [this.askForAccountConfirmation]);
+            console.log(accounts);
             web3.eth.defaultAccount = accounts[0];
             if (this.askForAccountConfirmation) {
                 await toPromiseNoError(this.setState.bind(this), {completed: true, accounts});
@@ -64,7 +70,8 @@ class Login extends React.Component {
             this.onAccountConfirmed()
         } catch (error) {
             console.log(error);
-            setTimeout(this.getAccount.bind(this), CHECK_INTERVAL);
+            this.countdown.reset();
+            this.timeoutId = setTimeout(this.getAccount.bind(this), CHECK_INTERVAL);
         }
         ledgerLoginProvider.start();
     }
@@ -136,6 +143,9 @@ class Login extends React.Component {
                         <div className="Login-step-text">
                             Press both buttons on the device to confirm your account.
                         </div>
+                        <LedgerCountdown ref={(countdown) => {
+                            this.countdown = countdown;
+                        }}/>
                     </div>
                 </div>
             </div>

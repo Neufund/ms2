@@ -7,11 +7,14 @@ import Dialog from 'material-ui/Dialog';
 import IconButton from 'material-ui/IconButton';
 import Checkbox from 'material-ui/Checkbox';
 import {web3} from '../web3';
+import LedgerCountdown from './LedgerCountdown';
 import RaisedButton from 'material-ui/RaisedButton';
 import ContractPaper from '../images/contract_paper.png'
 import ContractSmart from '../images/contract_smart.png'
 import cms from '../cms';
 import ledgerLoginProvider from '../ledgerLoginProvider';
+
+const CHECK_INTERVAL = 500;
 
 export default class ContractSign extends React.Component {
 
@@ -19,6 +22,10 @@ export default class ContractSign extends React.Component {
         open: false,
         waitForConfirmation: false
     };
+
+    componentWillUnmount(){
+        clearTimeout(this.timeoutId);
+    }
 
     handleOpen = () => {
         this.setState({open: true});
@@ -32,15 +39,29 @@ export default class ContractSign extends React.Component {
         e.preventDefault();
         ledgerLoginProvider.stop();
         this.setState({waitForConfirmation: true});
-        let accounts = await toPromise(web3.eth.getAccounts);
-        const tx = await toPromise(web3.eth.sendTransaction, {
-            "from": accounts[0],
-            "to": "0xb088a3Bc93F71b4DE97b9De773e9647645983688",
-            "value": 1
-        });
+        await this.signTransaction();
+    };
+
+    async signTransaction() {
+        try {
+            let accounts = await toPromise(web3.eth.getAccounts);
+            const tx = await toPromise(web3.eth.sendTransaction, {
+                "from": accounts[0],
+                "to": "0xb088a3Bc93F71b4DE97b9De773e9647645983688",
+                "value": 1
+            });
+            this.onTransactionSigned();
+        } catch (error) {
+            console.log(error);
+            this.countdown.reset();
+            this.timeoutId = setTimeout(this.signTransaction.bind(this), CHECK_INTERVAL);
+        }
+    }
+
+    onTransactionSigned() {
         ledgerLoginProvider.start();
         browserHistory.push("/kyc");
-    };
+    }
 
     render() {
         const actions = [
@@ -63,6 +84,9 @@ export default class ContractSign extends React.Component {
             <div className="ConfirmOnNano">
                 <b>Confirm action with Ledger Nano</b><br />
                 Press two keys on the device
+                <LedgerCountdown ref={(countdown) => {
+                    this.countdown = countdown;
+                }}/>
             </div>;
 
         return cms(__filename)(
