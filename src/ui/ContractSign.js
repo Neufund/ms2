@@ -93,6 +93,9 @@ export default class ContractSign extends React.Component {
         return cms(__filename)(
             <div className="ContractSign">
                 <h4>Sign your Limited Partner Agreement</h4>
+                <div className="CheckboxWrapper">
+                    <Checkbox label="I have read and understood the limited partner agreement"/>
+                </div>
                 <p>To see contracts click on the icons</p>
                 <div className="Contracts row">
                     <div className="col-xs-12 col-sm-3" onClick={this.handleOpen}>
@@ -118,9 +121,6 @@ export default class ContractSign extends React.Component {
                 >
                     {this.contract}
                 </Dialog>
-                <div className="CheckboxWrapper">
-                    <Checkbox label="I have read and understood the limited partner agreement"/>
-                </div>
 
                 {this.state.waitForConfirmation ? confirmMsg : signButton}
 

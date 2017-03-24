@@ -111,7 +111,6 @@ export default class KYC extends React.Component {
                     })}
             </SelectField>;
 
-        //console.log(this.state.files.map((file) => <img src={file.preview} key={file.name}/>)); TODO: delete this console.log?
         return <div className="KYC-form">
             <h4>Upload a picture of your Passport of ID card</h4>
             <div ref={(dropzone) => {
@@ -119,16 +118,15 @@ export default class KYC extends React.Component {
             }} data-tip="React-tooltip">
                 <Dropzone onDrop={this.onDrop.bind(this)}
                           multiple={false}
-                          maxSize={5000000}
-                          accept={"image/png,image/jpg"}
+                          maxSize={500000000}
+                          disablePreview={true}
+                          accept={"image/*"}
                           className="KYC-dropzone"
                           activeClassName="KYC-dropzone-active"
                           rejectClassName="KYC-dropzone-reject">
 
                     {this.state.files.length ?
-                        <img className="KYC-image"
-                             src={this.state.files[0].preview}
-                             key={this.state.files[0].name}/>
+                        "File successfully uploaded"
                         : <div className="secondary-info">
                             Click or drop picture
                         </div>}
