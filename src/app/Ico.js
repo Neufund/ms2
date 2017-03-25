@@ -147,14 +147,11 @@ export default class Ico extends React.Component {
 
     investments = (icoState) => {
         let data = {
-            waitingForInvestment: false,
+            icoState: icoState,
             investments: []
         };
 
         switch (icoState) {
-            case "thankyou":
-                data.waitingForInvestment = true;
-                break;
             case "progress":
                 data.investments.push({
                     paid: "\u20AC 200 000",
