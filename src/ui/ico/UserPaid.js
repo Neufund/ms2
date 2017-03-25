@@ -16,7 +16,7 @@ export default (props) => {
                     {props.userPaidData.success ? "You have:" : "You pledged:"}
                 </div>
                 <div className="col-sm-2">
-                    <span className="Unit">NEU</span> <span className={props.userPaidData.success ? "Number Neu Big" : "Number NEU"}>{props.userPaidData.NEU.toString()}</span>
+                    <span className="Unit">NEU</span> <span className={props.userPaidData.success ? "Number Neu Big" : "Number Neu"}>{props.userPaidData.NEU.toString()}</span>
                 </div>
             </div>
             <div className="row">
