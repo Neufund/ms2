@@ -203,7 +203,8 @@ export default class Ico extends React.Component {
             EUR: 0,
             ETH: 0,
             NEU: 0,
-            success: false
+            success: false,
+            icoState: icoState
         };
         switch (icoState) {
             case "progress":
