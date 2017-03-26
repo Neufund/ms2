@@ -6,7 +6,6 @@ export default class AmountRaised extends React.Component {
 
     constructor(props) {
         super(props);
-        console.log(props);
         this.state = {
             icoState: props.amountRaisedData.icoState,
             EUR: props.amountRaisedData.EUR,
@@ -16,7 +15,6 @@ export default class AmountRaised extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps);
         this.setState({
             icoState: nextProps.amountRaisedData.icoState,
             EUR: nextProps.amountRaisedData.EUR,
