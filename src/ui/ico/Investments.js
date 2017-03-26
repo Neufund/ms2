@@ -7,21 +7,21 @@ export default class Investments extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            msg: this.computeMsg(props.investmentsData.icoState),
+            icoState: props.investmentsData.icoState,
             investments: props.investmentsData.investments
         };
     }
 
     componentWillReceiveProps(nextProps) {
         this.setState({
-            msg: this.computeMsg(nextProps.investmentsData.icoState),
+            icoState: nextProps.investmentsData.icoState,
             investments: nextProps.investmentsData.investments
         });
     }
 
     computeMsg = (icoState) => {
         let msg;
-        if (!(icoState == "progress" || icoState == "success")) {
+        if (!(icoState == "progress" || icoState == "success" || icoState == "fail")) {
             if (icoState == "thankyou") {
                 msg = "We have not recieved your investment";
             } else {
@@ -39,10 +39,10 @@ export default class Investments extends React.Component {
                         <span className="SectionTitle">Your Investments</span>
                     </div>
                 </div>
-                {(this.state.msg != undefined) &&
+                {(this.computeMsg(this.state.icoState) != undefined) &&
                 <div className="row Message">
                     <div className="col-sm-4 col-sm-offset-1">
-                        {this.state.msg}
+                        {this.computeMsg(this.state.icoState)}
                     </div>
                 </div>
                 }
@@ -65,10 +65,10 @@ export default class Investments extends React.Component {
                                     <td>{row.source.toString()}</td>
                                     <td>{row.reward.toString()}</td>
                                     {
-                                        row.success ?
-                                            <td className="Status Success">success</td>
+                                        this.state.icoState != "progress" ?
+                                            <td className="Status Success">{row.status}</td>
                                             :
-                                            <td className="Status Progress">...in progress</td>
+                                            <td className="Status Progress">{row.status}</td>
                                     }
                                 </tr>)}
                             </tbody>

@@ -93,8 +93,9 @@ export default class Ico extends React.Component {
 
     currencySwitcher = (icoState) => {
         let showCurrencySwitcher = true;
-        if (icoState == "success" || icoState == "fail")
-            showCurrencySwitcher = false
+        if (icoState == "success" || icoState == "fail") {
+            showCurrencySwitcher = false;
+        }
         return <CurrencySwitcher currency="EUR" showCurrencySwitcher={showCurrencySwitcher}/>;
     };
 
@@ -169,13 +170,13 @@ export default class Ico extends React.Component {
                     paid: "\u20AC 200 000",
                     source: "EN 123456798456321657987654",
                     reward: "NEU 250 000",
-                    success: false
+                    status: "...in progress"
                 });
                 data.investments.push({
                     paid: "\u20AC 800 000",
                     source: "EN 123456798456321657987654",
                     reward: "NEU 800 000",
-                    success: false
+                    status: "...in progress"
                 });
                 break;
             case "success":
@@ -183,20 +184,42 @@ export default class Ico extends React.Component {
                     paid: "\u20AC 0",
                     source: "NEUFUND",
                     reward: "NEU 150 000",
-                    success: true
+                    status: "success"
                 });
                 data.investments.push({
                     paid: "\u20AC 200 000",
                     source: "EN 123456798456321657987654",
                     reward: "NEU 250 000",
-                    success: true
+                    status: "success"
                 });
 
                 data.investments.push({
                     paid: "\u20AC 800 000",
                     source: "EN 123456798456321657987654",
                     reward: "NEU 800 000",
-                    success: true
+                    status: "success"
+                });
+                break;
+
+            case "fail":
+                data.investments.push({
+                    paid: "\u20AC 0",
+                    source: "NEUFUND",
+                    reward: "NEU 150 000",
+                    status: "unsuccessful"
+                });
+                data.investments.push({
+                    paid: "\u20AC 200 000",
+                    source: "EN 123456798456321657987654",
+                    reward: "NEU 250 000",
+                    status: "pay back"
+                });
+
+                data.investments.push({
+                    paid: "\u20AC 800 000",
+                    source: "EN 123456798456321657987654",
+                    reward: "NEU 800 000",
+                    status: "pay back"
                 });
                 break;
         }
