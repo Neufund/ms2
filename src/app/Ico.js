@@ -44,6 +44,7 @@ export default class Ico extends React.Component {
 
     amountRaised = (icoState) => {
         let data = {
+            icoState: icoState,
             EUR: 10000000,
             ETH: 45000000,
             CAP: 80
@@ -51,8 +52,8 @@ export default class Ico extends React.Component {
         if (icoState == "ico"
             || icoState == "thankyou"
             || icoState == "progress"
-            || icoState == "success") {
-            data.success = icoState == "success";
+            || icoState == "success"
+            || icoState == "fail") {
             return <AmountRaised amountRaisedData={data}/>;
         }
     };
