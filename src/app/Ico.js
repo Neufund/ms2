@@ -73,16 +73,21 @@ export default class Ico extends React.Component {
     };
 
     timeToEnd = (icoState) => {
+        let data = {
+            icoState: icoState
+        }
+
         if (icoState == "ico"
             || icoState == "thankyou"
             || icoState == "progress") {
-            return <TimeToEnd endTime="2017-05-01"/>;
-        } else if (icoState == "success") {
-            return <TimeToEnd endStatus={{
-                duration: 2222452,
-                ethscanUrl: "https://etherscan.io/tx/0x98d0b801ddc8e19db76f32994b697cccfb12519129a5ad0e36d0f246dd16d220",
-                auditUrl: "http://banciur.org"
-            }}/>;
+            data.endTime = "2017-05-01"
+            return <TimeToEnd data={data}/>;
+        } else if (icoState == "success"
+            || icoState == "fail") {
+            data.duration = 2222452;
+            data.ethscanUrl = "https://etherscan.io/tx/0x98d0b801ddc8e19db76f32994b697cccfb12519129a5ad0e36d0f246dd16d220";
+            data.auditUrl = "http://banciur.org";
+            return <TimeToEnd data={data}/>;
         }
     };
 
