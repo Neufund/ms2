@@ -92,7 +92,10 @@ export default class Ico extends React.Component {
     };
 
     currencySwitcher = (icoState) => {
-        return <CurrencySwitcher currency="EUR" showCurrencySwitcher={icoState !== "success"}/>;
+        let showCurrencySwitcher = true;
+        if (icoState == "success" || icoState == "fail")
+            showCurrencySwitcher = false
+        return <CurrencySwitcher currency="EUR" showCurrencySwitcher={showCurrencySwitcher}/>;
     };
 
     message = (icoState) => {
@@ -120,6 +123,9 @@ export default class Ico extends React.Component {
                 break;
             case "success":
                 msg = <h3>Congratulations you became an investor in NEUFUND</h3>;
+                break;
+            case "fail":
+                msg = <h3>You can send your money back. Click pay back to receive a transfer</h3>;
                 break;
         }
         return <Message message={msg}/>
