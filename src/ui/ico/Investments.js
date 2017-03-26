@@ -10,13 +10,9 @@ export default class Investments extends React.Component {
             msg: this.computeMsg(props.investmentsData.icoState),
             investments: props.investmentsData.investments
         };
-        console.log("constructor");
-        console.log(this.state);
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log("nextProps");
-        console.log(nextProps);
         this.setState({
             msg: this.computeMsg(nextProps.investmentsData.icoState),
             investments: nextProps.investmentsData.investments
@@ -36,8 +32,6 @@ export default class Investments extends React.Component {
     };
 
     render() {
-        console.log("render");
-        console.log(this.state);
         return cms(__filename)(
             <div className="Investments Section">
                 <div className="row">
