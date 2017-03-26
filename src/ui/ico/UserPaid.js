@@ -16,11 +16,11 @@ export default (props) => {
                     className="Number">{props.userPaidData.EUR.toString()}</span>
                 </div>
                 <div className="col-sm-2">
-                    {props.userPaidData.success ? "You have:" : "You pledged:"}
+                    {props.userPaidData.icoState == "success" ? "You have:" : "You pledged:"}
                 </div>
                 <div className="col-sm-2">
                     <span className="Unit">NEU</span> <span
-                    className={props.userPaidData.success ? "Number Neu Big" : "Number Neu"}>{props.userPaidData.NEU.toString()}</span>
+                    className={props.userPaidData.icoState == "success" ? "Number Neu Big" : "Number Neu"}>{props.userPaidData.NEU.toString()}</span>
                 </div>
                 {
                     props.userPaidData.icoState == "fail" &&

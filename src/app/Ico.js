@@ -203,7 +203,6 @@ export default class Ico extends React.Component {
             EUR: 0,
             ETH: 0,
             NEU: 0,
-            success: false,
             icoState: icoState
         };
         switch (icoState) {
@@ -213,10 +212,10 @@ export default class Ico extends React.Component {
                 data.NEU = 1150000;
                 break;
             case "success":
+            case "fail":
                 data.EUR = 1000000;
                 data.ETH = 1000;
                 data.NEU = 1150000;
-                data.success = true;
                 break;
         }
         return <UserPaid userPaidData={data}/>;
