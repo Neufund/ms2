@@ -30,7 +30,7 @@ export default class Ico extends React.Component {
             this.state = {icoState: "preico"}
         }
         /* ?state=
-         * preico, countdown, ico, thankyou, progress, success
+         * kycfail, kycsuccess, preico, countdown, ico, thankyou, progress, success, fail
          */
     }
 
