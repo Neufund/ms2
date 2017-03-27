@@ -145,7 +145,10 @@ export default class Ico extends React.Component {
     };
 
     emailChange = (icoState) => {
-        if (icoState == "preico" || icoState == "countdown") {
+        if (icoState == "kycprogress"
+            || icoState == "kycfail"
+            || icoState == "preico"
+            || icoState == "countdown") {
             return <EmailChange/>;
         }
     };
