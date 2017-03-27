@@ -18,8 +18,8 @@ export default class IcoHeader extends React.Component {
         return cms(__filename)(
             <div className="row topArea">
                 <div className="col-xs-12 col-md-10 col-md-offset-1">
+                    <div className="stateChanger" onClick={() => this.props.setIcoState("kycprogress")}>kycprogress</div>
                     <div className="stateChanger" onClick={() => this.props.setIcoState("kycfail")}>kycfail</div>
-                    <div className="stateChanger" onClick={() => this.props.setIcoState("kycsuccess")}>kycsuccess</div>
                     <div className="stateChanger" onClick={() => this.props.setIcoState("preico")}>preico</div>
                     <div className="stateChanger" onClick={() => this.props.setIcoState("countdown")}>countdown</div>
                     <div className="stateChanger" onClick={() => this.props.setIcoState("ico")}>ico</div>

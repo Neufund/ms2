@@ -1,0 +1,32 @@
+@import "../../styles/colors";
+@import "../../styles/dimensions";
+
+.KYC-status {
+  padding-bottom: 0.938rem !important;
+  font-size: 1rem;
+
+  h3 {
+    margin-top: 0.625rem;
+    margin-bottom: 0.625rem;
+  }
+
+  &.Progress {
+    background-color: $ico-header-kyc-progress-background-color;
+  }
+
+  &.Fail {
+    background-color: $ico-header-kyc-fail-background-color;
+
+    .icon {
+      color: red;
+      font-size: 1.25rem;
+    }
+
+    .edit {
+      font-weight: bold;
+      margin-left: 1.5em;
+      cursor: pointer;
+      color: #000;
+    }
+  }
+}

@@ -7,6 +7,7 @@ import cms from '../cms';
 import ProgressBar from "../ui/ProgressBar"
 
 import IcoHeader from "../ui/header/IcoHeader"
+import KycStatus from "../ui/ico/KycStatus"
 import TimeToICO from "../ui/ico/TimeToICO"
 import AmountRaised from "../ui/ico/AmountRaised"
 import TotalCreated from "../ui/ico/TotalCreated"
@@ -30,12 +31,20 @@ export default class Ico extends React.Component {
             this.state = {icoState: "preico"}
         }
         /* ?state=
-         * kycfail, kycsuccess, preico, countdown, ico, thankyou, progress, success, fail
+         * kycprogress, kycfail, preico, countdown, ico, thankyou, progress, success, fail
          */
     }
 
+    kycStatus = (icoState) => {
+        if (icoState == "kycprogress"
+            || icoState == "kycfail")
+            return <KycStatus progress={icoState == "kycprogress"}/>;
+    };
+
     timeToIco = (icoState) => {
-        if (icoState == "preico") {
+        if (icoState == "kycprogress"
+            || icoState == "kycfail"
+            || icoState == "preico") {
             return <TimeToICO/>;
         } else if (icoState == "countdown") {
             return <TimeToICO startTime="2017-04-01"/>;
@@ -75,7 +84,7 @@ export default class Ico extends React.Component {
     timeToEnd = (icoState) => {
         let data = {
             icoState: icoState
-        }
+        };
 
         if (icoState == "ico"
             || icoState == "thankyou"
@@ -102,6 +111,8 @@ export default class Ico extends React.Component {
     message = (icoState) => {
         let msg;
         switch (icoState) {
+            case "kycprogress":
+            case "kycfail":
             case "preico":
             case "countdown":
                 msg = <div>
@@ -261,6 +272,7 @@ export default class Ico extends React.Component {
                     <ProgressBar progress={60} ico={false}/>
                     <div className="topArea">
                         <IcoHeader setIcoState={this.setIcoState}/>
+                        {this.kycStatus(this.state.icoState)}
                         {this.timeToIco(this.state.icoState)}
                         {this.amountRaised(this.state.icoState)}
                         {this.totalCreated(this.state.icoState)}
