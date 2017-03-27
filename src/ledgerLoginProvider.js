@@ -3,7 +3,7 @@ import {toPromise} from './utils';
 import {ledger} from './web3';
 import {timeout} from 'promise-timeout';
 
-const CHECK_INTERVAL = 3000;
+const CHECK_INTERVAL = 1000;
 
 class LedgerLoginProvider {
     constructor() {
@@ -48,7 +48,7 @@ class LedgerLoginProvider {
 
     _checkLedgerConnected() {
         if (this.isStarted) {
-            toPromise(ledger.getAppConfig, [], [CHECK_INTERVAL]).then(this._isConnected.bind(this)).catch(this._isDisconnected.bind(this));
+            toPromise(ledger.getAppConfig, [], [CHECK_INTERVAL/2]).then(this._isConnected.bind(this)).catch(this._isDisconnected.bind(this));
         }
     }
 
