@@ -43,10 +43,9 @@
   },
   "scripts": {
     "build": "webpack",
-    "dev": "webpack-dev-server --hot --https --open --colors --progress --history-api-fallback"
+    "dev": "webpack-dev-server --https --open --colors --progress --history-api-fallback"
   },
   "devDependencies": {
-    "babel-plugin-transform-export-extensions": "^6.22.0",
     "node-sass": "^4.5.0",
     "sass-loader": "^6.0.3"
   }
