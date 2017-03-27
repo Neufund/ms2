@@ -5,6 +5,8 @@ import cms from '../../cms';
 import ReactTooltip from 'react-tooltip'
 import RaisedButton from 'material-ui/RaisedButton';
 
+import CopyToClipboard from 'react-copy-to-clipboard';
+
 export default class AccountDetails extends React.Component {
     constructor(props) {
         super(props);
@@ -22,10 +24,6 @@ export default class AccountDetails extends React.Component {
         this.setState({
             icoState: nextProps.icoState
         });
-    }
-
-    handleCopy() {
-        alert("Not ready :(");
     }
 
     render() {
@@ -48,8 +46,10 @@ export default class AccountDetails extends React.Component {
                                 IBAN
                             </div>
                             <div className="col-sm-4 bold">
-                                {this.account.iban} <i onClick={this.handleCopy}
-                                                       className="material-icons">content_copy</i>
+                                {this.account.iban}
+                                <CopyToClipboard text={this.account.iban}>
+                                    <i className="material-icons">content_copy</i>
+                                </CopyToClipboard>
                             </div>
                         </div>
 
@@ -58,8 +58,10 @@ export default class AccountDetails extends React.Component {
                                 BIC
                             </div>
                             <div className="col-sm-4 bold">
-                                {this.account.bic} <i onClick={this.handleCopy}
-                                                      className="material-icons">content_copy</i>
+                                {this.account.bic}
+                                <CopyToClipboard text={this.account.bic}>
+                                    <i className="material-icons">content_copy</i>
+                                </CopyToClipboard>
                             </div>
                         </div>
 
@@ -76,8 +78,10 @@ export default class AccountDetails extends React.Component {
                                         Reference
                                     </div>
                                     <div className="col-sm-6 Reference bold">
-                                        {this.account.reference} <i onClick={this.handleCopy}
-                                                                    className="material-icons">content_copy</i>
+                                        {this.account.reference}
+                                        <CopyToClipboard text={this.account.reference}>
+                                            <i className="material-icons">content_copy</i>
+                                        </CopyToClipboard>
                                     </div>
                                 </div>
                             </div>

@@ -22,6 +22,7 @@
     "moment": "^2.18.0",
     "promise-timeout": "^1.1.1",
     "react": "^15.4.2",
+    "react-copy-to-clipboard": "^4.2.3",
     "react-dom": "^15.4.2",
     "react-dropzone": "^3.12.2",
     "react-router": "^3.0.2",
