@@ -1,6 +1,7 @@
 import React from 'react';
 import './KycStatus.scss';
 import cms from '../../cms';
+import history from '../../history';
 
 export default (props) => {
     let element;
@@ -19,11 +20,13 @@ export default (props) => {
         element = <div className="row KYC-status Fail">
             <div className="col-sm-10 col-sm-offset-1">
                 <h3>Identity check error <i className="icon material-icons">report_problem</i></h3>
-                <div> Something went wrong  with the identity check <span className="edit" onClick={() => alert("Placeholder")}>Edit</span></div>
+                <div> Something went wrong with the identity check <span className="edit"
+                                                                         onClick={() => history.push("/kyc")}>Edit</span>
+                </div>
             </div>
         </div>
     }
     return cms(__filename)(
-       element
+        element
     )
 };
