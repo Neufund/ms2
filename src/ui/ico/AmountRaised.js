@@ -1,6 +1,7 @@
 import React from 'react';
 import './AmountRaised.scss';
 import cms from '../../cms';
+import FlatButton from 'material-ui/FlatButton';
 
 export default class AmountRaised extends React.Component {
 
@@ -44,6 +45,14 @@ export default class AmountRaised extends React.Component {
                             className={(this.state.icoState == "success") ? "Number" : "Number Big"}>{this.state.ETH}</span>
                         </div>
                     }
+
+                    {
+                        (this.state.icoState != "fail") &&
+                        <div className="col-sm-2">
+                            <FlatButton className="BuyButton" label="Buy" />
+                        </div>
+                    }
+
                     {
                         (this.state.icoState == "success" || this.state.icoState == "fail") &&
                         <div className="col-sm-2 Cap">
