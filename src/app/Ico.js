@@ -16,9 +16,9 @@ import UserPaid from "../ui/ico/UserPaid"
 
 import CurrencySwitcher from "../ui/ico/CurrencySwitcher"
 import Message from "../ui/ico/Message"
-import EmailChange from "../ui/ico/EmailChange"
 import AccountDetails from "../ui/ico/AccountDetails"
 import Investments from "../ui/ico/Investments"
+import ContentMockup from "../ui/ico/ContentMockup"
 
 export default class Ico extends React.Component {
     constructor(props) {
@@ -89,7 +89,7 @@ export default class Ico extends React.Component {
         if (icoState == "ico"
             || icoState == "thankyou"
             || icoState == "progress") {
-            data.endTime = "2017-05-01"
+            data.endTime = "2017-05-01";
             return <TimeToEnd data={data}/>;
         } else if (icoState == "success"
             || icoState == "fail") {
@@ -111,16 +111,6 @@ export default class Ico extends React.Component {
     message = (icoState) => {
         let msg;
         switch (icoState) {
-            case "kycprogress":
-            case "kycfail":
-            case "preico":
-            case "countdown":
-                msg = <div>
-                    <h3>Only with neufund you can take part in the ICO through the bank transfer!</h3>
-                    <p>The bank account number will be realised soon!</p>
-                    <p>We will send you reminder on your email:</p>
-                </div>;
-                break;
             case "ico":
                 msg = <p>To finalize the investment please transfer the amount into this bank account:</p>;
                 break;
@@ -140,16 +130,9 @@ export default class Ico extends React.Component {
                 msg = <h3>You can send your money back. Click pay back to receive a transfer</h3>;
                 break;
         }
-        return <Message message={msg}/>
 
-    };
-
-    emailChange = (icoState) => {
-        if (icoState == "kycprogress"
-            || icoState == "kycfail"
-            || icoState == "preico"
-            || icoState == "countdown") {
-            return <EmailChange/>;
+        if (msg != undefined) {
+            return <Message message={msg}/>
         }
     };
 
@@ -165,7 +148,11 @@ export default class Ico extends React.Component {
             EUR: 1000000
         };
 
-        if (icoState == "ico"
+        if (icoState == "kycprogress"
+            || icoState == "kycfail"
+            || icoState == "preico"
+            || icoState == "countdown"
+            || icoState == "ico"
             || icoState == "thankyou"
             || icoState == "progress") {
             return <AccountDetails account={accountDetails} icoState={icoState} setIcoState={this.setIcoState}/>;
@@ -285,9 +272,11 @@ export default class Ico extends React.Component {
                     <div className="topAreaTriangle row"></div>
                     {this.currencySwitcher(this.state.icoState)}
                     {this.message(this.state.icoState)}
-                    {this.emailChange(this.state.icoState)}
                     {this.accountDetails(this.state.icoState)}
                     {this.investments(this.state.icoState)}
+                    {this.state.icoState == "preico" &&
+                    <ContentMockup/>
+                    }
                 </div>
             </MuiThemeProvider>
         )

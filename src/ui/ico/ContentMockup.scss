@@ -1,0 +1,66 @@
+@import "../../styles/colors";
+@import "../../styles/dimensions";
+
+.ContentMockup {
+
+  color: #4a4a4a;
+  text-align: justify;
+
+  .title {
+    margin-top: 4rem;
+  }
+
+  .circle {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    background-color: #898989;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2rem;
+  }
+
+  .GreyArea {
+    background-color: #8D9196;
+
+    .titlefirst {
+      margin-top: 2em;
+      padding-top: 2em;
+    }
+
+    .whyToInvest {
+      color: #fff;
+      font-weight: bold;
+    }
+
+    .titleinvestments {
+      margin-top: 1em;
+    }
+
+    .contentInvest {
+      text-align: center;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+
+
+      .circleCointeiner{
+        width: 150px;
+      }
+
+      .investmentCircle {
+        height: 100px;
+        width: 100px;
+        margin: 1rem auto;
+        border-radius: 50%;
+        background-color: #898989;
+      }
+    }
+
+    .getFundedButton {
+      margin-top: 2em;
+      margin-bottom: 3em;
+    }
+  }
+}
+
