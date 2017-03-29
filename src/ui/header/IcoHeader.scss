@@ -1,70 +1,72 @@
 @import "../../styles/colors";
 @import "../../styles/dimensions";
 
-.Header {
-  padding-top: $progressbar-height;
-  height: 3.9375rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.Logo {
-  height: 100%;
-  width: 10rem;
-  background-image: url('/src/images/NeuFund_logo.png');
-  background-size: 10rem 1.875rem;
-  background-position: center;
-  background-repeat: no-repeat;
-  display: inline-block;
-}
-
-.UserSection {
-  line-height: 3.9375rem;
-  cursor: pointer;
-  color: $ico-header-icons-color;
-
-  .iconUser {
-    position: relative;
-    top: 0.8125rem;
-    font-size: 2.313rem
+.icoHeader {
+  .Header {
+    padding-top: $progressbar-height;
+    height: 3.9375rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
   }
 
-  .iconArrow {
-    position: relative;
-    margin-left:0.625rem;
-    top: 0.125rem;
-    font-size: 0.625rem
+  .Logo {
+    height: 100%;
+    width: 10rem;
+    background-image: url('/src/images/NeuFund_logo.png');
+    background-size: 10rem 1.875rem;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: inline-block;
   }
 
-  .UserPanel-tooltip { //we gonna use different tooltip later
-    font-size: 0.75rem;
-    line-height: 1.67;
-    color: #fff !important;
-    background-color: #8e9297 !important;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  .UserSection {
+    line-height: 3.9375rem;
+    cursor: pointer;
+    color: $ico-header-icons-color;
 
-    &:after {
-      border-bottom-color: #8e9297 !important;
+    .iconUser {
+      position: relative;
+      top: 0.8125rem;
+      font-size: 2.313rem
+    }
+
+    .iconArrow {
+      position: relative;
+      margin-left: 0.625rem;
+      top: 0.125rem;
+      font-size: 0.625rem
+    }
+
+    .UserPanel-tooltip { //we gonna use different tooltip later
+      font-size: 0.75rem;
+      line-height: 1.67;
+      color: #fff !important;
+      background-color: #8e9297 !important;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+
+      &:after {
+        border-bottom-color: #8e9297 !important;
+      }
     }
   }
-}
 
-.UserPanel {
-  display: inline-block;
-}
+  .UserPanel {
+    display: inline-block;
+  }
 
-.Logout {
-  display: inline-block;
-  font-size: 0.875rem;
-  margin-left: 2em;
-  cursor: pointer;
-  color: $ico-logout-color;
-}
+  .Logout {
+    display: inline-block;
+    font-size: 0.875rem;
+    margin-left: 2em;
+    cursor: pointer;
+    color: $ico-logout-color;
+  }
 
-/* for development purposes */
-.stateChanger {
-  display: inline-block;
-  font-size: 0.8rem;
-  margin-right: 2em;
+  /* for development purposes */
+  .stateChanger {
+    display: inline-block;
+    font-size: 0.8rem;
+    margin-right: 2em;
+  }
 }

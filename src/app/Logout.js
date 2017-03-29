@@ -11,12 +11,14 @@ export default () => {
             <Headline text="You are logged out"/>
             <div className="row">
                 <div className="col-xs-8 col-xs-offset-2">
-                    <p>
+                    <p className="Description">
                         Your Ledger Nano was disconnected! <br />
                         If you want to log in connect the Ledger again
                     </p>
-                    <img src={Image} alt="dummy something"/>
-                    <Link to="/login">Log in again</Link>
+                    <Link to="/login">
+                        <img src={Image} alt="dummy something"/>
+                        Log in again
+                    </Link>
                 </div>
 
             </div>
