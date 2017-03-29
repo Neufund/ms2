@@ -120,7 +120,8 @@ export default class AccountDetails extends React.Component {
                             </div>
                         </div>
                         {
-                            this.state.icoState !== "ico" ?
+                            this.state.icoState == "thankyou"
+                            || this.state.icoState == "progress" ?
                                 <div className="row buttonSection">
                                     <div className="col-sm-2">
                                         <RaisedButton label="I did it again"/>
