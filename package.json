@@ -38,7 +38,7 @@
     "style-loader": "^0.14.1",
     "url-loader": "^0.5.8",
     "web3": "^0.18.2",
-    "web3-polyfill": "^1.1.0",
+    "web3-polyfill": "^1.1.1",
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.4.2"
   },
@@ -47,7 +47,7 @@
     "dev": "webpack-dev-server --https --open --colors --progress --history-api-fallback"
   },
   "devDependencies": {
-    "node-sass": "^4.5.0",
+    "node-sass": "^4.5.2",
     "sass-loader": "^6.0.3"
   }
 }
