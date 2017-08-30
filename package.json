@@ -15,7 +15,7 @@
     "babel-preset-react": "^6.23.0",
     "copy-webpack-plugin": "^4.0.1",
     "country-data": "^0.0.31",
-    "css-loader": "^0.28.1",
+    "css-loader": "^0.28.7",
     "ethereumjs-tx": "^1.2.5",
     "file-loader": "^0.11.1",
     "flexboxgrid": "^6.3.1",
