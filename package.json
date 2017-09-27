@@ -25,7 +25,7 @@
     "promise-timeout": "^1.1.1",
     "react": "^15.4.2",
     "react-copy-to-clipboard": "^5.0.0",
-    "react-dom": "^15.4.2",
+    "react-dom": "^16.0.0",
     "react-dropzone": "^3.12.2",
     "react-redux": "^5.0.3",
     "react-router": "^4.1.1",
