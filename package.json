@@ -23,7 +23,7 @@
     "material-ui": "^0.18.0",
     "moment": "^2.18.0",
     "promise-timeout": "^1.1.1",
-    "react": "^15.4.2",
+    "react": "^16.1.1",
     "react-copy-to-clipboard": "^5.0.0",
     "react-dom": "^15.4.2",
     "react-dropzone": "^3.12.2",
