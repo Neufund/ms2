@@ -47,7 +47,7 @@
     "dev": "webpack-dev-server --https --open --colors --progress --history-api-fallback"
   },
   "devDependencies": {
-    "node-sass": "^4.5.2",
+    "node-sass": "^4.7.1",
     "sass-loader": "^6.0.3"
   }
 }
