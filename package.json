@@ -21,7 +21,7 @@
     "flexboxgrid": "^6.3.1",
     "ledger-wallet-provider": "^1.14.19",
     "material-ui": "^0.18.0",
-    "moment": "^2.18.0",
+    "moment": "^2.20.1",
     "promise-timeout": "^1.1.1",
     "react": "^15.4.2",
     "react-copy-to-clipboard": "^5.0.0",
